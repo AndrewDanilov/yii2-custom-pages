@@ -1,0 +1,58 @@
+<?php
+namespace andrewdanilov\CustomPages\components;
+
+use yii\web\UrlRuleInterface;
+use yii\base\BaseObject;
+use andrewdanilov\CustomPages\models\Page;
+use andrewdanilov\CustomPages\models\Category;
+
+class UrlRule extends BaseObject implements UrlRuleInterface
+{
+	public function createUrl($manager, $route, $params)
+	{
+		if ($route === 'custom-pages/category') {
+			if ($params['id']) {
+				$category = Category::findOne(['id' => $params['id']]);
+				if ($category) {
+					return $category->slug;
+				}
+			}
+		}
+		if ($route === 'custom-pages/page') {
+			if ($params['id']) {
+				$page = Page::findOne(['id' => $params['id']]);
+				if ($page) {
+					return $page->category->slug . '/' . $page->slug;
+				}
+			}
+		}
+		return false;
+	}
+
+	/**
+	 * @param \yii\web\UrlManager $manager
+	 * @param \yii\web\Request $request
+	 * @return array|bool
+	 * @throws \yii\base\InvalidConfigException
+	 */
+	public function parseRequest($manager, $request)
+	{
+		$pathInfo = $request->getPathInfo();
+		if (preg_match('%^([\w_-]+)(\/[\w_-]+)?)$%', $pathInfo, $matches)) {
+			$category_slug = $matches[1];
+			$category = Category::findOne(['slug' => $category_slug]);
+			if ($category) {
+				if (isset($matches[2])) {
+					$page_slug = $matches[2];
+					$page = Page::findOne(['slug' => $page_slug, 'category_id' => $category->id]);
+					if ($page) {
+						return ['custom-pages/page', ['id' => $page->id]];
+					}
+				} else {
+					return ['custom-pages/category', ['id' => $category->id]];
+				}
+			}
+		}
+		return false;
+	}
+}
