@@ -1,8 +1,8 @@
 {
-    "name": "andrewdanilov/__repsitory_name__",
-    "description": "__repository_desc__",
+    "name": "andrewdanilov/yii2-custom-pages",
+    "description": "Custom pages with own templates",
     "type": "yii2-extension",
-    "keywords": ["yii2","extension","__samplekey__"],
+    "keywords": ["yii2","extension","custom","pages"],
     "license": "MIT",
     "authors": [
         {
