@@ -23,9 +23,9 @@ use andrewdanilov\custompages\models\Category;
 
 	<?= $form->field($model, 'image')->widget(InputImages::class) ?>
 
-    <?= $form->field($model, 'slug')->textInput(['maxlength' => true]) ?>
-
     <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'slug')->textInput(['maxlength' => true]) ?>
 
 	<?php
 	$editorOptions = ElFinder::ckeditorOptions('elfinder', [
