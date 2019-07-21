@@ -1,5 +1,5 @@
 <?php
-namespace andrewdanilov\CustomPages;
+namespace andrewdanilov\custompages;
 
 use Yii;
 use yii\helpers\FileHelper;
@@ -15,7 +15,7 @@ class Module extends \yii\base\Module
 	public function getTemplatesPath()
 	{
 		if (empty($this->templatesPath)) {
-			return '@andrewdanilov/CustomPages/frontend/templates';
+			return '@andrewdanilov/custompages/views/frontend/default';
 		}
 		return $this->templatesPath;
 	}

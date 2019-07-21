@@ -21,10 +21,10 @@
     },
     "autoload": {
         "psr-4": {
-            "andrewdanilov\\CustomPages\\": "src/"
+            "andrewdanilov\\custompages\\": "src/"
         }
     },
     "extra": {
-        "bootstrap": "andrewdanilov\\CustomPages\\Bootstrap"
+        "bootstrap": "andrewdanilov\\custompages\\Bootstrap"
     }
 }

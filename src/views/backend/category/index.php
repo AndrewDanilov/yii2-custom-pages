@@ -2,17 +2,18 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
-use andrewdanilov\CustomPages\common\models\Category;
+use andrewdanilov\custompages\models\Category;
+use andrewdanilov\custompages\Module as CustomPages;
 
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
-/* @var $searchModel andrewdanilov\CustomPages\backend\models\CategorySearch */
+/* @var $searchModel andrewdanilov\custompages\models\CategorySearch */
 
 $this->title = 'Категории';
 $this->params['breadcrumbs'][] = $this->title;
 
-$category_templates = Bootstrap::getCategoryTemplates();
-$pages_templates = Bootstrap::getPagesTemplates();
+$category_templates = CustomPages::getInstance()->getCategoryTemplates();
+$pages_templates = CustomPages::getInstance()->getPagesTemplates();
 ?>
 <div class="page-index">
 

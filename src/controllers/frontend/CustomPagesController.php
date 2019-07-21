@@ -1,15 +1,15 @@
 <?php
-namespace andrewdanilov\CustomPages\controllers\frontend;
+namespace andrewdanilov\custompages\controllers\frontend;
 
 use yii\web\Controller;
-use andrewdanilov\CustomPages\models\Category;
-use andrewdanilov\CustomPages\models\Page;
-use andrewdanilov\CustomPages\Module as CustomPages;
+use andrewdanilov\custompages\models\Category;
+use andrewdanilov\custompages\models\Page;
+use andrewdanilov\custompages\Module as CustomPages;
 
 /**
- * Page controller
+ * Default controller
  */
-class CustomPagesController extends Controller
+class DefaultController extends Controller
 {
 	/**
 	 * @param int $id
@@ -28,6 +28,10 @@ class CustomPagesController extends Controller
 		]);
 	}
 
+	/**
+	 * @param $id
+	 * @return string
+	 */
 	public function actionCategory($id)
 	{
 		$category = Category::find()->where(['id' => $id])->one();

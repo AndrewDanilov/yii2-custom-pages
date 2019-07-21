@@ -1,10 +1,10 @@
 <?php
-namespace andrewdanilov\CustomPages\components;
+namespace andrewdanilov\custompages\components;
 
 use yii\web\UrlRuleInterface;
 use yii\base\BaseObject;
-use andrewdanilov\CustomPages\models\Page;
-use andrewdanilov\CustomPages\models\Category;
+use andrewdanilov\custompages\models\Page;
+use andrewdanilov\custompages\models\Category;
 
 class UrlRule extends BaseObject implements UrlRuleInterface
 {

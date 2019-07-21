@@ -1,8 +1,8 @@
 <?php
-namespace andrewdanilov\CustomPages\models;
+namespace andrewdanilov\custompages\models;
 
 use yii\db\ActiveRecord;
-use andrewdanilov\CustomPages\behaviors\DateBehavior;
+use andrewdanilov\custompages\behaviors\DateBehavior;
 
 /**
  * This is the model class for table "page".

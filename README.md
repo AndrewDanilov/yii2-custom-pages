@@ -23,7 +23,7 @@ to the require section of your `composer.json` file.
 
 Than run db migrations, to create needed tables:
 
-yii migrate --migrationPath=@andrewdanilov/CustomPages/migrations
+yii migrate --migrationPath=@andrewdanilov/custompages/migrations
 
 Usage
 -----
@@ -34,9 +34,9 @@ $config = [
     ...
     'modules' => [
         ...
-        'CustomPages' => [
-            'class' => 'andrewdanilov\CustomPages\Module',
-            'controllerNamespace' => 'andrewdanilov\CustomPages\controllers\backend',
+        'custompages' => [
+            'class' => 'andrewdanilov\custompages\Module',
+            'controllerNamespace' => 'andrewdanilov\custompages\controllers\backend',
             'templatesPath' => '@frontend/templates', // optional - path to pages and categories template views
         ],
     ],
@@ -50,9 +50,9 @@ $config = [
     ...
     'modules' => [
         ...
-        'CustomPages' => [
-            'class' => 'andrewdanilov\CustomPages\Module',
-            'controllerNamespace' => 'andrewdanilov\CustomPages\controllers\frontend',
+        'custompages' => [
+            'class' => 'andrewdanilov\custompages\Module',
+            'controllerNamespace' => 'andrewdanilov\custompages\controllers\frontend',
             'templatesPath' => '@frontend/templates', // optional - path to pages and categories template views
         ],
     ],

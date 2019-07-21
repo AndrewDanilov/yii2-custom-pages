@@ -2,11 +2,10 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
-use andrewdanilov\CustomPages\common\models\Page;
 
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
-/* @var $searchModel andrewdanilov\CustomPages\backend\models\PageSearch */
+/* @var $searchModel andrewdanilov\custompages\models\PageSearch */
 
 $this->title = 'Страницы';
 $this->params['breadcrumbs'][] = $this->title;

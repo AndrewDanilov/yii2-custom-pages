@@ -1,5 +1,5 @@
 <?php
-namespace andrewdanilov\CustomPages\models;
+namespace andrewdanilov\custompages\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;

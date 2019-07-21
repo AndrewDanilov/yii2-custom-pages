@@ -1,5 +1,5 @@
 <?php
-namespace andrewdanilov\CustomPages;
+namespace andrewdanilov\custompages;
 
 use yii\base\BootstrapInterface;
 
@@ -12,7 +12,7 @@ class Bootstrap implements BootstrapInterface
 	{
 		$app->urlManager->addRules(
 			[
-				'andrewdanilov\CustomPages\components\UrlRule',
+				'andrewdanilov\custompages\components\UrlRule',
 			]
 		);
 	}

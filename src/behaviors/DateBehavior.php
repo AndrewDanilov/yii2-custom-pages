@@ -1,5 +1,5 @@
 <?php
-namespace andrewdanilov\CustomPages\behaviors;
+namespace andrewdanilov\custompages\behaviors;
 
 use Yii;
 use yii\db\ActiveRecord;
@@ -11,9 +11,9 @@ class DateBehavior extends \yii\base\Behavior
 {
 	/**
 	 * 'dateAttributes' => [
-	 *  	'created_at' => \andrewdanilov\CustomPages\behaviors\DateBehavior::DATETIME_FORMAT,
-	 *  	'updated_at' => \andrewdanilov\CustomPages\behaviors\DateBehavior::DATE_FORMAT,
-	 *  	'showed_at', // equal to: 'showed_at' => \andrewdanilov\CustomPages\behaviors\DateBehavior::DATE_FORMAT
+	 *  	'created_at' => \andrewdanilov\custompages\behaviors\DateBehavior::DATETIME_FORMAT,
+	 *  	'updated_at' => \andrewdanilov\custompages\behaviors\DateBehavior::DATE_FORMAT,
+	 *  	'showed_at', // equal to: 'showed_at' => \andrewdanilov\custompages\behaviors\DateBehavior::DATE_FORMAT
 	 *	],
 	 */
 	public $dateAttributes = [];

@@ -1,11 +1,11 @@
 <?php
-namespace andrewdanilov\CustomPages\controllers\backend;
+namespace andrewdanilov\custompages\controllers\backend;
 
 use Yii;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use andrewdanilov\CustomPages\models\Category;
-use andrewdanilov\CustomPages\models\CategorySearch;
+use andrewdanilov\custompages\models\Category;
+use andrewdanilov\custompages\models\CategorySearch;
 
 /**
  * CategoryController implements the CRUD actions for Category model.
