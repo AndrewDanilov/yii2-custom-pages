@@ -46,10 +46,10 @@ class UrlRule extends BaseObject implements UrlRuleInterface
 					$page_slug = $matches[2];
 					$page = Page::findOne(['slug' => $page_slug, 'category_id' => $category->id]);
 					if ($page) {
-						return ['custom-pages/page', ['id' => $page->id]];
+						return ['custompages/default/page', ['id' => $page->id]];
 					}
 				} else {
-					return ['custom-pages/category', ['id' => $category->id]];
+					return ['custompages/default/category', ['id' => $category->id]];
 				}
 			}
 		}
