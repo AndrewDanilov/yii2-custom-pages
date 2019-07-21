@@ -49,6 +49,13 @@ $pages_templates = CustomPages::getInstance()->getPagesTemplates();
     	            return Html::tag('i', 'Нет');
 	            }
             ],
+	        [
+	        	'attribute' => 'pages_count',
+		        'format' => 'raw',
+		        'value' => function (Category $model) {
+			        return Html::a($model->pagesCount, ['pages/index', 'PageSearch' => ['category_id' => $model->id]]);
+		        },
+			],
 
 	        [
 		        'class' => 'andrewdanilov\gridtools\FontawesomeActionColumn',

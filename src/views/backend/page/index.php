@@ -32,8 +32,9 @@ $this->params['breadcrumbs'][] = $this->title;
             'slug',
 	        [
 	        	'attribute' => 'category_id',
-	        	'value' => function (Page $model) {
-    	            return Html::a($model->category->title, ['page/index', 'PageSearch' => ['category_id' => $model->category_id]]);
+		        'format' => 'raw',
+		        'value' => function (Page $model) {
+    	            return Html::a($model->category->title, ['category/update', 'id' => $model->category_id]);
 		        },
 		        'filter' => Category::getCategoriesList(),
 	        ],

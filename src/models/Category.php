@@ -15,6 +15,7 @@ use yii\helpers\Inflector;
  * @property string $pages_template
  * @property string $meta_title
  * @property string $meta_description
+ * @property int $pagesCount
  * @property Page[] $pages
  */
 class Category extends ActiveRecord
@@ -60,6 +61,11 @@ class Category extends ActiveRecord
     public function getPages()
     {
     	return $this->hasMany(Page::class, ['category_id' => 'id']);
+    }
+
+    public function getPagesCount()
+    {
+    	return $this->getPages()->count();
     }
 
     public static function getCategoriesList()
