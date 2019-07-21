@@ -12,7 +12,16 @@ use andrewdanilov\custompages\models\PageSearch;
  */
 class PageController extends Controller
 {
-    /**
+	/**
+	 * @inheritDoc
+	 */
+	public function init()
+	{
+		parent::init();
+		$this->viewPath = 'views\backend\page';
+	}
+
+	/**
      * Lists all Page models.
      * @return mixed
      */

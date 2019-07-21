@@ -12,7 +12,16 @@ use andrewdanilov\custompages\models\CategorySearch;
  */
 class CategoryController extends Controller
 {
-    /**
+	/**
+	 * @inheritDoc
+	 */
+	public function init()
+	{
+		parent::init();
+		$this->viewPath = 'views\backend\category';
+	}
+
+	/**
      * Lists all Page models.
      * @return mixed
      */
