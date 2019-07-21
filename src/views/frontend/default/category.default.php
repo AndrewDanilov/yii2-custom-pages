@@ -1,8 +1,8 @@
 <?php
 
 /* @var $this \yii\web\View */
-/* @var $category \andrewdanilov\common\models\Category */
-/* @var $pages \andrewdanilov\common\models\Page[] */
+/* @var $category \andrewdanilov\custompages\models\Category */
+/* @var $pages \andrewdanilov\custompages\models\Page[] */
 
 $this->title = $category->meta_title ?: $category->title;
 $this->registerMetaTag([

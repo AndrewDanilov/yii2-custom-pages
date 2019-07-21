@@ -5,7 +5,7 @@ use yii\base\Model;
 use yii\data\ActiveDataProvider;
 
 /**
- * CategorySearch represents the model behind the search form of `andrewdanilov\common\models\Category`.
+ * CategorySearch represents the model behind the search form of `andrewdanilov\custompages\models\Category`.
  */
 class CategorySearch extends Category
 {

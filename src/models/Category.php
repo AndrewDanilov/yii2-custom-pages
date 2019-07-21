@@ -32,6 +32,7 @@ class Category extends ActiveRecord
     public function rules()
     {
         return [
+            [['slug', 'title', 'category_template', 'pages_template'], 'required'],
             [['text'], 'string'],
             [['slug', 'title', 'category_template', 'pages_template', 'meta_title', 'meta_description'], 'string', 'max' => 255],
             [['slug'], 'unique'],

@@ -6,8 +6,8 @@ use mihaildev\elfinder\ElFinder;
 use sadovojav\ckeditor\CKEditor;
 use dosamigos\datepicker\DatePicker;
 use andrewdanilov\InputImages\InputImages;
-use andrewdanilov\common\models\Page;
-use andrewdanilov\common\models\Category;
+use andrewdanilov\custompages\models\Page;
+use andrewdanilov\custompages\models\Category;
 
 /* @var $this yii\web\View */
 /* @var $form yii\widgets\ActiveForm */

@@ -49,9 +49,11 @@ class Page extends ActiveRecord
     public function rules()
     {
         return [
+        	[['slug', 'title', 'category_id', 'published_at'], 'required'],
             [['image', 'text', 'published_at'], 'string'],
             [['category_id'], 'integer'],
             [['slug', 'title', 'meta_title', 'meta_description'], 'string', 'max' => 255],
+	        [['published_at'], 'default', 'value' => date('d.m.Y')],
         ];
     }
 
