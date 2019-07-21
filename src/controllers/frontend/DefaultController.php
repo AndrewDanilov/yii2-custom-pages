@@ -12,15 +12,6 @@ use andrewdanilov\custompages\Module as CustomPages;
 class DefaultController extends Controller
 {
 	/**
-	 * @inheritDoc
-	 */
-	public function init()
-	{
-		parent::init();
-		$this->viewPath = '@custompages/views/frontend/default';
-	}
-
-	/**
 	 * @param int $id
 	 * @return mixed
 	 */

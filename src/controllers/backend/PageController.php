@@ -18,7 +18,7 @@ class PageController extends Controller
 	public function init()
 	{
 		parent::init();
-		$this->viewPath = '@custompages/views/backend/page';
+		$this->viewPath = '@andrewdanilov/custompages/views/backend/page';
 	}
 
 	/**
