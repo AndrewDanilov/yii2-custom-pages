@@ -10,10 +10,8 @@ class Bootstrap implements BootstrapInterface
 	 */
 	public function bootstrap($app)
 	{
-		$app->urlManager->addRules(
-			[
+		$app->getUrlManager()->addRules([
 				'andrewdanilov\custompages\components\UrlRule',
-			]
-		);
+		], false);
 	}
 }
