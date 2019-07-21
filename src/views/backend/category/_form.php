@@ -4,12 +4,11 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use mihaildev\elfinder\ElFinder;
 use sadovojav\ckeditor\CKEditor;
-use andrewdanilov\common\components\Bootstrap;
-use andrewdanilov\common\models\Category;
+use andrewdanilov\custompages\Module as CustomPages;
 
 /* @var $this yii\web\View */
 /* @var $form yii\widgets\ActiveForm */
-/* @var $model Category */
+/* @var $model andrewdanilov\custompages\models\Category */
 
 ?>
 
@@ -45,9 +44,9 @@ use andrewdanilov\common\models\Category;
 		'editorOptions' => $editorOptions,
 	]) ?>
 
-    <?= $form->field($model, 'category_template')->dropDownList(Bootstrap::getCategoryTemplates()) ?>
+    <?= $form->field($model, 'category_template')->dropDownList(CustomPages::getInstance()->getCategoryTemplates()) ?>
 
-    <?= $form->field($model, 'pages_template')->dropDownList(Bootstrap::getPagesTemplates()) ?>
+    <?= $form->field($model, 'pages_template')->dropDownList(CustomPages::getInstance()->getPagesTemplates()) ?>
 
     <?= $form->field($model, 'meta_title')->textInput(['maxlength' => true]) ?>
 
