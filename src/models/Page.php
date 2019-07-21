@@ -2,6 +2,7 @@
 namespace andrewdanilov\custompages\models;
 
 use yii\db\ActiveRecord;
+use yii\helpers\Inflector;
 use andrewdanilov\custompages\behaviors\DateBehavior;
 
 /**
@@ -49,10 +50,11 @@ class Page extends ActiveRecord
     public function rules()
     {
         return [
-        	[['slug', 'title', 'category_id', 'published_at'], 'required'],
+        	[['title', 'category_id'], 'required'],
             [['image', 'text', 'published_at'], 'string'],
             [['category_id'], 'integer'],
             [['slug', 'title', 'meta_title', 'meta_description'], 'string', 'max' => 255],
+	        [['slug'], 'unique', 'targetAttribute' => ['category_id', 'slug']],
 	        [['published_at'], 'default', 'value' => date('d.m.Y')],
         ];
     }
@@ -79,4 +81,12 @@ class Page extends ActiveRecord
     {
     	return $this->hasOne(Category::class, ['id' => 'category_id']);
     }
+
+	public function beforeSave($insert)
+	{
+		if (!$this->slug) {
+			$this->slug = Inflector::slug($this->title);
+		}
+		return parent::beforeSave($insert);
+	}
 }

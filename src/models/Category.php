@@ -2,6 +2,7 @@
 namespace andrewdanilov\custompages\models;
 
 use yii\db\ActiveRecord;
+use yii\helpers\Inflector;
 
 /**
  * This is the model class for table "page".
@@ -32,7 +33,7 @@ class Category extends ActiveRecord
     public function rules()
     {
         return [
-            [['slug', 'title', 'category_template', 'pages_template'], 'required'],
+            [['title', 'category_template', 'pages_template'], 'required'],
             [['text'], 'string'],
             [['slug', 'title', 'category_template', 'pages_template', 'meta_title', 'meta_description'], 'string', 'max' => 255],
             [['slug'], 'unique'],
@@ -64,5 +65,13 @@ class Category extends ActiveRecord
     public static function getCategoriesList()
     {
     	return static::find()->select(['title', 'id'])->orderBy('title')->indexBy('id')->column();
+    }
+
+    public function beforeSave($insert)
+    {
+    	if (!$this->slug) {
+    		$this->slug = Inflector::slug($this->title);
+	    }
+	    return parent::beforeSave($insert);
     }
 }
