@@ -50,7 +50,7 @@ $pages_templates = CustomPages::getInstance()->getPagesTemplates();
 	            }
             ],
 	        [
-	        	'attribute' => 'pages_count',
+	        	'attribute' => 'pagesCount',
 		        'format' => 'raw',
 		        'value' => function (Category $model) {
 			        return Html::a($model->pagesCount, ['pages/index', 'PageSearch' => ['category_id' => $model->id]]);

@@ -55,6 +55,7 @@ class Category extends ActiveRecord
             'pages_template' => 'Шаблон страниц',
             'meta_title' => 'Meta Title',
             'meta_description' => 'Meta Description',
+            'pagesCount' => 'Страницы',
         ];
     }
 
