@@ -85,9 +85,7 @@ class Page extends ActiveRecord
 	public function beforeSave($insert)
 	{
 		if (!$this->slug) {
-			$slug = Inflector::transliterate($this->title);
-			$slug = Inflector::slug($slug);
-			$this->slug = $slug;
+			$this->slug = Inflector::slug($this->title);
 		}
 		return parent::beforeSave($insert);
 	}
