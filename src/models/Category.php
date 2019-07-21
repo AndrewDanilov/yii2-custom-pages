@@ -77,7 +77,9 @@ class Category extends ActiveRecord
     public function beforeSave($insert)
     {
     	if (!$this->slug) {
-    		$this->slug = Inflector::slug($this->title);
+    		$slug = Inflector::transliterate($this->title);
+    		$slug = Inflector::slug($slug);
+		    $this->slug = $slug;
 	    }
 	    return parent::beforeSave($insert);
     }
