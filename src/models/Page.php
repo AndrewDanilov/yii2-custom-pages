@@ -27,7 +27,7 @@ class Page extends ActiveRecord
 	{
 		return [
 			[
-				'class' => 'common\behaviors\DateBehavior',
+				'class' => DateBehavior::class,
 				'dateAttributes' => [
 					'published_at' => DateBehavior::DATE_FORMAT,
 				],
