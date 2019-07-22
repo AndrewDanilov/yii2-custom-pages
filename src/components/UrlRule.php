@@ -10,7 +10,7 @@ class UrlRule extends BaseObject implements UrlRuleInterface
 {
 	public function createUrl($manager, $route, $params)
 	{
-		if ($route === 'custompages/category') {
+		if ($route === 'custompages/default/category') {
 			if ($params['id']) {
 				$category = Category::findOne(['id' => $params['id']]);
 				if ($category) {
@@ -18,7 +18,7 @@ class UrlRule extends BaseObject implements UrlRuleInterface
 				}
 			}
 		}
-		if ($route === 'custompages/page') {
+		if ($route === 'custompages/default/page') {
 			if ($params['id']) {
 				$page = Page::findOne(['id' => $params['id']]);
 				if ($page) {
@@ -38,7 +38,7 @@ class UrlRule extends BaseObject implements UrlRuleInterface
 	public function parseRequest($manager, $request)
 	{
 		$pathInfo = $request->getPathInfo();
-		if (preg_match('%^([\w_-]+)(\/[\w_-]+)?)$%', $pathInfo, $matches)) {
+		if (preg_match('%^([\w_-]+)(\/[\w_-]+)?$%', $pathInfo, $matches)) {
 			$category_slug = $matches[1];
 			$category = Category::findOne(['slug' => $category_slug]);
 			if ($category) {
