@@ -38,7 +38,7 @@ class UrlRule extends BaseObject implements UrlRuleInterface
 	public function parseRequest($manager, $request)
 	{
 		$pathInfo = $request->getPathInfo();
-		if (preg_match('%^([\w_-]+)(\/[\w_-]+)?$%', $pathInfo, $matches)) {
+		if (preg_match('%^([\w_-]+)(?:\/([\w_-]+))?$%', $pathInfo, $matches)) {
 			$category_slug = $matches[1];
 			$category = Category::findOne(['slug' => $category_slug]);
 			if ($category) {
