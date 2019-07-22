@@ -14,6 +14,6 @@ class Bootstrap implements BootstrapInterface
 			[
 				'class' => 'andrewdanilov\custompages\components\UrlRule',
 			]
-		]);
+		], false);
 	}
 }
