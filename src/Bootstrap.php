@@ -11,7 +11,9 @@ class Bootstrap implements BootstrapInterface
 	public function bootstrap($app)
 	{
 		$app->getUrlManager()->addRules([
-			'andrewdanilov\custompages\components\UrlRule',
-		], false);
+			[
+				'class' => 'andrewdanilov\custompages\components\UrlRule',
+			]
+		]);
 	}
 }
