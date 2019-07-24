@@ -23,7 +23,7 @@ class DefaultController extends Controller
 		if (!isset($templates[$template])) {
 			$template = 'page.default';
 		}
-		return $this->render($template, [
+		return $this->render(CustomPages::getInstance()->getTemplatesPath() . '/' . $template, [
 			'page' => $page,
 		]);
 	}
@@ -40,7 +40,7 @@ class DefaultController extends Controller
 		if (!isset($templates[$template])) {
 			$template = 'category.default';
 		}
-		return $this->render($template, [
+		return $this->render(CustomPages::getInstance()->getTemplatesPath() . '/' . $template, [
 			'category' => $category,
 			'pages' => $category->pages,
 		]);
