@@ -28,7 +28,7 @@ class Module extends \yii\base\Module
 			'recursive' => false,
 		]);
 		$templates = [
-			'default' => 'category.default.php',
+			'category.default' => 'category.default.php',
 		];
 		foreach ($files as $file) {
 			$tamplate = pathinfo($file, PATHINFO_FILENAME);
@@ -46,7 +46,7 @@ class Module extends \yii\base\Module
 			'recursive' => false,
 		]);
 		$templates = [
-			'default' => 'page.default.php',
+			'page.default' => 'page.default.php',
 		];
 		foreach ($files as $file) {
 			$tamplate = pathinfo($file, PATHINFO_FILENAME);
