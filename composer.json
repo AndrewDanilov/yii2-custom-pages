@@ -2,7 +2,7 @@
     "name": "andrewdanilov/yii2-custom-pages",
     "description": "Custom pages with own templates",
     "type": "yii2-extension",
-    "keywords": ["yii2","extension","custom","pages"],
+    "keywords": ["yii2","extension","custom","pages","template","backend","cms","admin","articles","news"],
     "license": "MIT",
     "authors": [
         {

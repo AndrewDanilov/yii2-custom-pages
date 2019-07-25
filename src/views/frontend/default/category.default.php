@@ -31,9 +31,9 @@ $this->registerMetaTag([
 						<img src="<?= $page->image ?>" alt="">
 					</div>
 					<div class="list-item-content">
-						<h4><?= $page->title ?></h4>
+						<a class="list-item-title" href="<?= \yii\helpers\Url::to(['default/page', 'id' => $page->id]) ?>"><?= $page->title ?></a>
 						<div>
-							<?= $page->text ?>
+							<?= $page->shortText ?>
 						</div>
 					</div>
 

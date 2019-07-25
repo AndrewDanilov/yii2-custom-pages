@@ -1,6 +1,10 @@
 Custom pages
 ===================
-Make your custom pages with own templates. Pages can be separated by categories, i.e. news, articles, etc.
+Module contains backend and frontend parts.
+Placed to backend it gives you ability to create custom pages in cms-like way.
+Pages devides by categories, i.e. news, articles, etc.
+Placed to frontend module displays category (list of pages previews) and pages itself by their SEF urls.
+Pages of each category and category itself has own templates (Views), which you can define in category settings.
 
 Installation
 ------------
@@ -39,14 +43,17 @@ $config = [
             'controllerMap' => [
                 'category' => [
                     'class' => 'andrewdanilov\custompages\controllers\backend\CategoryController',
+                    // access role for category controller
                     'access' => ['admin'],
                 ],
                 'page' => [
                     'class' => 'andrewdanilov\custompages\controllers\backend\PageController',
+                    // access role for page controller
                     'access' => ['admin'],
                 ],
             ],
-            'templatesPath' => '@frontend/views/custompages', // optional - path to pages and categories template views
+            // path to Views for pages and categories
+            'templatesPath' => '@frontend/views/custompages',
         ],
     ],
 ];
@@ -60,7 +67,8 @@ $config = [
         ...
         'custompages' => [
             'class' => 'andrewdanilov\custompages\Module',
-            'templatesPath' => '@frontend/views/custompages', // optional - path to pages and categories template views
+            // path to Views for pages and categories
+            'templatesPath' => '@frontend/views/custompages', // path to pages and categories template views
         ],
     ],
 ];

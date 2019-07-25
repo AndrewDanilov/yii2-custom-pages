@@ -3,6 +3,7 @@ namespace andrewdanilov\custompages\models;
 
 use yii\db\ActiveRecord;
 use yii\helpers\Inflector;
+use yii\helpers\StringHelper;
 use andrewdanilov\custompages\behaviors\DateBehavior;
 
 /**
@@ -18,6 +19,7 @@ use andrewdanilov\custompages\behaviors\DateBehavior;
  * @property string $meta_title
  * @property string $meta_description
  * @property Category $category
+ * @property string $shortText
  */
 class Page extends ActiveRecord
 {
@@ -88,5 +90,10 @@ class Page extends ActiveRecord
 			$this->slug = Inflector::slug($this->title);
 		}
 		return parent::beforeSave($insert);
+	}
+
+	public function getShortText()
+	{
+		return StringHelper::truncateWords($this->text, 50, '...', true);
 	}
 }
