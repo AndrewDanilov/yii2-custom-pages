@@ -2,7 +2,6 @@
 namespace andrewdanilov\custompages\controllers\backend;
 
 use Yii;
-use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use andrewdanilov\custompages\models\Page;
 use andrewdanilov\custompages\models\PageSearch;
@@ -10,7 +9,7 @@ use andrewdanilov\custompages\models\PageSearch;
 /**
  * PageController implements the CRUD actions for Page model.
  */
-class PageController extends Controller
+class PageController extends BackendController
 {
 	/**
 	 * @inheritDoc
