@@ -18,12 +18,8 @@ class DefaultController extends Controller
 	public function actionPage($id)
 	{
 		$page = Page::find()->where(['id' => $id])->one();
-		$templates = CustomPages::getInstance()->getPagesTemplates();
-		$template = $page->category->pages_template;
-		if (!isset($templates[$template])) {
-			$template = 'page.default';
-		}
-		return $this->render(CustomPages::getInstance()->getTemplatesPath() . '/' . $template, [
+		$template = CustomPages::getInstance()->getTemplatesPath() . '/' . $page->category->pages_template;
+		return $this->render($template, [
 			'page' => $page,
 		]);
 	}
@@ -35,12 +31,8 @@ class DefaultController extends Controller
 	public function actionCategory($id)
 	{
 		$category = Category::find()->where(['id' => $id])->one();
-		$templates = CustomPages::getInstance()->getCategoryTemplates();
-		$template = $category->category_template;
-		if (!isset($templates[$template])) {
-			$template = 'category.default';
-		}
-		return $this->render(CustomPages::getInstance()->getTemplatesPath() . '/' . $template, [
+		$template = CustomPages::getInstance()->getTemplatesPath() . '/' . $category->category_template;
+		return $this->render($template, [
 			'category' => $category,
 			'pages' => $category->pages,
 		]);

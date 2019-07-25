@@ -28,12 +28,11 @@ class Module extends \yii\base\Module
 			'recursive' => false,
 		]);
 		$templates = [
-			'category.default' => 'category.default.php',
+			'category.default.php' => 'category.default.php',
 		];
 		foreach ($files as $file) {
-			$tamplate = pathinfo($file, PATHINFO_FILENAME);
-			$filename = pathinfo($file, PATHINFO_BASENAME);
-			$templates[$tamplate] = $filename;
+			$template = basename($file);
+			$templates[$template] = $template;
 		}
 		return $templates;
 	}
@@ -46,12 +45,11 @@ class Module extends \yii\base\Module
 			'recursive' => false,
 		]);
 		$templates = [
-			'page.default' => 'page.default.php',
+			'page.default.php' => 'page.default.php',
 		];
 		foreach ($files as $file) {
-			$tamplate = pathinfo($file, PATHINFO_FILENAME);
-			$filename = pathinfo($file, PATHINFO_BASENAME);
-			$templates[$tamplate] = $filename;
+			$template = basename($file);
+			$templates[$template] = $template;
 		}
 		return $templates;
 	}
