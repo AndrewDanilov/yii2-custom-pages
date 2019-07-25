@@ -28,6 +28,14 @@ $this->params['breadcrumbs'][] = $this->title;
 		        'attribute' => 'id',
 		        'headerOptions' => ['width' => 100],
 	        ],
+	        [
+		        'attribute' => 'image',
+		        'format' => 'raw',
+		        'headerOptions' => ['style' => 'width:100px'],
+		        'value' => function(Page $model) {
+			        return Html::img($model->image, ['width' => '100']);
+		        }
+	        ],
             'title',
             'slug',
 	        [
