@@ -46,7 +46,7 @@ $config = [
                     'access' => ['admin'],
                 ],
             ],
-            'templatesPath' => '@frontend/templates', // optional - path to pages and categories template views
+            'templatesPath' => '@frontend/views/custompages', // optional - path to pages and categories template views
         ],
     ],
 ];
@@ -60,7 +60,7 @@ $config = [
         ...
         'custompages' => [
             'class' => 'andrewdanilov\custompages\Module',
-            'templatesPath' => '@frontend/templates', // optional - path to pages and categories template views
+            'templatesPath' => '@frontend/views/custompages', // optional - path to pages and categories template views
         ],
     ],
 ];
