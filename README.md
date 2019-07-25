@@ -36,7 +36,7 @@ $config = [
         ...
         'custompages' => [
             'class' => 'andrewdanilov\custompages\Module',
-			'controllerMap' => [
+            'controllerMap' => [
                 'category' => [
                     'class' => 'andrewdanilov\custompages\controllers\backend\CategoryController',
                     'access' => ['admin'],
@@ -49,7 +49,6 @@ $config = [
             'templatesPath' => '@frontend/templates', // optional - path to pages and categories template views
         ],
     ],
-    ...
 ];
 ```
 
@@ -64,6 +63,5 @@ $config = [
             'templatesPath' => '@frontend/templates', // optional - path to pages and categories template views
         ],
     ],
-    ...
 ];
 ```
