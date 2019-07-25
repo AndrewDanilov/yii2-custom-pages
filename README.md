@@ -36,7 +36,16 @@ $config = [
         ...
         'custompages' => [
             'class' => 'andrewdanilov\custompages\Module',
-            'controllerNamespace' => 'andrewdanilov\custompages\controllers\backend',
+			'controllerMap' => [
+                'category' => [
+                    'class' => 'andrewdanilov\custompages\controllers\backend\CategoryController',
+                    'access' => ['admin'],
+                ],
+                'page' => [
+                    'class' => 'andrewdanilov\custompages\controllers\backend\PageController',
+                    'access' => ['admin'],
+                ],
+            ],
             'templatesPath' => '@frontend/templates', // optional - path to pages and categories template views
         ],
     ],
@@ -52,7 +61,6 @@ $config = [
         ...
         'custompages' => [
             'class' => 'andrewdanilov\custompages\Module',
-            'controllerNamespace' => 'andrewdanilov\custompages\controllers\frontend',
             'templatesPath' => '@frontend/templates', // optional - path to pages and categories template views
         ],
     ],

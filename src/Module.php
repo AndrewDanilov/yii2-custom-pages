@@ -12,6 +12,15 @@ class Module extends \yii\base\Module
 {
 	public $templatesPath;
 
+	public function init()
+	{
+		// frontend by default
+		if (empty($this->controllerNamespace) && empty($this->controllerMap)) {
+			$this->controllerNamespace = 'andrewdanilov\custompages\controllers\frontend';
+		}
+		parent::init();
+	}
+
 	public function getTemplatesPath()
 	{
 		if (empty($this->templatesPath)) {
