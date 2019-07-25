@@ -65,3 +65,7 @@ $config = [
     ],
 ];
 ```
+
+If you use own _templatesPath_ you need to copy example files from __/vendor/andrewdanilov/yii2-custom-pages/src/views/frontend/default__ to your _templatesPath_ directory. Modify them or add as many templates as you need.
+
+Note, that template file name for category must begins with prefix 'category.', meanwhile template file name for page must begins with prefix 'page.'
