@@ -1,5 +1,5 @@
 <?php
-namespace andrewdanilov\custompages\components;
+namespace andrewdanilov\custompages\components\frontend;
 
 use yii\web\UrlRuleInterface;
 use yii\base\BaseObject;

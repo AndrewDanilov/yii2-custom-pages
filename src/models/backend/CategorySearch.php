@@ -1,13 +1,14 @@
 <?php
-namespace andrewdanilov\custompages\models;
+namespace andrewdanilov\custompages\models\backend;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
+use andrewdanilov\custompages\models\Category;
 
 /**
- * PageSearch represents the model behind the search form of `andrewdanilov\common\models\Page`.
+ * CategorySearch represents the model behind the search form of `andrewdanilov\custompages\models\Category`.
  */
-class PageSearch extends Page
+class CategorySearch extends Category
 {
     /**
      * {@inheritdoc}
@@ -15,8 +16,8 @@ class PageSearch extends Page
     public function rules()
     {
         return [
-            [['id', 'category_id'], 'integer'],
-            [['slug', 'title', 'published_at'], 'string'],
+            [['id'], 'integer'],
+            [['slug', 'title', 'category_template', 'pages_template'], 'string'],
         ];
     }
 
@@ -38,7 +39,7 @@ class PageSearch extends Page
      */
     public function search($params)
     {
-        $query = Page::find();
+        $query = Category::find();
 
         // add conditions that should always apply here
 
@@ -57,14 +58,12 @@ class PageSearch extends Page
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'category_id' => $this->category_id,
         ]);
 
-	    $published_at_search = implode('-', array_reverse(explode('.', $this->published_at)));
-
-	    $query->andFilterWhere(['like', 'slug', $this->slug])
+        $query->andFilterWhere(['like', 'slug', $this->slug])
             ->andFilterWhere(['like', 'title', $this->title])
-            ->andFilterWhere(['like', 'published_at', $published_at_search]);
+            ->andFilterWhere(['like', 'category_template', $this->category_template])
+            ->andFilterWhere(['like', 'pages_template', $this->pages_template]);
 
         return $dataProvider;
     }

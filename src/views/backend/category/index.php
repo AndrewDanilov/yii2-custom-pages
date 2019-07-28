@@ -7,7 +7,7 @@ use andrewdanilov\custompages\Module as CustomPages;
 
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
-/* @var $searchModel andrewdanilov\custompages\models\CategorySearch */
+/* @var $searchModel andrewdanilov\custompages\models\backend\CategorySearch */
 
 $this->title = 'Категории';
 $this->params['breadcrumbs'][] = $this->title;

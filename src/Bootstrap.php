@@ -12,7 +12,7 @@ class Bootstrap implements BootstrapInterface
 	{
 		$app->getUrlManager()->addRules([
 			[
-				'class' => 'andrewdanilov\custompages\components\UrlRule',
+				'class' => 'andrewdanilov\custompages\components\frontend\UrlRule',
 			]
 		], false);
 	}

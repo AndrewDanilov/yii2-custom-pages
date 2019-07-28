@@ -8,7 +8,7 @@ use dosamigos\datepicker\DatePicker;
 
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
-/* @var $searchModel andrewdanilov\custompages\models\PageSearch */
+/* @var $searchModel andrewdanilov\custompages\models\backend\PageSearch */
 
 $this->title = 'Страницы';
 $this->params['breadcrumbs'][] = $this->title;
