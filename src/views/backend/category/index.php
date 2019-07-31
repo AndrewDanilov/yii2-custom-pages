@@ -18,7 +18,8 @@ $pages_templates = CustomPages::getInstance()->getPagesTemplates();
 <div class="page-index">
 
     <p>
-        <?= Html::a('Добавить категорию', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Добавить страницу', ['page/create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Добавить категорию', ['category/create'], ['class' => 'btn btn-secondary']) ?>
     </p>
 
     <?= GridView::widget([
