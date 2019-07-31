@@ -8,6 +8,7 @@ use dosamigos\datepicker\DatePicker;
 use andrewdanilov\InputImages\InputImages;
 use andrewdanilov\custompages\models\Page;
 use andrewdanilov\custompages\models\Category;
+use andrewdanilov\gridtools\helpers\CKEditorHelper;
 
 /* @var $this yii\web\View */
 /* @var $form yii\widgets\ActiveForm */
@@ -27,28 +28,8 @@ use andrewdanilov\custompages\models\Category;
 
     <?= $form->field($model, 'slug')->textInput(['maxlength' => true]) ?>
 
-	<?php
-	$editorOptions = ElFinder::ckeditorOptions('elfinder', [
-		'toolbar' => [
-			['Source', 'NewPage', 'Preview', 'Viewss'],
-			['PasteText', '-', 'Undo', 'Redo'],
-			['Replace', 'SelectAll', 'Scayt'],
-			['Format', 'FontSize'],
-			['Bold', 'Italic', 'Underline', 'TextColor', 'StrikeThrough', '-', 'Outdent', 'Indent', 'RemoveFormat', 'Blockquote', 'HorizontalRule'],
-			['NumberedList', 'BulletedList', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
-			['Image', 'oembed', 'Video', 'Iframe'],
-			['Link', 'Unlink'],
-			['Maximize', 'ShowBlocks'],
-		],
-		'allowedContent' => true,
-		'forcePasteAsPlainText' => true,
-		'extraPlugins' => 'image2,widget,oembed,video',
-		'language' => Yii::$app->language,
-		'height' => 500,
-	]);
-	?>
 	<?= $form->field($model, 'text')->widget(CKEditor::class, [
-		'editorOptions' => $editorOptions,
+		'editorOptions' => ElFinder::ckeditorOptions('elfinder', CKEditorHelper::defaultOptions()),
 	]) ?>
 
 	<?= $form->field($model, 'published_at')->widget(DatePicker::class, [
