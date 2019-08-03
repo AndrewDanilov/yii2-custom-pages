@@ -4,7 +4,7 @@ namespace andrewdanilov\custompages\models;
 use yii\db\ActiveRecord;
 use yii\helpers\Inflector;
 use yii\helpers\StringHelper;
-use andrewdanilov\custompages\behaviors\DateBehavior;
+use andrewdanilov\gridtools\behaviors\DateBehavior;
 
 /**
  * This is the model class for table "page".
