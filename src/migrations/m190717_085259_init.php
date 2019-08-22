@@ -35,6 +35,7 @@ class m190717_085259_init extends Migration
 		    'image' => $this->string(),
 		    'title' => $this->string(),
 		    'text' => $this->text(),
+		    'sliders' => $this->text(),
 		    'published_at' => $this->date(),
 		    'meta_title' => $this->string(),
 		    'meta_description' => $this->string(),

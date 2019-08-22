@@ -20,6 +20,7 @@ use andrewdanilov\gridtools\behaviors\DateBehavior;
  * @property string $meta_description
  * @property Category $category
  * @property string $shortText
+ * @property string $sliders
  */
 class Page extends ActiveRecord
 {
@@ -58,6 +59,7 @@ class Page extends ActiveRecord
             [['slug', 'title', 'meta_title', 'meta_description'], 'string', 'max' => 255],
 	        [['slug'], 'unique', 'targetAttribute' => ['category_id', 'slug']],
 	        [['published_at'], 'default', 'value' => date('d.m.Y')],
+	        [['sliders'], 'safe'],
         ];
     }
 
@@ -76,6 +78,7 @@ class Page extends ActiveRecord
             'published_at' => 'Опубликовано',
             'meta_title' => 'Meta Title',
             'meta_description' => 'Meta Description',
+	        'sliders' => 'Слайдеры',
         ];
     }
 
@@ -84,8 +87,27 @@ class Page extends ActiveRecord
     	return $this->hasOne(Category::class, ['id' => 'category_id']);
     }
 
+	public function afterFind()
+	{
+		parent::afterFind();
+		if (!is_array($this->sliders)) {
+			if ($this->sliders) {
+				$this->sliders = json_decode($this->sliders, true);
+			} else {
+				$this->sliders = [];
+			}
+		}
+	}
+
 	public function beforeSave($insert)
 	{
+		if (is_array($this->sliders)) {
+			$sliders = $this->sliders;
+			if (isset($sliders['blankid'])) {
+				unset($sliders['blankid']);
+			}
+			$this->sliders = json_encode($sliders);
+		}
 		if (!$this->slug) {
 			$this->slug = Inflector::slug($this->title);
 		}

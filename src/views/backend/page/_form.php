@@ -14,6 +14,8 @@ use andrewdanilov\gridtools\helpers\CKEditorHelper;
 /* @var $form yii\widgets\ActiveForm */
 /* @var $model Page */
 
+\andrewdanilov\custompages\CustomPagesBackendAsset::register($this);
+
 ?>
 
 <div class="page-form">
@@ -31,6 +33,35 @@ use andrewdanilov\gridtools\helpers\CKEditorHelper;
 	<?= $form->field($model, 'text')->widget(CKEditor::class, [
 		'editorOptions' => ElFinder::ckeditorOptions('elfinder', CKEditorHelper::defaultOptions()),
 	]) ?>
+
+	<div class="custom-pages-sliders">
+		<label class="control-label">Слайдеры</label>
+		<div class="sliders-list">
+			<?php foreach ($model->sliders as $slider_id => $slider) { ?>
+				<div class="sliders-item" data-id="<?= $slider_id ?>">
+					<?= $form->field($model, 'sliders[' . $slider_id . ']')->widget(InputImages::class, [
+						'multiple' => true,
+						'buttonName' => 'Добавить фото',
+					])->label(false) ?>
+					<a href="#" class="btn btn-danger sliders-item-remove">Удалить слайдер</a>
+					<a href="#" class="btn btn-default sliders-item-copy" title="Скопировать в буфер обмена"><span class="fa fa-clipboard"></span>&nbsp;&nbsp;[<?= $slider_id ?>]</a>
+				</div>
+			<?php } ?>
+		</div>
+		<div class="sliders-controls">
+			<a href="#" class="btn btn-primary sliders-controls-add">Добавить слайдер</a>
+		</div>
+		<div class="sliders-blank" style="display:none;">
+			<div class="sliders-item">
+				<?= $form->field($model, 'sliders[blankid]')->widget(InputImages::class, [
+					'multiple' => true,
+					'buttonName' => 'Добавить фото',
+				])->label(false) ?>
+				<a href="#" class="btn btn-danger sliders-item-remove">Удалить слайдер</a>
+				<a href="#" class="btn btn-default sliders-item-copy" title="Скопировать в буфер обмена"><span class="fa fa-clipboard"></span>&nbsp;&nbsp;[blankid]</a>
+			</div>
+		</div>
+	</div>
 
 	<?= $form->field($model, 'published_at')->widget(DatePicker::class, [
 		'language' => 'ru',

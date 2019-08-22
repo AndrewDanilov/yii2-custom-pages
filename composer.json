@@ -17,7 +17,9 @@
         "sadovojav/yii2-ckeditor": "dev-master",
         "2amigos/yii2-date-picker-widget": "~1.0",
         "andrewdanilov/yii2-input-images": "dev-master",
-        "andrewdanilov/yii2-grid-tools": "dev-master"
+        "andrewdanilov/yii2-grid-tools": "dev-master",
+        "andrewdanilov/yii2-fancybox": "dev-master",
+        "andrewdanilov/yii2-swiper-slider": "dev-master"
     },
     "autoload": {
         "psr-4": {
