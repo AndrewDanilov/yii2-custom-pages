@@ -42,9 +42,11 @@ use andrewdanilov\gridtools\helpers\CKEditorHelper;
 						'multiple' => true,
 						'buttonName' => 'Add photo',
 					])->label(false) ?>
-					<a href="#" class="btn btn-danger albums-item-remove">Remove album</a>
-					<a href="#" class="btn btn-default albums-item-copy-gallery" title="Get gallery shortcode"><span class="fa fa-clipboard"></span>&nbsp;&nbsp;[<?= $album_id ?>]</a>
-					<a href="#" class="btn btn-info albums-item-copy-slider" title="Get slider shortcode"><span class="fa fa-clipboard"></span>&nbsp;&nbsp;[<?= $album_id ?>]</a>
+					<div class="albums-item-controls">
+						<a href="#" class="btn btn-danger albums-item-remove">Remove album</a>
+						<a href="#" class="btn btn-default albums-item-copy-gallery" title="Get gallery shortcode"><span class="fa fa-clipboard"></span>&nbsp;&nbsp;[gallery <?= $album_id ?>]</a>
+						<a href="#" class="btn btn-info albums-item-copy-slider" title="Get slider shortcode"><span class="fa fa-clipboard"></span>&nbsp;&nbsp;[slider <?= $album_id ?>]</a>
+					</div>
 				</div>
 			<?php } ?>
 		</div>
@@ -57,9 +59,11 @@ use andrewdanilov\gridtools\helpers\CKEditorHelper;
 					'multiple' => true,
 					'buttonName' => 'Add photo',
 				])->label(false) ?>
-				<a href="#" class="btn btn-danger albums-item-remove">Удалить слайдер</a>
-				<a href="#" class="btn btn-default albums-item-copy-gallery" title="Get gallery shortcode"><span class="fa fa-clipboard"></span>&nbsp;&nbsp;[blankid]</a>
-				<a href="#" class="btn btn-info albums-item-copy-slider" title="Get slider shortcode"><span class="fa fa-clipboard"></span>&nbsp;&nbsp;[blankid]</a>
+				<div class="album-controls">
+					<a href="#" class="btn btn-danger albums-item-remove">Remove slider</a>
+					<a href="#" class="btn btn-default albums-item-copy-gallery" title="Get gallery shortcode"><span class="fa fa-clipboard"></span>&nbsp;&nbsp;[blankid]</a>
+					<a href="#" class="btn btn-info albums-item-copy-slider" title="Get slider shortcode"><span class="fa fa-clipboard"></span>&nbsp;&nbsp;[blankid]</a>
+				</div>
 			</div>
 		</div>
 	</div>
