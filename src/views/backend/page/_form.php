@@ -48,7 +48,7 @@ use andrewdanilov\gridtools\helpers\CKEditorHelper;
 			<?php } ?>
 		</div>
 		<div class="albums-controls">
-			<a href="#" class="btn btn-primary albums-controls-add">Добавить слайдер</a>
+			<a href="#" class="btn btn-primary albums-controls-add">Add album</a>
 		</div>
 		<div class="albums-blank" style="display:none;">
 			<div class="albums-item">
