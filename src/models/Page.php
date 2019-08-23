@@ -82,7 +82,7 @@ class Page extends ActiveRecord
             'text' => 'Text',
 	        'albums' => 'Albums',
             'published_at' => 'Published',
-            'is_main' => 'Использовать в качестве главной',
+            'is_main' => 'Main',
             'meta_title' => 'Meta Title',
             'meta_description' => 'Meta Description',
         ];

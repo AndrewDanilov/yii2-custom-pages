@@ -72,7 +72,7 @@ $asset = \andrewdanilov\custompages\assets\CustomPagesBackendAsset::register($th
 		        'format' => 'raw',
 	        	'value' => function (Page $model) use ($asset) {
 			        if ($model->is_main) {
-			        	return Html::img($asset->baseUrl . 'images/star.svg');
+			        	return Html::img($asset->baseUrl . '/images/star.svg', ['width' => 20]);
 			        }
 			        return '';
 		        },

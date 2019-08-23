@@ -84,7 +84,7 @@ use andrewdanilov\gridtools\helpers\CKEditorHelper;
 		],
 	]) ?>
 
-    <?= $form->field($model, 'is_main')->checkbox() ?>
+    <?= $form->field($model, 'is_main')->checkbox(['label' => 'Use as main page']) ?>
 
 	<?= $form->field($model, 'meta_title')->textInput(['maxlength' => true]) ?>
 
