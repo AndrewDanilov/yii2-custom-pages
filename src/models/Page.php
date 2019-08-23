@@ -121,9 +121,7 @@ class Page extends ActiveRecord
 			(new Query())->createCommand()
 				->update(Page::tableName(), [
 					'is_main' => 0,
-				], [
-					['not', ['id' => $this->id]],
-				])->execute();
+				], ['not', ['id' => $this->id]])->execute();
 		}
 		return parent::beforeSave($insert);
 	}
