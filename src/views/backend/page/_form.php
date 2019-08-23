@@ -29,6 +29,8 @@ use andrewdanilov\gridtools\helpers\CKEditorHelper;
 
     <?= $form->field($model, 'slug')->textInput(['maxlength' => true]) ?>
 
+    <?= $form->field($model, 'hide_category_slug')->checkbox() ?>
+
 	<?= $form->field($model, 'text')->widget(CKEditor::class, [
 		'editorOptions' => ElFinder::ckeditorOptions('elfinder', CKEditorHelper::defaultOptions()),
 	]) ?>

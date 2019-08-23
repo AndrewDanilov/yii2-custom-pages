@@ -22,6 +22,9 @@ class UrlRule extends BaseObject implements UrlRuleInterface
 			if ($params['id']) {
 				$page = Page::findOne(['id' => $params['id']]);
 				if ($page) {
+					if ($page->hide_category_slug) {
+						return $page->slug;
+					}
 					return $page->category->slug . '/' . $page->slug;
 				}
 			}
@@ -50,6 +53,14 @@ class UrlRule extends BaseObject implements UrlRuleInterface
 					}
 				} else {
 					return ['custompages/default/category', ['id' => $category->id]];
+				}
+			} else {
+				if (!isset($matches[2])) {
+					$page_slug = $matches[1];
+					$page = Page::findOne(['slug' => $page_slug, 'hide_category_slug' => 1]);
+					if ($page) {
+						return ['custompages/default/page', ['id' => $page->id]];
+					}
 				}
 			}
 		}

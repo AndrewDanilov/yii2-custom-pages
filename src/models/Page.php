@@ -12,6 +12,7 @@ use andrewdanilov\gridtools\behaviors\DateBehavior;
  * @property int $id
  * @property int $category_id
  * @property string $slug
+ * @property boolean $hide_category_slug
  * @property string $image
  * @property string $title
  * @property string $text
@@ -60,6 +61,7 @@ class Page extends ActiveRecord
 	        [['slug'], 'unique', 'targetAttribute' => ['category_id', 'slug']],
 	        [['published_at'], 'default', 'value' => date('d.m.Y')],
 	        [['albums'], 'safe'],
+	        [['hide_category_slug'], 'boolean']
         ];
     }
 
@@ -72,6 +74,7 @@ class Page extends ActiveRecord
             'id' => 'ID',
             'category_id' => 'Category',
             'slug' => 'Slug',
+            'hide_category_slug' => 'Hide category slug from url',
             'image' => 'Cover',
             'title' => 'Title',
             'text' => 'Text',
