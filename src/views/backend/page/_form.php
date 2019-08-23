@@ -14,8 +14,7 @@ use andrewdanilov\gridtools\helpers\CKEditorHelper;
 /* @var $form yii\widgets\ActiveForm */
 /* @var $model Page */
 
-\andrewdanilov\custompages\CustomPagesBackendAsset::register($this);
-
+\andrewdanilov\custompages\assets\CustomPagesBackendAsset::register($this);
 ?>
 
 <div class="page-form">
