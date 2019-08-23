@@ -38,6 +38,7 @@ class m190717_085259_init extends Migration
 		    'text' => $this->text(),
 		    'albums' => $this->text(),
 		    'published_at' => $this->date(),
+		    'is_main' => $this->tinyInteger()->notNull()->defaultValue(0),
 		    'meta_title' => $this->string(),
 		    'meta_description' => $this->string(),
 	    ], $tableOptions);

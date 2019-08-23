@@ -2,6 +2,7 @@
 namespace andrewdanilov\custompages\models;
 
 use yii\db\ActiveRecord;
+use yii\db\Query;
 use yii\helpers\Inflector;
 use yii\helpers\StringHelper;
 use andrewdanilov\gridtools\behaviors\DateBehavior;
@@ -18,6 +19,7 @@ use andrewdanilov\gridtools\behaviors\DateBehavior;
  * @property string $text
  * @property string $albums
  * @property string $published_at
+ * @property boolean $is_main
  * @property string $meta_title
  * @property string $meta_description
  * @property Category $category
@@ -61,7 +63,7 @@ class Page extends ActiveRecord
 	        [['slug'], 'unique', 'targetAttribute' => ['category_id', 'slug']],
 	        [['published_at'], 'default', 'value' => date('d.m.Y')],
 	        [['albums'], 'safe'],
-	        [['hide_category_slug'], 'boolean']
+	        [['hide_category_slug', 'is_main'], 'boolean']
         ];
     }
 
@@ -80,6 +82,7 @@ class Page extends ActiveRecord
             'text' => 'Text',
 	        'albums' => 'Albums',
             'published_at' => 'Published',
+            'is_main' => 'Использовать в качестве главной',
             'meta_title' => 'Meta Title',
             'meta_description' => 'Meta Description',
         ];
@@ -113,6 +116,14 @@ class Page extends ActiveRecord
 		}
 		if (!$this->slug) {
 			$this->slug = Inflector::slug($this->title);
+		}
+		if ($this->is_main) {
+			(new Query())->createCommand()
+				->update(Page::tableName(), [
+					'is_main' => 0,
+				], [
+					['not', ['id' => $this->id]],
+				])->execute();
 		}
 		return parent::beforeSave($insert);
 	}

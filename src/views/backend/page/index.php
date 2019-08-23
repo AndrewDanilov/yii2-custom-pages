@@ -13,6 +13,7 @@ use dosamigos\datepicker\DatePicker;
 $this->title = 'Страницы';
 $this->params['breadcrumbs'][] = $this->title;
 
+$asset = \andrewdanilov\custompages\assets\CustomPagesBackendAsset::register($this);
 ?>
 <div class="page-index">
 
@@ -66,6 +67,15 @@ $this->params['breadcrumbs'][] = $this->title;
 			        ],
 		        ]),
 	        ],
+	        [
+	        	'attribute' => 'is_main',
+	        	'value' => function (Page $model) use ($asset) {
+			        if ($model->is_main) {
+			        	return Html::img($asset->baseUrl . 'images/star.svg');
+			        }
+			        return '';
+		        },
+			],
 
 	        [
 		        'class' => 'andrewdanilov\gridtools\FontawesomeActionColumn',

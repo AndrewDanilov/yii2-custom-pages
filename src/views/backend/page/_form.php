@@ -84,6 +84,8 @@ use andrewdanilov\gridtools\helpers\CKEditorHelper;
 		],
 	]) ?>
 
+    <?= $form->field($model, 'is_main')->checkbox() ?>
+
 	<?= $form->field($model, 'meta_title')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'meta_description')->textInput(['maxlength' => true]) ?>

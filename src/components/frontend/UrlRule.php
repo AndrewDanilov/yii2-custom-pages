@@ -43,11 +43,11 @@ class UrlRule extends BaseObject implements UrlRuleInterface
 		$pathInfo = $request->getPathInfo();
 		if (preg_match('%^([\w_-]+)(?:\/([\w_-]+))?$%', $pathInfo, $matches)) {
 			$category_slug = $matches[1];
-			$category = Category::findOne(['slug' => $category_slug]);
+			$category = Category::findOne(['slug' => $category_slug, 'is_main' => 0]);
 			if ($category) {
 				if (isset($matches[2])) {
 					$page_slug = $matches[2];
-					$page = Page::findOne(['slug' => $page_slug, 'category_id' => $category->id]);
+					$page = Page::findOne(['slug' => $page_slug, 'category_id' => $category->id, 'is_main' => 0]);
 					if ($page) {
 						return ['custompages/default/page', ['id' => $page->id]];
 					}
@@ -57,11 +57,17 @@ class UrlRule extends BaseObject implements UrlRuleInterface
 			} else {
 				if (!isset($matches[2])) {
 					$page_slug = $matches[1];
-					$page = Page::findOne(['slug' => $page_slug, 'hide_category_slug' => 1]);
+					$page = Page::findOne(['slug' => $page_slug, 'hide_category_slug' => 1, 'is_main' => 0]);
 					if ($page) {
 						return ['custompages/default/page', ['id' => $page->id]];
 					}
 				}
+			}
+		}
+		if ($pathInfo === '') {
+			$page = Page::findOne(['is_main' => 1]);
+			if ($page) {
+				return ['custompages/default/page', ['id' => $page->id]];
 			}
 		}
 		return false;
