@@ -33,31 +33,31 @@ use andrewdanilov\gridtools\helpers\CKEditorHelper;
 		'editorOptions' => ElFinder::ckeditorOptions('elfinder', CKEditorHelper::defaultOptions()),
 	]) ?>
 
-	<div class="custom-pages-sliders">
-		<label class="control-label">Слайдеры</label>
-		<div class="sliders-list">
-			<?php foreach ($model->sliders as $slider_id => $slider) { ?>
-				<div class="sliders-item" data-id="<?= $slider_id ?>">
-					<?= $form->field($model, 'sliders[' . $slider_id . ']')->widget(InputImages::class, [
+	<div class="custom-pages-albums">
+		<label class="control-label">Albums</label>
+		<div class="albums-list">
+			<?php foreach ($model->albums as $album_id => $album) { ?>
+				<div class="albums-item" data-id="<?= $album_id ?>">
+					<?= $form->field($model, 'albums[' . $album_id . ']')->widget(InputImages::class, [
 						'multiple' => true,
-						'buttonName' => 'Добавить фото',
+						'buttonName' => 'Add photo',
 					])->label(false) ?>
-					<a href="#" class="btn btn-danger sliders-item-remove">Удалить слайдер</a>
-					<a href="#" class="btn btn-default sliders-item-copy" title="Скопировать в буфер обмена"><span class="fa fa-clipboard"></span>&nbsp;&nbsp;[<?= $slider_id ?>]</a>
+					<a href="#" class="btn btn-danger albums-item-remove">Remove album</a>
+					<a href="#" class="btn btn-default albums-item-copy" title="Скопировать в буфер обмена"><span class="fa fa-clipboard"></span>&nbsp;&nbsp;[<?= $album_id ?>]</a>
 				</div>
 			<?php } ?>
 		</div>
-		<div class="sliders-controls">
-			<a href="#" class="btn btn-primary sliders-controls-add">Добавить слайдер</a>
+		<div class="albums-controls">
+			<a href="#" class="btn btn-primary albums-controls-add">Добавить слайдер</a>
 		</div>
-		<div class="sliders-blank" style="display:none;">
-			<div class="sliders-item">
-				<?= $form->field($model, 'sliders[blankid]')->widget(InputImages::class, [
+		<div class="albums-blank" style="display:none;">
+			<div class="albums-item">
+				<?= $form->field($model, 'albums[blankid]')->widget(InputImages::class, [
 					'multiple' => true,
 					'buttonName' => 'Добавить фото',
 				])->label(false) ?>
-				<a href="#" class="btn btn-danger sliders-item-remove">Удалить слайдер</a>
-				<a href="#" class="btn btn-default sliders-item-copy" title="Скопировать в буфер обмена"><span class="fa fa-clipboard"></span>&nbsp;&nbsp;[blankid]</a>
+				<a href="#" class="btn btn-danger albums-item-remove">Удалить слайдер</a>
+				<a href="#" class="btn btn-default albums-item-copy" title="Скопировать в буфер обмена"><span class="fa fa-clipboard"></span>&nbsp;&nbsp;[blankid]</a>
 			</div>
 		</div>
 	</div>

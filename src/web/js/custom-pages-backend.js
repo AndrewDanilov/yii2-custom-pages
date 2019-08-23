@@ -10,19 +10,19 @@ var customPagesBackend = {
 };
 
 $(function () {
-	$('.custom-pages-sliders')
-		.on('click', '.sliders-controls-add', function (e) {
+	$('.custom-pages-albums')
+		.on('click', '.albums-controls-add', function (e) {
 			e.preventDefault();
-			var wrapper = $(this).parents('.sliders-wrapper');
-			var list = wrapper.find('.sliders-list');
-			var blank = wrapper.find('.sliders-blank').clone();
+			var wrapper = $(this).parents('.albums-wrapper');
+			var list = wrapper.find('.albums-list');
+			var blank = wrapper.find('.albums-blank').clone();
 			var formName = blank.find('.input-images-wrapper').attr('data-form-name');
-			var slider_id = 'slider' + Date.now();
-			blank.find('.sliders-item').attr('data-id', slider_id);
+			var album_id = 'album' + Date.now();
+			blank.find('.albums-item').attr('data-id', album_id);
 			var blank_html = blank.html();
-			blank_html = blank_html.replace(/blankid/g, slider_id);
+			blank_html = blank_html.replace(/blankid/g, album_id);
 			list.append(blank_html);
-			var callback_id = formName.toLowerCase() + '-sliders-' + slider_id;
+			var callback_id = formName.toLowerCase() + '-albums-' + album_id;
 			mihaildev.elFinder.register(callback_id, InputImagesHandler);
 			$(document).on('click', '#' + callback_id + '_button', function () {
 				mihaildev.elFinder.openManager({
@@ -33,15 +33,15 @@ $(function () {
 				});
 			});
 		})
-		.on('click', '.sliders-item-remove', function (e) {
+		.on('click', '.albums-item-remove', function (e) {
 			e.preventDefault();
-			var item = $(this).parents('.sliders-item');
+			var item = $(this).parents('.albums-item');
 			item.remove();
 		})
-		.on('click', '.sliders-item-copy', function (e) {
+		.on('click', '.albums-item-copy', function (e) {
 			e.preventDefault();
-			var slider_id = $(this).parents('.sliders-item').attr('data-id');
-			customPagesBackend.copyTextToClipboard('[' + slider_id + ']');
-			alert('Скопировано');
+			var album_id = $(this).parents('.albums-item').attr('data-id');
+			customPagesBackend.copyTextToClipboard('[' + album_id + ']');
+			alert('Copied');
 		})
 });

@@ -1,15 +1,15 @@
 <?php
 
 /* @var $this \yii\web\View */
-/* @var $slider array */
+/* @var $album array */
 
 ?>
 <div class="custom-pages-slider swiper-container">
 	<div class="swiper-wrapper">
-		<?php foreach ($slider as $slide) { ?>
+		<?php foreach ($album as $photo) { ?>
 			<div class="swiper-slide">
-				<a data-fancybox="slider" href="<?= $slide ?>">
-					<img src="<?= $slide ?>" alt="" />
+				<a data-fancybox="slider" href="<?= $photo ?>">
+					<img src="<?= $photo ?>" alt="" />
 				</a>
 			</div>
 		<?php } ?>

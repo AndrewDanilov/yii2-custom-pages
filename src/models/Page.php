@@ -15,12 +15,12 @@ use andrewdanilov\gridtools\behaviors\DateBehavior;
  * @property string $image
  * @property string $title
  * @property string $text
+ * @property string $albums
  * @property string $published_at
  * @property string $meta_title
  * @property string $meta_description
  * @property Category $category
  * @property string $shortText
- * @property string $sliders
  */
 class Page extends ActiveRecord
 {
@@ -70,15 +70,15 @@ class Page extends ActiveRecord
     {
         return [
             'id' => 'ID',
-            'category_id' => 'Категория',
-            'slug' => 'ЧПУ страницы',
-            'image' => 'Обложка',
-            'title' => 'Заголовок',
-            'text' => 'Текст',
-            'published_at' => 'Опубликовано',
+            'category_id' => 'Category',
+            'slug' => 'Slug',
+            'image' => 'Cover',
+            'title' => 'Title',
+            'text' => 'Text',
+	        'albums' => 'Albums',
+            'published_at' => 'Published',
             'meta_title' => 'Meta Title',
             'meta_description' => 'Meta Description',
-	        'sliders' => 'Слайдеры',
         ];
     }
 

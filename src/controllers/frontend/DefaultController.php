@@ -22,9 +22,18 @@ class DefaultController extends Controller
 			->andWhere(['id' => $id])
 			->andWhere(['<=', 'published_at', new Expression('curdate()')])
 			->one();
-		if ($page->text && strpos($page->text, '[slider') !== false) {
-			foreach ($page->sliders as $slider_id => $slider) {
-				$page->text = preg_replace('/(<p>)?\[' . $slider_id . '\](<\/p>)?/ui', $this->renderPartial(CustomPages::getInstance()->getTemplatesPath() . '/_blocks/slider', ['slider' => $slider]), $page->text);
+		if ($page->text) {
+			// placing galleries instead of gallery-shortcodes
+			if (strpos($page->text, '[gallery') !== false) {
+				foreach ($page->albums as $album_id => $album) {
+					$page->text = preg_replace('/(<p>)?\[' . $album_id . '\](<\/p>)?/ui', $this->renderPartial(CustomPages::getInstance()->getTemplatesPath() . '/_blocks/gallery', ['album' => $album]), $page->text);
+				}
+			}
+			// placing sliders instead of sliser-shortcodes
+			if (strpos($page->text, '[slider') !== false) {
+				foreach ($page->albums as $album_id => $album) {
+					$page->text = preg_replace('/(<p>)?\[' . $album_id . '\](<\/p>)?/ui', $this->renderPartial(CustomPages::getInstance()->getTemplatesPath() . '/_blocks/slider', ['album' => $album]), $page->text);
+				}
 			}
 		}
 		$template = CustomPages::getInstance()->getTemplatesPath() . '/' . $page->category->pages_template;
