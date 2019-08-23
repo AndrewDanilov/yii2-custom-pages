@@ -59,7 +59,7 @@ class Page extends ActiveRecord
             [['slug', 'title', 'meta_title', 'meta_description'], 'string', 'max' => 255],
 	        [['slug'], 'unique', 'targetAttribute' => ['category_id', 'slug']],
 	        [['published_at'], 'default', 'value' => date('d.m.Y')],
-	        [['sliders'], 'safe'],
+	        [['albums'], 'safe'],
         ];
     }
 
@@ -90,23 +90,23 @@ class Page extends ActiveRecord
 	public function afterFind()
 	{
 		parent::afterFind();
-		if (!is_array($this->sliders)) {
-			if ($this->sliders) {
-				$this->sliders = json_decode($this->sliders, true);
+		if (!is_array($this->albums)) {
+			if ($this->albums) {
+				$this->albums = json_decode($this->albums, true);
 			} else {
-				$this->sliders = [];
+				$this->albums = [];
 			}
 		}
 	}
 
 	public function beforeSave($insert)
 	{
-		if (is_array($this->sliders)) {
-			$sliders = $this->sliders;
-			if (isset($sliders['blankid'])) {
-				unset($sliders['blankid']);
+		if (is_array($this->albums)) {
+			$albums = $this->albums;
+			if (isset($albums['blankid'])) {
+				unset($albums['blankid']);
 			}
-			$this->sliders = json_encode($sliders);
+			$this->albums = json_encode($albums);
 		}
 		if (!$this->slug) {
 			$this->slug = Inflector::slug($this->title);
