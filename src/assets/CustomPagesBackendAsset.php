@@ -1,5 +1,5 @@
 <?php
-namespace andrewdanilov\custompages;
+namespace andrewdanilov\custompages\assets;
 
 use yii\web\AssetBundle;
 
