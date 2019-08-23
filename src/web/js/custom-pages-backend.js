@@ -13,7 +13,7 @@ $(function () {
 	$('.custom-pages-albums')
 		.on('click', '.albums-controls-add', function (e) {
 			e.preventDefault();
-			var wrapper = $(this).parents('.albums-wrapper');
+			var wrapper = $(this).parents('.custom-pages-albums');
 			var list = wrapper.find('.albums-list');
 			var blank = wrapper.find('.albums-blank').clone();
 			var formName = blank.find('.input-images-wrapper').attr('data-form-name');
