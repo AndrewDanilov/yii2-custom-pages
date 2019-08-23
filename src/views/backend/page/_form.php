@@ -54,7 +54,7 @@ use andrewdanilov\gridtools\helpers\CKEditorHelper;
 			<div class="albums-item">
 				<?= $form->field($model, 'albums[blankid]')->widget(InputImages::class, [
 					'multiple' => true,
-					'buttonName' => 'Добавить фото',
+					'buttonName' => 'Add photo',
 				])->label(false) ?>
 				<a href="#" class="btn btn-danger albums-item-remove">Удалить слайдер</a>
 				<a href="#" class="btn btn-default albums-item-copy" title="Скопировать в буфер обмена"><span class="fa fa-clipboard"></span>&nbsp;&nbsp;[blankid]</a>
@@ -81,7 +81,7 @@ use andrewdanilov\gridtools\helpers\CKEditorHelper;
     <?= $form->field($model, 'meta_description')->textInput(['maxlength' => true]) ?>
 
     <div class="form-group">
-        <?= Html::submitButton('Сохранить', ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>
