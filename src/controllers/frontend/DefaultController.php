@@ -26,13 +26,13 @@ class DefaultController extends Controller
 			// placing galleries instead of gallery-shortcodes
 			if (strpos($page->text, '[gallery') !== false) {
 				foreach ($page->albums as $album_id => $album) {
-					$page->text = preg_replace('/(<p>)?\[' . $album_id . '\](<\/p>)?/ui', $this->renderPartial(CustomPages::getInstance()->getTemplatesPath() . '/_blocks/gallery', ['album' => $album]), $page->text);
+					$page->text = preg_replace('/(<p>)?\[gallery\s+' . $album_id . '\](<\/p>)?/ui', $this->renderPartial(CustomPages::getInstance()->getTemplatesPath() . '/_blocks/gallery', ['album' => $album]), $page->text);
 				}
 			}
 			// placing sliders instead of sliser-shortcodes
 			if (strpos($page->text, '[slider') !== false) {
 				foreach ($page->albums as $album_id => $album) {
-					$page->text = preg_replace('/(<p>)?\[' . $album_id . '\](<\/p>)?/ui', $this->renderPartial(CustomPages::getInstance()->getTemplatesPath() . '/_blocks/slider', ['album' => $album]), $page->text);
+					$page->text = preg_replace('/(<p>)?\[slider\s+' . $album_id . '\](<\/p>)?/ui', $this->renderPartial(CustomPages::getInstance()->getTemplatesPath() . '/_blocks/slider', ['album' => $album]), $page->text);
 				}
 			}
 		}

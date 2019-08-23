@@ -38,10 +38,16 @@ $(function () {
 			var item = $(this).parents('.albums-item');
 			item.remove();
 		})
-		.on('click', '.albums-item-copy', function (e) {
+		.on('click', '.albums-item-copy-gallery', function (e) {
 			e.preventDefault();
 			var album_id = $(this).parents('.albums-item').attr('data-id');
-			customPagesBackend.copyTextToClipboard('[' + album_id + ']');
+			customPagesBackend.copyTextToClipboard('[gallery ' + album_id + ']');
+			alert('Copied');
+		})
+		.on('click', '.albums-item-copy-slider', function (e) {
+			e.preventDefault();
+			var album_id = $(this).parents('.albums-item').attr('data-id');
+			customPagesBackend.copyTextToClipboard('[slider ' + album_id + ']');
 			alert('Copied');
 		})
 });
