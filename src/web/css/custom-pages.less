@@ -1,0 +1,29 @@
+.custom-pages-gallery {
+	margin: 0 -15px;
+	.gallery-item {
+		float: left;
+		box-sizing: border-box;
+		padding: 0 15px;
+		margin-bottom: 30px;
+		width: 33%;
+	}
+}
+
+@media screen and (max-width: 992px) {
+	.custom-pages-gallery {
+		.gallery-item {
+			width: 50%;
+		}
+	}
+}
+
+@media screen and (max-width: 576px) {
+	.custom-pages-gallery {
+		.gallery-item {
+			width: 90%;
+			float: none;
+			margin-left: auto;
+			margin-right: auto;
+		}
+	}
+}

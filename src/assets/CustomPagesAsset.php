@@ -7,6 +7,7 @@ class CustomPagesAsset extends AssetBundle
 {
 	public $sourcePath = '@andrewdanilov/custompages/web';
 	public $css = [
+		'css/custom-pages.css',
 	];
 	public $js = [
 		'js/custom-pages.js'
