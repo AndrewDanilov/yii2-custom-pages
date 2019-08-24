@@ -1,6 +1,7 @@
 <?php
 namespace andrewdanilov\custompages\components\frontend;
 
+use yii\db\Expression;
 use yii\web\UrlRuleInterface;
 use yii\base\BaseObject;
 use andrewdanilov\custompages\models\Page;
@@ -47,7 +48,12 @@ class UrlRule extends BaseObject implements UrlRuleInterface
 			if ($category) {
 				if (isset($matches[2])) {
 					$page_slug = $matches[2];
-					$page = Page::findOne(['slug' => $page_slug, 'is_main' => 0, 'hide_category_slug' => 0, 'category_id' => $category->id]);
+					$page = Page::find()->where([
+						'slug' => $page_slug,
+						'is_main' => 0,
+						'hide_category_slug' => 0,
+						'category_id' => $category->id,
+					])->andWhere(['>=', 'published_at', new Expression('curdate()')])->one();
 					if ($page) {
 						return ['custompages/default/page', ['id' => $page->id]];
 					}
@@ -57,7 +63,11 @@ class UrlRule extends BaseObject implements UrlRuleInterface
 			} else {
 				if (!isset($matches[2])) {
 					$page_slug = $matches[1];
-					$page = Page::findOne(['slug' => $page_slug, 'is_main' => 0, 'hide_category_slug' => 1]);
+					$page = Page::find()->where([
+						'slug' => $page_slug,
+						'is_main' => 0,
+						'hide_category_slug' => 1,
+					])->andWhere(['>=', 'published_at', new Expression('curdate()')])->one();
 					if ($page) {
 						return ['custompages/default/page', ['id' => $page->id]];
 					}
