@@ -19,11 +19,7 @@ class TextHelper
 			list($var, $value) = explode('=', $param);
 			$var = trim($var, ' \t\n\r\0\x0B\'"');
 			if ($var) {
-				$value = trim($value, ' \t\n\r\0\x0B\'"');
-				if (empty($value)) {
-					$value = '';
-				}
-				$params_values[$var] = $value;
+				$params_values[$var] = trim($value, ' \t\n\r\0\x0B\'"');
 			}
 		}
 		return $params_values;
