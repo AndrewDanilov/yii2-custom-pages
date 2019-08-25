@@ -9,8 +9,9 @@ class TextHelper
 	 */
 	public static function parseGalleryParams($params_string)
 	{
-		$params = array_filter(preg_split('/\s+/', $params_string));
-		if (!$params) {
+		preg_match_all('/(?:[^\'"\s]+|\'[^\']*\'|"[^"]*")+/', $params_string, $matches);
+		$params = array_filter($matches[0]);
+		if (empty($params)) {
 			return [];
 		}
 		$params_values = [];
