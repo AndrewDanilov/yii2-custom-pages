@@ -53,7 +53,7 @@ class UrlRule extends BaseObject implements UrlRuleInterface
 						'is_main' => 0,
 						'hide_category_slug' => 0,
 						'category_id' => $category->id,
-					])->andWhere(['>=', 'published_at', new Expression('curdate()')])->one();
+					])->andWhere(['<=', 'published_at', new Expression('curdate()')])->one();
 					if ($page) {
 						return ['custompages/default/page', ['id' => $page->id]];
 					}
@@ -67,7 +67,7 @@ class UrlRule extends BaseObject implements UrlRuleInterface
 						'slug' => $page_slug,
 						'is_main' => 0,
 						'hide_category_slug' => 1,
-					])->andWhere(['>=', 'published_at', new Expression('curdate()')])->one();
+					])->andWhere(['<=', 'published_at', new Expression('curdate()')])->one();
 					if ($page) {
 						return ['custompages/default/page', ['id' => $page->id]];
 					}

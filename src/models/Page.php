@@ -118,6 +118,7 @@ class Page extends ActiveRecord
 			$this->slug = Inflector::slug($this->title);
 		}
 		if ($this->is_main) {
+			// drop all other is_main pages setting
 			(new Query())->createCommand()
 				->update(Page::tableName(), [
 					'is_main' => 0,
