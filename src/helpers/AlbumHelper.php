@@ -1,6 +1,8 @@
 <?php
 namespace andrewdanilov\custompages\helpers;
 
+use yii\helpers\Html;
+
 class AlbumHelper
 {
 	/**
@@ -37,6 +39,7 @@ class AlbumHelper
 	 */
 	public static function parseShortcodeParams($params_string)
 	{
+		$params_string = Html::decode($params_string);
 		preg_match_all('/(?:[^\'"\s]+|\'[^\']*\'|"[^"]*")+/', $params_string, $matches);
 		$params = array_filter($matches[0]);
 		if (empty($params)) {
@@ -45,9 +48,9 @@ class AlbumHelper
 		$_params = [];
 		foreach ($params as $param) {
 			list($var, $value) = explode('=', $param);
-			$var = trim($var, ' \t\n\r\0\x0B\'"');
+			$var = trim($var, " \t\n\r\0\x0B'\"");
 			if ($var) {
-				$_params[$var] = trim($value, ' \t\n\r\0\x0B\'"');
+				$_params[$var] = trim($value, " \t\n\r\0\x0B'\"");
 			}
 		}
 		return $_params;
