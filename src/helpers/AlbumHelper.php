@@ -15,8 +15,8 @@ class AlbumHelper
 		if (strpos($text, '[' . $shortcode_name) !== false) {
 			preg_match_all('/(?:<p>)?\[(\w+)\s+([\w\d]+)(?:\s+(.+))?\](?:<\/p>)?/ui', $text, $matches, PREG_SET_ORDER);
 			foreach ($matches as $match) {
-				if ($shortcode_name === $match[0]) {
-					$shortcode = $match[1];
+				if ($shortcode_name === $match[1]) {
+					$shortcode = $match[0];
 					$album_id = $match[2];
 					$params = static::parseShortcodeParams($match[3]);
 					$_albums[] = [
