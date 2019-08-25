@@ -77,3 +77,24 @@ $config = [
 If you use own _templatesPath_ you need to copy example files from __/vendor/andrewdanilov/yii2-custom-pages/src/views/frontend/default__ to your _templatesPath_ directory. Modify them or add as many templates as you need.
 
 Note, that template file name for category must begins with prefix 'category.', meanwhile template file name for page must begins with prefix 'page.'
+
+Shortcodes
+----------
+
+You can use some shortcodes in text content of created pages. To place gallery or slider inside page content, you can add theese shortcodes to page wisywig-editor in admin area:
+
+```php
+[gallery album1566731453428]
+
+or
+
+[slider album1566731453428]
+
+or
+
+[gallery album1566731453428 alt="Some photo description, fig. {index}"]
+```
+
+Before that, album and some photos needs to be added to page (press "Add album" and than "Add photo"). Albums has own buttons to copy their shortcodes to clipboard.
+
+With extended syntax of shortcode you can add "alt" attribute to all pictures of gallery or slider. It can consist template vars: {index}, {filename}, {basename}, {extension}.
