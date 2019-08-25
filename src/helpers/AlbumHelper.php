@@ -66,7 +66,7 @@ class AlbumHelper
 		$photos = [];
 		foreach ($images as $index => $image) {
 			$replaces = [
-				'{index}' => $index,
+				'{index}' => $index + 1,
 				'{filename}' => pathinfo($image, PATHINFO_FILENAME),
 				'{basename}' => pathinfo($image, PATHINFO_BASENAME),
 				'{extension}' => pathinfo($image, PATHINFO_EXTENSION),
