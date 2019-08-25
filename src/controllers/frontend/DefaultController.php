@@ -26,7 +26,7 @@ class DefaultController extends Controller
 		if ($page->text) {
 			// placing galleries instead of gallery-shortcodes
 			if (strpos($page->text, '[gallery') !== false) {
-				preg_match_all('/(<p>)?\[gallery\s+([\w\d]+)(?:\s+(.+))?\](<\/p>)?/ui', $page->text, $matches, PREG_SET_ORDER);
+				preg_match_all('/(?:<p>)?\[gallery\s+([\w\d]+)(?:\s+(.+))?\](?:<\/p>)?/ui', $page->text, $matches, PREG_SET_ORDER);
 				foreach ($matches as $index => $match) {
 					$shortcode = $match[0];
 					$album_id = $match[1];
@@ -36,7 +36,7 @@ class DefaultController extends Controller
 			}
 			// placing sliders instead of slider-shortcodes
 			if (strpos($page->text, '[slider') !== false) {
-				preg_match_all('/(<p>)?\[slider\s+([\w\d]+)(?:\s+(.+))?\](<\/p>)?/ui', $page->text, $matches, PREG_SET_ORDER);
+				preg_match_all('/(?:<p>)?\[slider\s+([\w\d]+)(?:\s+(.+))?\](?:<\/p>)?/ui', $page->text, $matches, PREG_SET_ORDER);
 				foreach ($matches as $index => $match) {
 					$shortcode = $match[0];
 					$album_id = $match[1];

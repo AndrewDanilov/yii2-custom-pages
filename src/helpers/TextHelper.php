@@ -16,6 +16,7 @@ class TextHelper
 		$params_values = [];
 		foreach ($params as $param) {
 			list($var, $value) = explode('=', $param);
+			$var = trim($var, ' \t\n\r\0\x0B\'"');
 			if ($var) {
 				$value = trim($value, ' \t\n\r\0\x0B\'"');
 				if (empty($value)) {
