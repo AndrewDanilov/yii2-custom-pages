@@ -131,4 +131,4 @@ There is ability to set seo-tags for any created page or category. You can defin
 
 ## Categories
 
-Pages grouped by categories. You can add unlimited count of categories with unlimited count pages inside each other. Each category can have own template for itself and separete template for pages stored in it.
+Pages grouped by categories. You can add unlimited count of categories with unlimited count of pages inside each other. Each category can have own template for itself and separete template for pages stored in it.
