@@ -85,7 +85,7 @@ Features
 
 Out of the box available some usefull features.
 
-## Page cover
+### Page cover
 
 You can add some picture, represents your page. It is usefull in case of making blog posts, site news or articles.
 
@@ -93,19 +93,19 @@ You can add some picture, represents your page. It is usefull in case of making 
 
 Embedded WYSIWYG-editor helps you easily make any visual content. It has ability to place images, videos and other usefull things in content of your pages. 
 
-## Human-friendly urls
+### Human-friendly urls
 
 You can define slugs for categories and pages. Pages can be under defined category or can has own url without relativity to category.
 
-## Main page
+### Main page
 
 You can define page as main page of the site. Than it repleces default index controller/action.
 
-## Publish date
+### Publish date
 
 Any date can be define to pospone publication of page. If not set - it will be current date by default.
 
-## Shortcodes
+### Shortcodes
 
 You can use some shortcodes in text content of created pages. To place gallery or slider inside page content, you can add theese shortcodes to page WYSIWYG-editor in admin area:
 
@@ -125,10 +125,10 @@ Before that, album and some photos needs to be added to page (press "Add album" 
 
 With extended syntax of shortcode you can add "alt" attribute to all pictures of gallery or slider. It can consist substitutions: {index}, {filename}, {basename}, {extension}.
 
-## SEO
+### SEO
 
 There is ability to set seo-tags for any created page or category. You can define browser title and meta description.
 
-## Categories
+### Categories
 
 Pages grouped by categories. You can add unlimited count of categories with unlimited count of pages inside each other. Each category can have own template for itself and separete template for pages stored in it.
