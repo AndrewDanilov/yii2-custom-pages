@@ -89,7 +89,7 @@ Out of the box available some usefull features.
 
 You can add some picture, represents your page. It is usefull in case of making blog posts, site news or articles.
 
-## Html visual editor
+### Html visual editor
 
 Embedded WYSIWYG-editor helps you easily make any visual content. It has ability to place images, videos and other usefull things in content of your pages. 
 
