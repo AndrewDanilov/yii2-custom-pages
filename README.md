@@ -3,7 +3,7 @@ Custom pages
 Module contains backend and frontend parts.
 Placed to backend it gives you ability to create custom pages in cms-like way.
 Pages groups by categories, i.e. news, articles, etc.
-Placed to frontend module displays category (list of pages previews) and pages itself by their SEF urls.
+Placed to frontend module displays category (list of pages previews) and pages itself by their friendly urls.
 Pages of each category and category itself has own templates (Views), which you can define in category settings.
 
 Installation
