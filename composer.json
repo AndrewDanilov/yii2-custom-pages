@@ -16,10 +16,10 @@
         "mihaildev/yii2-elfinder": "*@dev",
         "sadovojav/yii2-ckeditor": "dev-master",
         "2amigos/yii2-date-picker-widget": "~1.0",
-        "andrewdanilov/yii2-input-images": "dev-master",
-        "andrewdanilov/yii2-grid-tools": "dev-master",
-        "andrewdanilov/yii2-fancybox": "dev-master",
-        "andrewdanilov/yii2-swiper-slider": "dev-master"
+        "andrewdanilov/yii2-input-images": "~1.0.0",
+        "andrewdanilov/yii2-grid-tools": "~1.0.0",
+        "andrewdanilov/yii2-fancybox": "~1.0.0",
+        "andrewdanilov/yii2-swiper-slider": "~1.0.0"
     },
     "autoload": {
         "psr-4": {
