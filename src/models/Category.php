@@ -1,6 +1,7 @@
 <?php
 namespace andrewdanilov\custompages\models;
 
+use Yii;
 use yii\db\ActiveRecord;
 use yii\helpers\Inflector;
 
@@ -48,14 +49,14 @@ class Category extends ActiveRecord
     {
         return [
             'id' => 'ID',
-            'slug' => 'ЧПУ категории',
-            'title' => 'Заголовок',
-            'text' => 'Текст',
-            'category_template' => 'Шаблон категории',
-            'pages_template' => 'Шаблон страниц',
-            'meta_title' => 'Meta Title',
-            'meta_description' => 'Meta Description',
-            'pagesCount' => 'Страницы',
+            'slug' => Yii::t('custompages/backend', 'Slug'),
+            'title' => Yii::t('custompages/backend', 'Title'),
+            'text' => Yii::t('custompages/backend', 'Text'),
+            'category_template' => Yii::t('custompages/backend', 'Category template'),
+            'pages_template' => Yii::t('custompages/backend', 'Page template'),
+            'meta_title' => Yii::t('custompages/backend', 'Meta Title'),
+            'meta_description' => Yii::t('custompages/backend', 'Meta Description'),
+            'pagesCount' => Yii::t('custompages/backend', 'Pages'),
         ];
     }
 

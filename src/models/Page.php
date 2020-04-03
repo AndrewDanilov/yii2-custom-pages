@@ -74,17 +74,17 @@ class Page extends ActiveRecord
     {
         return [
             'id' => 'ID',
-            'category_id' => 'Category',
-            'slug' => 'Slug',
-            'hide_category_slug' => 'Hide category slug from url',
-            'image' => 'Cover',
-            'title' => 'Title',
-            'text' => 'Text',
-	        'albums' => 'Albums',
-            'published_at' => 'Published',
-            'is_main' => 'Main',
-            'meta_title' => 'Meta Title',
-            'meta_description' => 'Meta Description',
+            'category_id' => Yii::t('custompages/backend', 'Category'),
+            'slug' => Yii::t('custompages/backend', 'Slug'),
+            'hide_category_slug' => Yii::t('custompages/backend', 'Hide category slug from url'),
+            'image' => Yii::t('custompages/backend', 'Cover'),
+            'title' => Yii::t('custompages/backend', 'Title'),
+            'text' => Yii::t('custompages/backend', 'Text'),
+	        'albums' => Yii::t('custompages/backend', 'Albums'),
+            'published_at' => Yii::t('custompages/backend', 'Published'),
+            'is_main' => Yii::t('custompages/backend', 'Main'),
+            'meta_title' => Yii::t('custompages/backend', 'Meta Title'),
+            'meta_description' => Yii::t('custompages/backend', 'Meta Description'),
         ];
     }
 
