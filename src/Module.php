@@ -70,7 +70,7 @@ class Module extends \yii\base\Module
 		Yii::$app->i18n->translations['custompages/*'] = [
 			'class'          => 'yii\i18n\PhpMessageSource',
 			'sourceLanguage' => 'en-US',
-			'basePath'       => '@andrewdanilov/messages',
+			'basePath'       => '@custompages/messages',
 			'fileMap'        => [
 				'custompages/backend' => 'backend.php',
 			],
