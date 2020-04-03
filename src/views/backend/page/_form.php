@@ -1,5 +1,6 @@
 <?php
 
+use Yii;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use mihaildev\elfinder\ElFinder;
@@ -36,16 +37,16 @@ use andrewdanilov\gridtools\helpers\CKEditorHelper;
 	]) ?>
 
 	<div class="custom-pages-albums">
-		<label class="control-label">Albums</label>
+		<label class="control-label"><?= Yii::t('custompages/backend', 'Albums'); ?></label>
 		<div class="albums-list">
 			<?php foreach ($model->albums as $album_id => $album) { ?>
 				<div class="albums-item" data-id="<?= $album_id ?>">
 					<?= $form->field($model, 'albums[' . $album_id . ']')->widget(InputImages::class, [
 						'multiple' => true,
-						'buttonName' => 'Add photo',
+						'buttonName' => Yii::t('custompages/backend', 'Add photo'),
 					])->label(false) ?>
 					<div class="albums-item-controls">
-						<a href="#" class="btn btn-danger albums-item-remove">Remove album</a>
+						<a href="#" class="btn btn-danger albums-item-remove"><?= Yii::t('custompages/backend', 'Remove album'); ?></a>
 						<a href="#" class="btn btn-default albums-item-copy-gallery" title="Get gallery shortcode"><span class="fa fa-clipboard"></span>&nbsp;&nbsp;[gallery <?= $album_id ?>]</a>
 						<a href="#" class="btn btn-info albums-item-copy-slider" title="Get slider shortcode"><span class="fa fa-clipboard"></span>&nbsp;&nbsp;[slider <?= $album_id ?>]</a>
 					</div>
@@ -59,7 +60,7 @@ use andrewdanilov\gridtools\helpers\CKEditorHelper;
 			<div class="albums-item">
 				<?= $form->field($model, 'albums[blankid]')->widget(InputImages::class, [
 					'multiple' => true,
-					'buttonName' => 'Add photo',
+					'buttonName' => Yii::t('custompages/backend', 'Add photo'),
 				])->label(false) ?>
 				<div class="albums-item-controls">
 					<a href="#" class="btn btn-danger albums-item-remove">Remove slider</a>
@@ -71,7 +72,7 @@ use andrewdanilov\gridtools\helpers\CKEditorHelper;
 	</div>
 
 	<?= $form->field($model, 'published_at')->widget(DatePicker::class, [
-		'language' => 'ru',
+		'language' => Yii::$app->language,
 		'template' => '{input}{addon}',
 		'clientOptions' => [
 			'autoclose' => true,
@@ -84,14 +85,14 @@ use andrewdanilov\gridtools\helpers\CKEditorHelper;
 		],
 	]) ?>
 
-    <?= $form->field($model, 'is_main')->checkbox(['label' => 'Use as main page']) ?>
+    <?= $form->field($model, 'is_main')->checkbox(['label' => Yii::t('custompages/backend', 'Use as main page')]) ?>
 
 	<?= $form->field($model, 'meta_title')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'meta_description')->textInput(['maxlength' => true]) ?>
 
     <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton(Yii::t('custompages/backend', 'Save'), ['class' => 'btn btn-success']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>
