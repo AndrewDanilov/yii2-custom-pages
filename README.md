@@ -35,9 +35,9 @@ Usage
 In backend main config modules section add:
 ```php
 $config = [
-    ...
+    // ...
     'modules' => [
-        ...
+        // ...
         'custompages' => [
             'class' => 'andrewdanilov\custompages\Module',
             'controllerMap' => [
@@ -64,21 +64,21 @@ Here 'access' option allows to restrict access to defined roles.
 In frontend main config modules section add:
 ```php
 $config = [
-    ...
+    // ...
     'modules' => [
-        ...
+        // ...
         'custompages' => [
             'class' => 'andrewdanilov\custompages\Module',
             // path to Views for pages and categories
-            'templatesPath' => '@frontend/views/custompages', // path to pages and categories template views
+            'templatesPath' => '@frontend/views/custompages', // optional, path to pages and categories template views
         ],
     ],
 ];
 ```
 
-If you use own _templatesPath_ you need to copy example files from __/vendor/andrewdanilov/yii2-custom-pages/src/views/frontend/default__ to your _templatesPath_ directory. Modify them or add as many templates as you need.
+If you use own _templatesPath_ you need to copy example templates from __/vendor/andrewdanilov/yii2-custom-pages/src/views/frontend__ to your _templatesPath_ directory. Modify them or add as many templates as you need.
 
-Note, that template file name for category must begins with prefix 'category.', meanwhile template file name for page must begins with prefix 'page.'
+Note, that template file name for category must begins with prefix 'category.', and template file name for page must begins with prefix 'page.'.
 
 Features
 --------
@@ -109,7 +109,7 @@ Any date can be define to pospone publication of page. If not set - it will be c
 
 You can use some shortcodes in text content of created pages. To place gallery or slider inside page content, you can add theese shortcodes to page WYSIWYG-editor in admin area:
 
-```php
+```text
 [gallery album1566731453428]
 
 or
@@ -132,3 +132,17 @@ There is ability to set seo-tags for any created page or category. You can defin
 ### Categories
 
 Pages grouped by categories. You can add unlimited count of categories with unlimited count of pages inside each other. Each category can have own template for itself and separete template for pages stored in it.
+
+### I18n
+
+Extension supports internationalisation. You can set your language in `common/config/main.php`
+
+```php
+return [
+    // ...
+    'language' => 'ru-RU',
+    // ...
+];
+```
+
+On the moment you can use one of languages: English, Russian

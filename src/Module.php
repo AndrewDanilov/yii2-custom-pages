@@ -18,13 +18,15 @@ class Module extends \yii\base\Module
 		if (empty($this->controllerNamespace) && empty($this->controllerMap)) {
 			$this->controllerNamespace = 'andrewdanilov\custompages\controllers\frontend';
 		}
+		// I18N
+		$this->registerTranslations();
 		parent::init();
 	}
 
 	public function getTemplatesPath()
 	{
 		if (empty($this->templatesPath)) {
-			return '@andrewdanilov/custompages/views/frontend/default';
+			return '@andrewdanilov/custompages/views/frontend';
 		}
 		return $this->templatesPath;
 	}
@@ -61,5 +63,17 @@ class Module extends \yii\base\Module
 			$templates[$template] = $template;
 		}
 		return $templates;
+	}
+
+	public function registerTranslations()
+	{
+		Yii::$app->i18n->translations['custompages/*'] = [
+			'class'          => 'yii\i18n\PhpMessageSource',
+			'sourceLanguage' => 'en-US',
+			'basePath'       => '@andrewdanilov/messages',
+			'fileMap'        => [
+				'custompages/backend' => 'backend.php',
+			],
+		];
 	}
 }

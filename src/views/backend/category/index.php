@@ -1,5 +1,6 @@
 <?php
 
+use Yii;
 use yii\helpers\Html;
 use yii\grid\GridView;
 use andrewdanilov\custompages\models\Category;
@@ -9,7 +10,7 @@ use andrewdanilov\custompages\Module as CustomPages;
 /* @var $dataProvider yii\data\ActiveDataProvider */
 /* @var $searchModel andrewdanilov\custompages\models\backend\CategorySearch */
 
-$this->title = 'Категории';
+$this->title = Yii::t('custompages/backend', 'Categories');
 $this->params['breadcrumbs'][] = $this->title;
 
 $category_templates = CustomPages::getInstance()->getCategoryTemplates();
@@ -18,8 +19,8 @@ $pages_templates = CustomPages::getInstance()->getPagesTemplates();
 <div class="page-index">
 
     <p>
-        <?= Html::a('Add page', ['page/create'], ['class' => 'btn btn-success']) ?>
-        <?= Html::a('Add category', ['category/create'], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a(Yii::t('custompages/backend', 'Add page'), ['page/create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Yii::t('custompages/backend', 'Add category'), ['category/create'], ['class' => 'btn btn-primary']) ?>
     </p>
 
     <?= GridView::widget([
@@ -38,7 +39,7 @@ $pages_templates = CustomPages::getInstance()->getPagesTemplates();
     	            if (isset($category_templates[$model->category_template])) {
 		                return $category_templates[$model->category_template];
 	                }
-    	            return Html::tag('i', 'Нет');
+    	            return Html::tag('i', Yii::t('custompages/backend', 'No'));
 	            }
             ],
 	        [
@@ -47,7 +48,7 @@ $pages_templates = CustomPages::getInstance()->getPagesTemplates();
     	            if (isset($pages_templates[$model->pages_template])) {
 		                return $pages_templates[$model->pages_template];
 	                }
-    	            return Html::tag('i', 'Нет');
+    	            return Html::tag('i', Yii::t('custompages/backend', 'No'));
 	            }
             ],
 	        [

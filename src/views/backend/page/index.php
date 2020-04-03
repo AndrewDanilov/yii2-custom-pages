@@ -1,25 +1,27 @@
 <?php
 
-use andrewdanilov\custompages\models\Category;
-use andrewdanilov\custompages\models\Page;
+use Yii;
 use yii\helpers\Html;
 use yii\grid\GridView;
 use dosamigos\datepicker\DatePicker;
+use andrewdanilov\custompages\assets\CustomPagesBackendAsset;
+use andrewdanilov\custompages\models\Category;
+use andrewdanilov\custompages\models\Page;
 
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 /* @var $searchModel andrewdanilov\custompages\models\backend\PageSearch */
 
-$this->title = 'Страницы';
+$this->title = Yii::t('custompages/backend', 'Pages');
 $this->params['breadcrumbs'][] = $this->title;
 
-$asset = \andrewdanilov\custompages\assets\CustomPagesBackendAsset::register($this);
+$asset = CustomPagesBackendAsset::register($this);
 ?>
 <div class="page-index">
 
     <p>
-	    <?= Html::a('Add page', ['page/create'], ['class' => 'btn btn-success']) ?>
-	    <?= Html::a('Add category', ['category/create'], ['class' => 'btn btn-primary']) ?>
+	    <?= Html::a(Yii::t('custompages/backend', 'Add page'), ['page/create'], ['class' => 'btn btn-success']) ?>
+	    <?= Html::a(Yii::t('custompages/backend', 'Add category'), ['category/create'], ['class' => 'btn btn-primary']) ?>
     </p>
 
     <?= GridView::widget([
