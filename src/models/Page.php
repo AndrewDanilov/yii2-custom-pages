@@ -1,6 +1,7 @@
 <?php
 namespace andrewdanilov\custompages\models;
 
+use Yii;
 use yii\db\ActiveRecord;
 use yii\db\Query;
 use yii\helpers\Inflector;
