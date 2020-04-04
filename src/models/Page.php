@@ -130,6 +130,7 @@ class Page extends ActiveRecord
 
 	public function getShortText()
 	{
-		return StringHelper::truncateWords($this->text, 50, '...', true);
+		$text = strip_tags($this->text, '<p><b><strong><i>');
+		return StringHelper::truncateWords($text, 50, '...', true);
 	}
 }
