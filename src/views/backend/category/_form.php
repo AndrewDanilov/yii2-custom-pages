@@ -6,7 +6,7 @@ use yii\widgets\ActiveForm;
 use mihaildev\elfinder\ElFinder;
 use sadovojav\ckeditor\CKEditor;
 use andrewdanilov\custompages\Module as CustomPages;
-use andrewdanilov\gridtools\helpers\CKEditorHelper;
+use andrewdanilov\helpers\CKEditorHelper;
 
 /* @var $this yii\web\View */
 /* @var $form yii\widgets\ActiveForm */

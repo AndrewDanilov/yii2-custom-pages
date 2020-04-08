@@ -27,7 +27,9 @@ to the require section of your `composer.json` file.
 
 Than run db migrations, to create needed tables:
 
-yii migrate --migrationPath=@andrewdanilov/custompages/migrations
+```
+php yii migrate --migrationPath=@andrewdanilov/custompages/migrations
+```
 
 Usage
 -----
@@ -54,6 +56,8 @@ $config = [
             ],
             // path to Views for pages and categories
             'templatesPath' => '@frontend/views/custompages',
+            // optional, path to user translates
+            'translatesPath' => '@common/messages/custompages',
         ],
     ],
 ];
@@ -71,6 +75,8 @@ $config = [
             'class' => 'andrewdanilov\custompages\Module',
             // path to Views for pages and categories
             'templatesPath' => '@frontend/views/custompages', // optional, path to pages and categories template views
+            // optional, path to user translates
+            'translatesPath' => '@common/messages/custompages',
         ],
     ],
 ];
@@ -145,4 +151,5 @@ return [
 ];
 ```
 
-On the moment you can use one of languages: English, Russian
+On the moment you can use one of languages out of the box: English, Russian. Also you can create and use your own
+translations by defining `translatesPath` property of custompages module (see above).

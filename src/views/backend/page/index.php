@@ -12,7 +12,7 @@ use andrewdanilov\custompages\models\Page;
 /* @var $dataProvider yii\data\ActiveDataProvider */
 /* @var $searchModel andrewdanilov\custompages\models\backend\PageSearch */
 
-$this->title = Yii::t('custompages/backend', 'Pages');
+$this->title = Yii::t('custompages/backend/page', 'Pages');
 $this->params['breadcrumbs'][] = $this->title;
 
 $asset = CustomPagesBackendAsset::register($this);
@@ -20,8 +20,8 @@ $asset = CustomPagesBackendAsset::register($this);
 <div class="page-index">
 
     <p>
-	    <?= Html::a(Yii::t('custompages/backend', 'Add page'), ['page/create'], ['class' => 'btn btn-success']) ?>
-	    <?= Html::a(Yii::t('custompages/backend', 'Add category'), ['category/create'], ['class' => 'btn btn-primary']) ?>
+	    <?= Html::a(Yii::t('custompages/backend/page', 'Add page'), ['page/create'], ['class' => 'btn btn-success']) ?>
+	    <?= Html::a(Yii::t('custompages/backend/page', 'Add category'), ['category/create'], ['class' => 'btn btn-primary']) ?>
     </p>
 
     <?= GridView::widget([

@@ -1,12 +1,13 @@
 <?php
 namespace andrewdanilov\custompages\models;
 
+use andrewdanilov\behaviors\TagBehavior;
 use Yii;
 use yii\db\ActiveRecord;
 use yii\db\Query;
 use yii\helpers\Inflector;
 use yii\helpers\StringHelper;
-use andrewdanilov\gridtools\behaviors\DateBehavior;
+use andrewdanilov\behaviors\DateBehavior;
 
 /**
  * This is the model class for table "page".
@@ -39,6 +40,13 @@ class Page extends ActiveRecord
 				'dateAttributes' => [
 					'published_at' => DateBehavior::DATE_FORMAT,
 				],
+			],
+			[
+				'class' => TagBehavior::class,
+				'referenceModelClass' => 'andrewdanilov\models\PageTags',
+				'referenceModelAttribute' => 'page_id',
+				'referenceTagModelAttribute' => 'tag_id',
+				'tagModelClass' => 'andrewdanilov\models\PageTag',
 			],
 		];
 	}
@@ -75,17 +83,17 @@ class Page extends ActiveRecord
     {
         return [
             'id' => 'ID',
-            'category_id' => Yii::t('custompages/backend', 'Category'),
-            'slug' => Yii::t('custompages/backend', 'Slug'),
-            'hide_category_slug' => Yii::t('custompages/backend', 'Hide category slug from url'),
-            'image' => Yii::t('custompages/backend', 'Cover'),
-            'title' => Yii::t('custompages/backend', 'Title'),
-            'text' => Yii::t('custompages/backend', 'Text'),
-	        'albums' => Yii::t('custompages/backend', 'Albums'),
-            'published_at' => Yii::t('custompages/backend', 'Published'),
-            'is_main' => Yii::t('custompages/backend', 'Main'),
-            'meta_title' => Yii::t('custompages/backend', 'Meta Title'),
-            'meta_description' => Yii::t('custompages/backend', 'Meta Description'),
+            'category_id' => Yii::t('custompages/backend/page', 'Category'),
+            'slug' => Yii::t('custompages/backend/page', 'Slug'),
+            'hide_category_slug' => Yii::t('custompages/backend/page', 'Hide category slug from url'),
+            'image' => Yii::t('custompages/backend/page', 'Cover'),
+            'title' => Yii::t('custompages/backend/page', 'Title'),
+            'text' => Yii::t('custompages/backend/page', 'Text'),
+	        'albums' => Yii::t('custompages/backend/page', 'Albums'),
+            'published_at' => Yii::t('custompages/backend/page', 'Published'),
+            'is_main' => Yii::t('custompages/backend/page', 'Main'),
+            'meta_title' => Yii::t('custompages/backend/page', 'Meta Title'),
+            'meta_description' => Yii::t('custompages/backend/page', 'Meta Description'),
         ];
     }
 

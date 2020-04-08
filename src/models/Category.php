@@ -49,14 +49,14 @@ class Category extends ActiveRecord
     {
         return [
             'id' => 'ID',
-            'slug' => Yii::t('custompages/backend', 'Slug'),
-            'title' => Yii::t('custompages/backend', 'Title'),
-            'text' => Yii::t('custompages/backend', 'Text'),
-            'category_template' => Yii::t('custompages/backend', 'Category template'),
-            'pages_template' => Yii::t('custompages/backend', 'Page template'),
-            'meta_title' => Yii::t('custompages/backend', 'Meta Title'),
-            'meta_description' => Yii::t('custompages/backend', 'Meta Description'),
-            'pagesCount' => Yii::t('custompages/backend', 'Pages'),
+            'slug' => Yii::t('custompages/backend/category', 'Slug'),
+            'title' => Yii::t('custompages/backend/category', 'Title'),
+            'text' => Yii::t('custompages/backend/category', 'Text'),
+            'category_template' => Yii::t('custompages/backend/category', 'Category template'),
+            'pages_template' => Yii::t('custompages/backend/category', 'Page template'),
+            'meta_title' => Yii::t('custompages/backend/category', 'Meta Title'),
+            'meta_description' => Yii::t('custompages/backend/category', 'Meta Description'),
+            'pagesCount' => Yii::t('custompages/backend/category', 'Pages'),
         ];
     }
 

@@ -9,7 +9,7 @@ use dosamigos\datepicker\DatePicker;
 use andrewdanilov\InputImages\InputImages;
 use andrewdanilov\custompages\models\Page;
 use andrewdanilov\custompages\models\Category;
-use andrewdanilov\gridtools\helpers\CKEditorHelper;
+use andrewdanilov\helpers\CKEditorHelper;
 
 /* @var $this yii\web\View */
 /* @var $form yii\widgets\ActiveForm */
@@ -37,20 +37,22 @@ use andrewdanilov\gridtools\helpers\CKEditorHelper;
 	]) ?>
 
 	<div class="custom-pages-albums">
-		<label class="control-label"><?= Yii::t('custompages/backend', 'Albums'); ?></label>
+		<label class="control-label"><?= Yii::t('custompages/backend/page', 'Albums'); ?></label>
 		<div class="albums-list">
-			<?php foreach ($model->albums as $album_id => $album) { ?>
-				<div class="albums-item" data-id="<?= $album_id ?>">
-					<?= $form->field($model, 'albums[' . $album_id . ']')->widget(InputImages::class, [
-						'multiple' => true,
-						'buttonName' => Yii::t('custompages/backend', 'Add photo'),
-					])->label(false) ?>
-					<div class="albums-item-controls">
-						<a href="#" class="btn btn-danger albums-item-remove"><?= Yii::t('custompages/backend', 'Remove album'); ?></a>
-						<a href="#" class="btn btn-default albums-item-copy-gallery" title="Get gallery shortcode"><span class="fa fa-clipboard"></span>&nbsp;&nbsp;[gallery <?= $album_id ?>]</a>
-						<a href="#" class="btn btn-info albums-item-copy-slider" title="Get slider shortcode"><span class="fa fa-clipboard"></span>&nbsp;&nbsp;[slider <?= $album_id ?>]</a>
+			<?php if (is_array($model->albums)) { ?>
+				<?php foreach ($model->albums as $album_id => $album) { ?>
+					<div class="albums-item" data-id="<?= $album_id ?>">
+						<?= $form->field($model, 'albums[' . $album_id . ']')->widget(InputImages::class, [
+							'multiple' => true,
+							'buttonName' => Yii::t('custompages/backend/page', 'Add photo'),
+						])->label(false) ?>
+						<div class="albums-item-controls">
+							<a href="#" class="btn btn-danger albums-item-remove"><?= Yii::t('custompages/backend/page', 'Remove album'); ?></a>
+							<a href="#" class="btn btn-default albums-item-copy-gallery" title="Get gallery shortcode"><span class="fa fa-clipboard"></span>&nbsp;&nbsp;[gallery <?= $album_id ?>]</a>
+							<a href="#" class="btn btn-info albums-item-copy-slider" title="Get slider shortcode"><span class="fa fa-clipboard"></span>&nbsp;&nbsp;[slider <?= $album_id ?>]</a>
+						</div>
 					</div>
-				</div>
+				<?php } ?>
 			<?php } ?>
 		</div>
 		<div class="albums-controls">
@@ -60,7 +62,7 @@ use andrewdanilov\gridtools\helpers\CKEditorHelper;
 			<div class="albums-item">
 				<?= $form->field($model, 'albums[blankid]')->widget(InputImages::class, [
 					'multiple' => true,
-					'buttonName' => Yii::t('custompages/backend', 'Add photo'),
+					'buttonName' => Yii::t('custompages/backend/page', 'Add photo'),
 				])->label(false) ?>
 				<div class="albums-item-controls">
 					<a href="#" class="btn btn-danger albums-item-remove">Remove slider</a>
@@ -85,7 +87,7 @@ use andrewdanilov\gridtools\helpers\CKEditorHelper;
 		],
 	]) ?>
 
-    <?= $form->field($model, 'is_main')->checkbox(['label' => Yii::t('custompages/backend', 'Use as main page')]) ?>
+    <?= $form->field($model, 'is_main')->checkbox(['label' => Yii::t('custompages/backend/page', 'Use as main page')]) ?>
 
 	<?= $form->field($model, 'meta_title')->textInput(['maxlength' => true]) ?>
 

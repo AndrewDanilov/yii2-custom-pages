@@ -10,7 +10,7 @@ use andrewdanilov\custompages\Module as CustomPages;
 /* @var $dataProvider yii\data\ActiveDataProvider */
 /* @var $searchModel andrewdanilov\custompages\models\backend\CategorySearch */
 
-$this->title = Yii::t('custompages/backend', 'Categories');
+$this->title = Yii::t('custompages/backend/category', 'Categories');
 $this->params['breadcrumbs'][] = $this->title;
 
 $category_templates = CustomPages::getInstance()->getCategoryTemplates();
@@ -19,8 +19,8 @@ $pages_templates = CustomPages::getInstance()->getPagesTemplates();
 <div class="page-index">
 
     <p>
-        <?= Html::a(Yii::t('custompages/backend', 'Add page'), ['page/create'], ['class' => 'btn btn-success']) ?>
-        <?= Html::a(Yii::t('custompages/backend', 'Add category'), ['category/create'], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a(Yii::t('custompages/backend/category', 'Add page'), ['page/create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a(Yii::t('custompages/backend/category', 'Add category'), ['category/create'], ['class' => 'btn btn-primary']) ?>
     </p>
 
     <?= GridView::widget([

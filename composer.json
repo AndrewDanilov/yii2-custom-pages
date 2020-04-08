@@ -1,6 +1,6 @@
 {
     "name": "andrewdanilov/yii2-custom-pages",
-    "description": "Custom pages with own templates",
+    "description": "Custom pages with own templates, categories, tags, covers and sliders",
     "type": "yii2-extension",
     "keywords": ["yii2","extension","custom","pages","template","backend","cms","admin","articles","news"],
     "license": "MIT",
@@ -12,12 +12,15 @@
     ],
     "require": {
         "php": ">=5.6.0",
+        "ext-json": "*",
         "yiisoft/yii2": "~2.0.0",
         "mihaildev/yii2-elfinder": "*@dev",
         "sadovojav/yii2-ckeditor": "dev-master",
         "2amigos/yii2-date-picker-widget": "~1.0",
         "andrewdanilov/yii2-input-images": "~1.0.0",
         "andrewdanilov/yii2-grid-tools": "~1.0.0",
+        "andrewdanilov/yii2-behaviors": "~1.0.0",
+        "andrewdanilov/yii2-helpers": "~1.0.0",
         "andrewdanilov/yii2-fancybox": "~1.0.0",
         "andrewdanilov/yii2-swiper-slider": "~1.0.0"
     },
