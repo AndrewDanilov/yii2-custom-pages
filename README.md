@@ -65,6 +65,16 @@ $config = [
 
 Here 'access' option allows to restrict access to defined roles.
 
+Backend CRUD actions available by links:
+
+```php
+use yii\helpers\Url;
+
+$categoryUrl = Url::to(['/custompages/category']);
+$pageUrl = Url::to(['/custompages/page']);
+$tagUrl = Url::to(['/custompages/tag']);
+```
+
 In frontend main config modules section add:
 ```php
 $config = [
@@ -138,6 +148,10 @@ There is ability to set seo-tags for any created page or category. You can defin
 ### Categories
 
 Pages grouped by categories. You can add unlimited count of categories with unlimited count of pages inside each other. Each category can have own template for itself and separete template for pages stored in it.
+
+### Tags
+
+Pages also can be grouped by tags. One tag can represend several pages. One page can consist many tags.
 
 ### I18n
 
