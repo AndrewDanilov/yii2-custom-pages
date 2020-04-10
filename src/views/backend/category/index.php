@@ -58,6 +58,7 @@ $pages_templates = CustomPages::getInstance()->getPagesTemplates();
 			        return Html::a($model->pagesCount, ['page/index', 'PageSearch' => ['category_id' => $model->id]]);
 		        },
 			],
+	        'order',
 
 	        [
 		        'class' => 'andrewdanilov\gridtools\FontawesomeActionColumn',

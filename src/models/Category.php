@@ -14,6 +14,7 @@ use yii\helpers\Inflector;
  * @property string $text
  * @property string $category_template
  * @property string $pages_template
+ * @property string $order
  * @property string $meta_title
  * @property string $meta_description
  * @property int $pagesCount
@@ -39,6 +40,8 @@ class Category extends ActiveRecord
             [['text'], 'string'],
             [['slug', 'title', 'category_template', 'pages_template', 'meta_title', 'meta_description'], 'string', 'max' => 255],
             [['slug'], 'unique'],
+            [['order'], 'integer'],
+            [['order'], 'default', 'value' => 0],
         ];
     }
 
@@ -72,7 +75,7 @@ class Category extends ActiveRecord
 
     public static function getCategoriesList()
     {
-    	return static::find()->select(['title', 'id'])->orderBy('title')->indexBy('id')->column();
+    	return static::find()->select(['title', 'id'])->orderBy(['order' => SORT_ASC, 'id' => SORT_ASC])->indexBy('id')->column();
     }
 
 	public function beforeSave($insert)

@@ -30,6 +30,8 @@ use andrewdanilov\helpers\CKEditorHelper;
 
     <?= $form->field($model, 'pages_template')->dropDownList(CustomPages::getInstance()->getPagesTemplates()) ?>
 
+    <?= $form->field($model, 'order')->textInput(['maxlength' => true]) ?>
+
     <?= $form->field($model, 'meta_title')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'meta_description')->textInput(['maxlength' => true]) ?>
