@@ -72,7 +72,8 @@ class Page extends ActiveRecord
 	        [['slug'], 'unique', 'targetAttribute' => ['category_id', 'slug']],
 	        [['published_at'], 'default', 'value' => date('d.m.Y')],
 	        [['albums'], 'safe'],
-	        [['hide_category_slug', 'is_main'], 'boolean']
+	        [['hide_category_slug', 'is_main'], 'boolean'],
+	        [['tagIds'], 'safe'],
         ];
     }
 
@@ -94,6 +95,7 @@ class Page extends ActiveRecord
             'is_main' => Yii::t('custompages/backend/page', 'Main'),
             'meta_title' => Yii::t('custompages/backend/page', 'Meta Title'),
             'meta_description' => Yii::t('custompages/backend/page', 'Meta Description'),
+            'tagIds' => Yii::t('custompages/backend/page', 'Tags'),
         ];
     }
 

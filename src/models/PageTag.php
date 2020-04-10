@@ -36,10 +36,10 @@ class PageTag extends ActiveRecord
 	{
 		return [
 			'id' => 'ID',
-			'slug' => Yii::t('custompages/backend/tag', 'Slug'),
-			'name' => Yii::t('custompages/backend/tag', 'Name'),
-			'meta_title' => Yii::t('custompages/backend/tag', 'Meta Title'),
-			'meta_description' => Yii::t('custompages/backend/tag', 'Meta Description'),
+			'slug' => Yii::t('custompages/backend/page-tag', 'Slug'),
+			'name' => Yii::t('custompages/backend/page-tag', 'Name'),
+			'meta_title' => Yii::t('custompages/backend/page-tag', 'Meta Title'),
+			'meta_description' => Yii::t('custompages/backend/page-tag', 'Meta Description'),
 		];
 	}
 

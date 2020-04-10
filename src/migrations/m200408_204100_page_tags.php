@@ -5,7 +5,7 @@ use yii\db\Migration;
 /**
  * Class m200408_204100_init
  */
-class m200408_204100_tags extends Migration
+class m200408_204100_page_tags extends Migration
 {
     /**
      * {@inheritdoc}

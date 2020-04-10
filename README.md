@@ -72,7 +72,7 @@ use yii\helpers\Url;
 
 $categoryUrl = Url::to(['/custompages/category']);
 $pageUrl = Url::to(['/custompages/page']);
-$tagUrl = Url::to(['/custompages/tag']);
+$pageTagUrl = Url::to(['/custompages/page-tag']);
 ```
 
 In frontend main config modules section add:

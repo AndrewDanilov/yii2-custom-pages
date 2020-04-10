@@ -12,13 +12,14 @@ use andrewdanilov\InputImages\InputImages;
 use andrewdanilov\custompages\models\Page;
 use andrewdanilov\custompages\models\PageTag;
 use andrewdanilov\custompages\models\Category;
+use andrewdanilov\custompages\assets\CustomPagesBackendAsset;
 use andrewdanilov\helpers\CKEditorHelper;
 
 /* @var $this yii\web\View */
 /* @var $form yii\widgets\ActiveForm */
 /* @var $model Page */
 
-\andrewdanilov\custompages\assets\CustomPagesBackendAsset::register($this);
+CustomPagesBackendAsset::register($this);
 ?>
 
 <div class="page-form">

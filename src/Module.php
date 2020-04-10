@@ -19,6 +19,10 @@ class Module extends \yii\base\Module
 		if (empty($this->controllerNamespace) && empty($this->controllerMap)) {
 			$this->controllerNamespace = 'andrewdanilov\custompages\controllers\frontend';
 		}
+		// path to categories and pages templates
+		if (empty($this->templatesPath)) {
+			$this->templatesPath = '@andrewdanilov/custompages/views/frontend';
+		}
 		// path to translates
 		if (empty($this->translatesPath)) {
 			$this->translatesPath = '@andrewdanilov/custompages/messages';
@@ -28,17 +32,9 @@ class Module extends \yii\base\Module
 		parent::init();
 	}
 
-	public function getTemplatesPath()
-	{
-		if (empty($this->templatesPath)) {
-			return '@andrewdanilov/custompages/views/frontend';
-		}
-		return $this->templatesPath;
-	}
-
 	public function getCategoryTemplates()
 	{
-		$files = FileHelper::findFiles(Yii::getAlias($this->getTemplatesPath()), [
+		$files = FileHelper::findFiles(Yii::getAlias($this->templatesPath), [
 			'except' => ['category.default.php'],
 			'only' => ['category.*.php'],
 			'recursive' => false,
@@ -55,7 +51,7 @@ class Module extends \yii\base\Module
 
 	public function getPagesTemplates()
 	{
-		$files = FileHelper::findFiles(Yii::getAlias($this->getTemplatesPath()), [
+		$files = FileHelper::findFiles(Yii::getAlias($this->templatesPath), [
 			'except' => ['page.default.php'],
 			'only' => ['page.*.php'],
 			'recursive' => false,
@@ -79,7 +75,7 @@ class Module extends \yii\base\Module
 			'fileMap'        => [
 				'custompages/backend/category' => 'backend/category.php',
 				'custompages/backend/page' => 'backend/page.php',
-				'custompages/backend/tag' => 'backend/tag.php',
+				'custompages/backend/page-tag' => 'backend/page-tag.php',
 				'custompages/backend' => 'backend/other.php',
 			],
 		];

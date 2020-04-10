@@ -27,15 +27,15 @@ class DefaultController extends Controller
 			// placing galleries instead of gallery-shortcodes
 			$albums = AlbumHelper::parseShortcodes('gallery', $page->text, $page->albums);
 			foreach ($albums as $album) {
-				$page->text = str_replace($album['shortcode'], $this->renderPartial(CustomPages::getInstance()->getTemplatesPath() . '/_blocks/gallery', ['album' => $album]), $page->text);
+				$page->text = str_replace($album['shortcode'], $this->renderPartial(CustomPages::getInstance()->templatesPath . '/_blocks/gallery', ['album' => $album]), $page->text);
 			}
 			// placing sliders instead of slider-shortcodes
 			$albums = AlbumHelper::parseShortcodes('slider', $page->text, $page->albums);
 			foreach ($albums as $album) {
-				$page->text = str_replace($album['shortcode'], $this->renderPartial(CustomPages::getInstance()->getTemplatesPath() . '/_blocks/slider', ['album' => $album]), $page->text);
+				$page->text = str_replace($album['shortcode'], $this->renderPartial(CustomPages::getInstance()->templatesPath . '/_blocks/slider', ['album' => $album]), $page->text);
 			}
 		}
-		$template = CustomPages::getInstance()->getTemplatesPath() . '/' . $page->category->pages_template;
+		$template = CustomPages::getInstance()->templatesPath . '/' . $page->category->pages_template;
 		return $this->render($template, [
 			'page' => $page,
 		]);
@@ -48,7 +48,7 @@ class DefaultController extends Controller
 	public function actionCategory($id)
 	{
 		$category = Category::find()->where(['id' => $id])->one();
-		$template = CustomPages::getInstance()->getTemplatesPath() . '/' . $category->category_template;
+		$template = CustomPages::getInstance()->templatesPath . '/' . $category->category_template;
 		return $this->render($template, [
 			'category' => $category,
 			'pages' => $category->pages,
