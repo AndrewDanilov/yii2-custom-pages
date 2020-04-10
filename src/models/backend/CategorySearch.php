@@ -1,7 +1,6 @@
 <?php
 namespace andrewdanilov\custompages\models\backend;
 
-use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use andrewdanilov\custompages\models\Category;
 
@@ -19,15 +18,6 @@ class CategorySearch extends Category
             [['id'], 'integer'],
             [['slug', 'title', 'category_template', 'pages_template'], 'string'],
         ];
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function scenarios()
-    {
-        // bypass scenarios() implementation in the parent class
-        return Model::scenarios();
     }
 
     /**
@@ -50,8 +40,6 @@ class CategorySearch extends Category
         $this->load($params);
 
         if (!$this->validate()) {
-            // uncomment the following line if you do not want to return any records when validation fails
-            // $query->where('0=1');
             return $dataProvider;
         }
 

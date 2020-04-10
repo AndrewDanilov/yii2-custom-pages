@@ -3,13 +3,13 @@ namespace andrewdanilov\custompages\controllers\backend;
 
 use Yii;
 use yii\web\NotFoundHttpException;
-use andrewdanilov\custompages\models\Category;
-use andrewdanilov\custompages\models\backend\CategorySearch;
+use andrewdanilov\custompages\models\PageTag;
+use andrewdanilov\custompages\models\backend\PageTagSearch;
 
 /**
- * CategoryController implements the CRUD actions for Category model.
+ * PageTagController implements the CRUD actions for PageTag model.
  */
-class CategoryController extends BackendController
+class PageTagController extends BackendController
 {
 	/**
 	 * @inheritDoc
@@ -17,16 +17,16 @@ class CategoryController extends BackendController
 	public function init()
 	{
 		parent::init();
-		$this->viewPath = '@andrewdanilov/custompages/views/backend/category';
+		$this->viewPath = '@andrewdanilov/custompages/views/backend/tag';
 	}
 
 	/**
-     * Lists all Category models.
+     * Lists all PageTag models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new CategorySearch();
+        $searchModel = new PageTagSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -36,13 +36,13 @@ class CategoryController extends BackendController
     }
 
     /**
-     * Creates a new Category model.
+     * Creates a new PageTag model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Category();
+        $model = new PageTag();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['index']);
@@ -54,7 +54,7 @@ class CategoryController extends BackendController
     }
 
     /**
-     * Updates an existing Category model.
+     * Updates an existing PageTag model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -74,7 +74,7 @@ class CategoryController extends BackendController
     }
 
     /**
-     * Deletes an existing Category model.
+     * Deletes an existing PageTag model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -88,15 +88,15 @@ class CategoryController extends BackendController
     }
 
     /**
-     * Finds the Category model based on its primary key value.
+     * Finds the PageTag model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Category the loaded model
+     * @return PageTag the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Category::findOne($id)) !== null) {
+        if (($model = PageTag::findOne($id)) !== null) {
             return $model;
         }
 

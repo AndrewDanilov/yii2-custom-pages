@@ -22,7 +22,8 @@
         "andrewdanilov/yii2-behaviors": "~1.0.0",
         "andrewdanilov/yii2-helpers": "~1.0.0",
         "andrewdanilov/yii2-fancybox": "~1.0.0",
-        "andrewdanilov/yii2-swiper-slider": "~1.0.0"
+        "andrewdanilov/yii2-swiper-slider": "~1.0.0",
+        "kartik-v/yii2-widget-select2": "@dev"
     },
     "autoload": {
         "psr-4": {

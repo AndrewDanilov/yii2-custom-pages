@@ -8,6 +8,7 @@ use sadovojav\ckeditor\CKEditor;
 use dosamigos\datepicker\DatePicker;
 use andrewdanilov\InputImages\InputImages;
 use andrewdanilov\custompages\models\Page;
+use andrewdanilov\custompages\models\PageTag;
 use andrewdanilov\custompages\models\Category;
 use andrewdanilov\helpers\CKEditorHelper;
 
@@ -22,15 +23,24 @@ use andrewdanilov\helpers\CKEditorHelper;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'category_id')->dropDownList(Category::getCategoriesList()) ?>
-
-	<?= $form->field($model, 'image')->widget(InputImages::class) ?>
-
     <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'slug')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'category_id')->dropDownList(Category::getCategoriesList()) ?>
 
-    <?= $form->field($model, 'hide_category_slug')->checkbox() ?>
+	<?= $form->field($model, 'tagIds')->widget(Select2::class, [
+		'data' => ArrayHelper::map(PageTag::find()->all(), 'id', 'name'),
+		'language' => Yii::$app->language,
+		'options' => [
+			'placeholder' => Yii::t('custompages/backend/page', 'Enter tag name...'),
+			'multiple' => true,
+		],
+		'pluginOptions' => [
+			'allowClear' => true,
+			'tags' => true,
+		],
+	]); ?>
+
+	<?= $form->field($model, 'image')->widget(InputImages::class) ?>
 
 	<?= $form->field($model, 'text')->widget(CKEditor::class, [
 		'editorOptions' => ElFinder::ckeditorOptions('elfinder', CKEditorHelper::defaultOptions()),
@@ -88,6 +98,10 @@ use andrewdanilov\helpers\CKEditorHelper;
 	]) ?>
 
     <?= $form->field($model, 'is_main')->checkbox(['label' => Yii::t('custompages/backend/page', 'Use as main page')]) ?>
+
+    <?= $form->field($model, 'slug')->textInput(['maxlength' => true]) ?>
+
+    <?= $form->field($model, 'hide_category_slug')->checkbox() ?>
 
 	<?= $form->field($model, 'meta_title')->textInput(['maxlength' => true]) ?>
 

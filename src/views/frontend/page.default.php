@@ -1,5 +1,7 @@
 <?php
 
+use andrewdanilov\custompages\assets\CustomPagesAsset;
+
 /* @var $this \yii\web\View */
 /* @var $page \andrewdanilov\custompages\models\Page */
 
@@ -9,7 +11,7 @@ $this->registerMetaTag([
 	'content' => $page->meta_description,
 ]);
 
-\andrewdanilov\custompages\assets\CustomPagesAsset::register($this);
+CustomPagesAsset::register($this);
 ?>
 
 <div class="section">
