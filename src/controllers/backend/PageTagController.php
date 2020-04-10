@@ -17,7 +17,7 @@ class PageTagController extends BackendController
 	public function init()
 	{
 		parent::init();
-		$this->viewPath = '@andrewdanilov/custompages/views/backend/tag';
+		$this->viewPath = '@andrewdanilov/custompages/views/backend/page-tag';
 	}
 
 	/**

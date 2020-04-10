@@ -53,6 +53,12 @@ $config = [
                     // access role for page controller
                     'access' => ['admin'],
                 ],
+                // page-tag is optional controller. Define it if you want to use tags on your pages.
+                'page-tag' => [
+                    'class' => 'andrewdanilov\custompages\controllers\backend\PageTagController',
+                    // access role for page-tag controller
+                    'access' => ['admin'],
+                ],
             ],
             // path to Views for pages and categories
             'templatesPath' => '@frontend/views/custompages',
@@ -83,10 +89,12 @@ $config = [
         // ...
         'custompages' => [
             'class' => 'andrewdanilov\custompages\Module',
-            // path to Views for pages and categories
-            'templatesPath' => '@frontend/views/custompages', // optional, path to pages and categories template views
+            // optional, path to template Views for pages and categories
+            'templatesPath' => '@frontend/views/custompages',
             // optional, path to user translates
             'translatesPath' => '@common/messages/custompages',
+            // optional, page text short version length, default is 50
+            'pageShortTextWordsCount' => '100',
         ],
     ],
 ];
@@ -151,7 +159,7 @@ Pages grouped by categories. You can add unlimited count of categories with unli
 
 ### Tags
 
-Pages also can be grouped by tags. One tag can represend several pages. One page can consist many tags.
+Pages also can be grouped by tags. One tag can represent several pages. One page can contain many tags.
 
 ### I18n
 

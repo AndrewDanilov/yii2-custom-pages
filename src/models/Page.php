@@ -1,13 +1,14 @@
 <?php
 namespace andrewdanilov\custompages\models;
 
-use andrewdanilov\behaviors\TagBehavior;
 use Yii;
 use yii\db\ActiveRecord;
 use yii\db\Query;
 use yii\helpers\Inflector;
 use yii\helpers\StringHelper;
 use andrewdanilov\behaviors\DateBehavior;
+use andrewdanilov\behaviors\TagBehavior;
+use andrewdanilov\custompages\Module as CustomPages;
 
 /**
  * This is the model class for table "page".
@@ -140,7 +141,27 @@ class Page extends ActiveRecord
 
 	public function getShortText()
 	{
+		$pageShortTextWordsCount = CustomPages::getInstance()->pageShortTextWordsCount;
 		$text = strip_tags($this->text, '<p><b><strong><i>');
-		return StringHelper::truncateWords($text, 50, '...', true);
+		if (preg_match_all('~<p>(.+)</p>~Us', $text, $matches)) {
+			$paragraphs = $matches[1];
+			$totalWordsCount = 0;
+			$text = '';
+			foreach ($paragraphs as $paragraph) {
+				$wordsCount = preg_match_all('~[\p{L}\'\-\xC2\xAD]+~u', strip_tags($paragraph));
+				$totalWordsCount += $wordsCount;
+				if ($totalWordsCount < $pageShortTextWordsCount) {
+					$text .= '<p>' . $paragraph . '</p>';
+				} else {
+					$diff = $totalWordsCount - $pageShortTextWordsCount;
+					if ($diff > 0) {
+						$text .= '<p>' . StringHelper::truncateWords($paragraph, $diff, '...', true) . '</p>';
+					}
+					break;
+				}
+			}
+			return $text;
+		}
+		return StringHelper::truncateWords(strip_tags($text), $pageShortTextWordsCount, '...', true);
 	}
 }
