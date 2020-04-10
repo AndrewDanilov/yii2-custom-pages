@@ -10,6 +10,7 @@ return [
 	'Text' => 'Текст',
 	'Category template' => 'Шаблон категории',
 	'Page template' => 'Шаблон страниц',
+	'Order' => 'Порядок',
 	'Meta Title' => 'Мета-заголовок',
 	'Meta Description' => 'Мета-описание',
 ];

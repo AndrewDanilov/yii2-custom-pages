@@ -57,6 +57,7 @@ class Category extends ActiveRecord
             'text' => Yii::t('custompages/backend/category', 'Text'),
             'category_template' => Yii::t('custompages/backend/category', 'Category template'),
             'pages_template' => Yii::t('custompages/backend/category', 'Page template'),
+            'order' => Yii::t('custompages/backend/category', 'Order'),
             'meta_title' => Yii::t('custompages/backend/category', 'Meta Title'),
             'meta_description' => Yii::t('custompages/backend/category', 'Meta Description'),
             'pagesCount' => Yii::t('custompages/backend/category', 'Pages'),
