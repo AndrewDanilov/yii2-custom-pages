@@ -1,11 +1,13 @@
 <?php
 
 use Yii;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use mihaildev\elfinder\ElFinder;
 use sadovojav\ckeditor\CKEditor;
 use dosamigos\datepicker\DatePicker;
+use kartik\select2\Select2;
 use andrewdanilov\InputImages\InputImages;
 use andrewdanilov\custompages\models\Page;
 use andrewdanilov\custompages\models\PageTag;
