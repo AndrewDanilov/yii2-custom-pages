@@ -24,7 +24,6 @@ class m190717_085259_init extends Migration
 		    'text' => $this->text(),
 		    'category_template' => $this->string(),
 		    'pages_template' => $this->string(),
-		    'order' => $this->integer()->notNull()->defaultValue(0),
 		    'meta_title' => $this->string(),
 		    'meta_description' => $this->string(),
 	    ], $tableOptions);
