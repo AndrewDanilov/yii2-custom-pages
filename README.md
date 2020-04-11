@@ -95,6 +95,10 @@ $config = [
             'translatesPath' => '@common/messages/custompages',
             // optional, page text short version length, default is 50
             'pageShortTextWordsCount' => '100',
+            // optional, enables controls for managing page tags, default is true
+            'enableTags' => false,
+            // optional, enables controls for managing page albums, default is true
+            'enableAlbums' => false,
         ],
     ],
 ];

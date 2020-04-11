@@ -13,6 +13,7 @@ use andrewdanilov\custompages\models\Page;
 use andrewdanilov\custompages\models\PageTag;
 use andrewdanilov\custompages\models\Category;
 use andrewdanilov\custompages\assets\CustomPagesBackendAsset;
+use andrewdanilov\custompages\Module as CustomPages;
 use andrewdanilov\helpers\CKEditorHelper;
 
 /* @var $this yii\web\View */
@@ -30,18 +31,20 @@ CustomPagesBackendAsset::register($this);
 
     <?= $form->field($model, 'category_id')->dropDownList(Category::getCategoriesList()) ?>
 
-	<?= $form->field($model, 'tagIds')->widget(Select2::class, [
-		'data' => ArrayHelper::map(PageTag::find()->all(), 'id', 'name'),
-		'language' => Yii::$app->language,
-		'options' => [
-			'placeholder' => Yii::t('custompages/backend/page', 'Enter tag name...'),
-			'multiple' => true,
-		],
-		'pluginOptions' => [
-			'allowClear' => true,
-			'tags' => true,
-		],
-	]); ?>
+	<?php if (CustomPages::getInstance()->enableTags) { ?>
+		<?= $form->field($model, 'tagIds')->widget(Select2::class, [
+			'data' => ArrayHelper::map(PageTag::find()->all(), 'id', 'name'),
+			'language' => Yii::$app->language,
+			'options' => [
+				'placeholder' => Yii::t('custompages/backend/page', 'Enter tag name...'),
+				'multiple' => true,
+			],
+			'pluginOptions' => [
+				'allowClear' => true,
+				'tags' => true,
+			],
+		]); ?>
+	<?php } ?>
 
 	<?= $form->field($model, 'image')->widget(InputImages::class) ?>
 
@@ -49,42 +52,44 @@ CustomPagesBackendAsset::register($this);
 		'editorOptions' => ElFinder::ckeditorOptions('elfinder', CKEditorHelper::defaultOptions()),
 	]) ?>
 
-	<div class="custom-pages-albums">
-		<label class="control-label"><?= Yii::t('custompages/backend/page', 'Albums'); ?></label>
-		<div class="albums-list">
-			<?php if (is_array($model->albums)) { ?>
-				<?php foreach ($model->albums as $album_id => $album) { ?>
-					<div class="albums-item" data-id="<?= $album_id ?>">
-						<?= $form->field($model, 'albums[' . $album_id . ']')->widget(InputImages::class, [
-							'multiple' => true,
-							'buttonName' => Yii::t('custompages/backend/page', 'Add photo'),
-						])->label(false) ?>
-						<div class="albums-item-controls">
-							<a href="#" class="btn btn-danger albums-item-remove"><?= Yii::t('custompages/backend/page', 'Remove album'); ?></a>
-							<a href="#" class="btn btn-default albums-item-copy-gallery" title="Get gallery shortcode"><span class="fa fa-clipboard"></span>&nbsp;&nbsp;[gallery <?= $album_id ?>]</a>
-							<a href="#" class="btn btn-info albums-item-copy-slider" title="Get slider shortcode"><span class="fa fa-clipboard"></span>&nbsp;&nbsp;[slider <?= $album_id ?>]</a>
+	<?php if (CustomPages::getInstance()->enableAlbums) { ?>
+		<div class="custom-pages-albums">
+			<label class="control-label"><?= Yii::t('custompages/backend/page', 'Albums'); ?></label>
+			<div class="albums-list">
+				<?php if (is_array($model->albums)) { ?>
+					<?php foreach ($model->albums as $album_id => $album) { ?>
+						<div class="albums-item" data-id="<?= $album_id ?>">
+							<?= $form->field($model, 'albums[' . $album_id . ']')->widget(InputImages::class, [
+								'multiple' => true,
+								'buttonName' => Yii::t('custompages/backend/page', 'Add photo'),
+							])->label(false) ?>
+							<div class="albums-item-controls">
+								<a href="#" class="btn btn-danger albums-item-remove"><?= Yii::t('custompages/backend/page', 'Remove album'); ?></a>
+								<a href="#" class="btn btn-default albums-item-copy-gallery" title="Get gallery shortcode"><span class="fa fa-clipboard"></span>&nbsp;&nbsp;[gallery <?= $album_id ?>]</a>
+								<a href="#" class="btn btn-info albums-item-copy-slider" title="Get slider shortcode"><span class="fa fa-clipboard"></span>&nbsp;&nbsp;[slider <?= $album_id ?>]</a>
+							</div>
 						</div>
-					</div>
+					<?php } ?>
 				<?php } ?>
-			<?php } ?>
-		</div>
-		<div class="albums-controls">
-			<a href="#" class="btn btn-primary albums-controls-add">Add album</a>
-		</div>
-		<div class="albums-blank" style="display:none;">
-			<div class="albums-item">
-				<?= $form->field($model, 'albums[blankid]')->widget(InputImages::class, [
-					'multiple' => true,
-					'buttonName' => Yii::t('custompages/backend/page', 'Add photo'),
-				])->label(false) ?>
-				<div class="albums-item-controls">
-					<a href="#" class="btn btn-danger albums-item-remove">Remove slider</a>
-					<a href="#" class="btn btn-default albums-item-copy-gallery" title="Get gallery shortcode"><span class="fa fa-clipboard"></span>&nbsp;&nbsp;[gallery blankid]</a>
-					<a href="#" class="btn btn-info albums-item-copy-slider" title="Get slider shortcode"><span class="fa fa-clipboard"></span>&nbsp;&nbsp;[slider blankid]</a>
+			</div>
+			<div class="albums-controls">
+				<a href="#" class="btn btn-primary albums-controls-add">Add album</a>
+			</div>
+			<div class="albums-blank" style="display:none;">
+				<div class="albums-item">
+					<?= $form->field($model, 'albums[blankid]')->widget(InputImages::class, [
+						'multiple' => true,
+						'buttonName' => Yii::t('custompages/backend/page', 'Add photo'),
+					])->label(false) ?>
+					<div class="albums-item-controls">
+						<a href="#" class="btn btn-danger albums-item-remove">Remove slider</a>
+						<a href="#" class="btn btn-default albums-item-copy-gallery" title="Get gallery shortcode"><span class="fa fa-clipboard"></span>&nbsp;&nbsp;[gallery blankid]</a>
+						<a href="#" class="btn btn-info albums-item-copy-slider" title="Get slider shortcode"><span class="fa fa-clipboard"></span>&nbsp;&nbsp;[slider blankid]</a>
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
+	<?php } ?>
 
 	<?= $form->field($model, 'published_at')->widget(DatePicker::class, [
 		'language' => Yii::$app->language,
