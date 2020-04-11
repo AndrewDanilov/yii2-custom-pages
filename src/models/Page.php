@@ -142,20 +142,25 @@ class Page extends ActiveRecord
 	public function getShortText()
 	{
 		$pageShortTextWordsCount = CustomPages::getInstance()->pageShortTextWordsCount;
-		$text = strip_tags($this->text, '<p><b><strong><i>');
-		if (preg_match_all('~<p>(.+)</p>~Us', $text, $matches)) {
+		$text = strip_tags($this->text, '<p><i><b><strong>');
+		$text = str_replace('&nbsp;', ' ', $text);
+		$text = preg_replace('~<p[^>]*>\s*</p>~', '', $text);
+		$text = preg_replace('~<i[^>]*>\s*</i>~', '', $text);
+		$text = preg_replace('~<b[^>]*>\s*</b>~', '', $text);
+		$text = preg_replace('~<strong[^>]*>\s*</strong>~', '', $text);
+		if (preg_match_all('~<p[^>]*>(.+)</p>~Us', $text, $matches)) {
 			$paragraphs = $matches[1];
 			$totalWordsCount = 0;
 			$text = '';
 			foreach ($paragraphs as $paragraph) {
-				$wordsCount = preg_match_all('~[\p{L}\'\-\xC2\xAD]+~u', strip_tags($paragraph));
+				$wordsCount = preg_match_all('~[\p{L}\'\-\xC2\xAD]+~u', trim(strip_tags($paragraph)));
 				$totalWordsCount += $wordsCount;
 				if ($totalWordsCount < $pageShortTextWordsCount) {
 					$text .= '<p>' . $paragraph . '</p>';
 				} else {
 					$diff = $totalWordsCount - $pageShortTextWordsCount;
 					if ($diff > 0) {
-						$text .= '<p>' . StringHelper::truncateWords($paragraph, $diff, '...', true) . '</p>';
+						$text .= '<p>' . StringHelper::truncateWords($paragraph, $wordsCount - $diff, '...', true) . '</p>';
 					}
 					break;
 				}
