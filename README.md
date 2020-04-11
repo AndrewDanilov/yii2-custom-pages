@@ -151,7 +151,7 @@ or
 
 Before that, album and some photos needs to be added to page (press "Add album" and than "Add photo"). Albums has own buttons to copy their shortcodes to clipboard.
 
-With extended syntax of shortcode you can add "alt" attribute to all pictures of gallery or slider. It can consist substitutions: {index}, {filename}, {basename}, {extension}.
+With extended syntax of shortcode you can add "alt" attribute to all pictures of gallery or slider. It can contain substitutions: {index}, {filename}, {basename}, {extension}.
 
 ### SEO
 
