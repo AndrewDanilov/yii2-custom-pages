@@ -118,6 +118,10 @@ class Page extends ActiveRecord
 				$this->albums = [];
 			}
 		}
+		$pageTextFilter = CustomPages::getInstance()->pageTextFilter;
+		if (!empty($pageTextFilter) && is_callable($pageTextFilter)) {
+			$this->text = call_user_func($pageTextFilter, $this->text);
+		}
 	}
 
 	public function beforeSave($insert)

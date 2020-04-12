@@ -87,15 +87,6 @@ $pageUrl = Url::to(['/custompages/page']);
 $pageTagUrl = Url::to(['/custompages/page-tag']);
 ```
 
-Frontend category and page urls:
-
-```php
-use yii\helpers\Url;
-
-$categoryUrl = Url::to(['custompages/default/category', 'id' => 1]);
-$pageUrl = Url::to(['custompages/default/page', 'id' => 123]);
-```
-
 In frontend main config modules section add:
 ```php
 $config = [
@@ -110,9 +101,20 @@ $config = [
             'translatesPath' => '@common/messages/custompages',
             // optional, page text short version length, default is 50
             'pageShortTextWordsCount' => '100',
+            // optional, callable function to process page text, i.e. to replace shortcodes on it
+            'pageTextFilter' => 'frontend\components\MyPageTextFilter::replaceShortcodes',
         ],
     ],
 ];
+```
+
+Frontend category and page urls:
+
+```php
+use yii\helpers\Url;
+
+$categoryUrl = Url::to(['custompages/default/category', 'id' => 1]);
+$pageUrl = Url::to(['custompages/default/page', 'id' => 123]);
 ```
 
 If you use own _templatesPath_ you need to copy example templates from __/vendor/andrewdanilov/yii2-custom-pages/src/views/frontend__ to your _templatesPath_ directory. Modify them or add as many templates as you need.
@@ -190,3 +192,10 @@ return [
 
 On the moment you can use one of languages out of the box: English, Russian. Also you can create and use your own
 translations by defining `translatesPath` property of custompages module (see above).
+
+### Page text processor
+
+You can define static function, that will process content of page text. See example with parameter `pageTextFilter` in
+module config above. That function must accept one string parameter and return string with modifications made. In
+example, you can replace some shortcodes in text with that function. Function applies to the text right after gathering
+page data from database. Made changes are not storing to database.

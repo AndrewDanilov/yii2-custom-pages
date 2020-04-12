@@ -35,17 +35,20 @@ class PageController extends BackendController
         ]);
     }
 
-    /**
-     * Creates a new Page model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
-     * @return mixed
-     */
-    public function actionCreate()
+	/**
+	 * Creates a new Page model.
+	 * If creation is successful, the browser will be redirected to the 'view' page.
+	 *
+	 * @param null|int $category_id
+	 * @return mixed
+	 */
+    public function actionCreate($category_id=null)
     {
         $model = new Page();
+        $model->category_id = $category_id;
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['index']);
+            return $this->redirect(['index', 'PageSearch' => ['category_id' => $model->category_id]]);
         }
 
         return $this->render('create', [
@@ -65,7 +68,7 @@ class PageController extends BackendController
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['index']);
+            return $this->redirect(['index', 'PageSearch' => ['category_id' => $model->category_id]]);
         }
 
         return $this->render('update', [

@@ -13,6 +13,7 @@ class Module extends \yii\base\Module
 	public $templatesPath;
 	public $translatesPath;
 	public $pageShortTextWordsCount = 50;
+	public $pageTextFilter;
 	public $enableTags = true;
 	public $enableAlbums = true;
 

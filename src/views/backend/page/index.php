@@ -20,7 +20,11 @@ $asset = CustomPagesBackendAsset::register($this);
 <div class="page-index">
 
     <p>
-	    <?= Html::a(Yii::t('custompages/backend/page', 'Add page'), ['page/create'], ['class' => 'btn btn-success']) ?>
+	    <?php if ($searchModel->category_id) { ?>
+	        <?= Html::a(Yii::t('custompages/backend/page', 'Add page'), ['page/create', 'category_id' => $searchModel->category_id], ['class' => 'btn btn-success']) ?>
+	    <?php } else { ?>
+	        <?= Html::a(Yii::t('custompages/backend/page', 'Add page'), ['page/create'], ['class' => 'btn btn-success']) ?>
+	    <?php } ?>
 	    <?= Html::a(Yii::t('custompages/backend/page', 'Add category'), ['category/create'], ['class' => 'btn btn-primary']) ?>
     </p>
 
