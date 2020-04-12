@@ -26,6 +26,7 @@ use andrewdanilov\custompages\Module as CustomPages;
  * @property boolean $is_main
  * @property string $meta_title
  * @property string $meta_description
+ * @property string $source
  * @property Category $category
  * @property string $shortText
  */
@@ -40,7 +41,7 @@ class Page extends ActiveRecord
 			[
 				'class' => DateBehavior::class,
 				'dateAttributes' => [
-					'published_at' => DateBehavior::DATE_FORMAT,
+					'published_at' => DateBehavior::DATE_FORMAT_AUTO,
 				],
 			],
 			[
@@ -70,7 +71,7 @@ class Page extends ActiveRecord
         	[['title', 'category_id'], 'required'],
             [['image', 'text', 'published_at'], 'string'],
             [['category_id'], 'integer'],
-            [['slug', 'title', 'meta_title', 'meta_description'], 'string', 'max' => 255],
+            [['slug', 'title', 'meta_title', 'meta_description', 'source'], 'string', 'max' => 255],
 	        [['slug'], 'unique', 'targetAttribute' => ['category_id', 'slug']],
 	        [['published_at'], 'default', 'value' => date('d.m.Y')],
 	        [['albums'], 'safe'],
@@ -98,6 +99,7 @@ class Page extends ActiveRecord
             'meta_title' => Yii::t('custompages/backend/page', 'Meta Title'),
             'meta_description' => Yii::t('custompages/backend/page', 'Meta Description'),
             'tagIds' => Yii::t('custompages/backend/page', 'Tags'),
+            'source' => Yii::t('custompages/backend/page', 'Source'),
         ];
     }
 

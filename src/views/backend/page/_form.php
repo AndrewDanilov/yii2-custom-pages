@@ -105,7 +105,9 @@ CustomPagesBackendAsset::register($this);
 		],
 	]) ?>
 
-    <?= $form->field($model, 'is_main')->checkbox(['label' => Yii::t('custompages/backend/page', 'Use as main page')]) ?>
+	<?= $form->field($model, 'source')->textInput(['maxlength' => true]) ?>
+
+	<?= $form->field($model, 'is_main')->checkbox(['label' => Yii::t('custompages/backend/page', 'Use as main page')]) ?>
 
     <?= $form->field($model, 'slug')->textInput(['maxlength' => true]) ?>
 

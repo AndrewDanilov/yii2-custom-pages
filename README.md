@@ -31,6 +31,8 @@ Than run db migrations, to create needed tables:
 php yii migrate --migrationPath=@andrewdanilov/custompages/migrations
 ```
 
+Do not forget to run migrations after extension updates too.
+
 Usage
 -----
 

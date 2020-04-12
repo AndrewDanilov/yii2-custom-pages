@@ -25,5 +25,9 @@ CustomPagesAsset::register($this);
 		<div class="page-text">
 			<?= $page->text ?>
 		</div>
+
+		<div class="page-source">
+			Источник: <?= $page->source ?>
+		</div>
 	</div>
 </div>
