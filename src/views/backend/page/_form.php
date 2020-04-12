@@ -52,6 +52,8 @@ CustomPagesBackendAsset::register($this);
 		'editorOptions' => ElFinder::ckeditorOptions('elfinder', CKEditorHelper::defaultOptions()),
 	]) ?>
 
+	<?= $form->field($model, 'is_main')->checkbox(['label' => Yii::t('custompages/backend/page', 'Use as main page')]) ?>
+
 	<?php if (CustomPages::getInstance()->enableAlbums) { ?>
 		<div class="custom-pages-albums">
 			<label class="control-label"><?= Yii::t('custompages/backend/page', 'Albums'); ?></label>
@@ -106,8 +108,6 @@ CustomPagesBackendAsset::register($this);
 	]) ?>
 
 	<?= $form->field($model, 'source')->textInput(['maxlength' => true]) ?>
-
-	<?= $form->field($model, 'is_main')->checkbox(['label' => Yii::t('custompages/backend/page', 'Use as main page')]) ?>
 
     <?= $form->field($model, 'slug')->textInput(['maxlength' => true]) ?>
 
