@@ -85,6 +85,15 @@ $pageUrl = Url::to(['/custompages/page']);
 $pageTagUrl = Url::to(['/custompages/page-tag']);
 ```
 
+Frontend category and page urls:
+
+```php
+use yii\helpers\Url;
+
+$categoryUrl = Url::to(['custompages/default/category', 'id' => 1]);
+$pageUrl = Url::to(['custompages/default/page', 'id' => 123]);
+```
+
 In frontend main config modules section add:
 ```php
 $config = [
