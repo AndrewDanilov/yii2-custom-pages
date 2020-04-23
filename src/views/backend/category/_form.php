@@ -6,11 +6,13 @@ use yii\widgets\ActiveForm;
 use mihaildev\elfinder\ElFinder;
 use sadovojav\ckeditor\CKEditor;
 use andrewdanilov\custompages\Module as CustomPages;
+use andrewdanilov\custompages\models\Category;
 use andrewdanilov\helpers\CKEditorHelper;
+use andrewdanilov\helpers\NestedCategoryHelper;
 
 /* @var $this yii\web\View */
 /* @var $form yii\widgets\ActiveForm */
-/* @var $model andrewdanilov\custompages\models\Category */
+/* @var $model Category */
 
 ?>
 
@@ -18,7 +20,9 @@ use andrewdanilov\helpers\CKEditorHelper;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
+	<?= $form->field($model, 'parent_id')->dropDownList(NestedCategoryHelper::getDropdownTree(Category::find()->all()), ['prompt' => 'Верхний уровень', 'style' => 'font-family:monospace;']) ?>
+
+	<?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'slug')->textInput(['maxlength' => true]) ?>
 

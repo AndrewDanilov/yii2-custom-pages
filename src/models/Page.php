@@ -17,7 +17,6 @@ use andrewdanilov\custompages\Module as CustomPages;
  * @property int $id
  * @property int $category_id
  * @property string $slug
- * @property boolean $hide_category_slug
  * @property string $image
  * @property string $title
  * @property string $text
@@ -68,14 +67,16 @@ class Page extends ActiveRecord
     public function rules()
     {
         return [
-        	[['title', 'category_id'], 'required'],
+        	[['title'], 'required'],
             [['image', 'text', 'published_at'], 'string'],
             [['category_id'], 'integer'],
+            [['category_id'], 'default', 'value' => 0],
             [['slug', 'title', 'meta_title', 'meta_description', 'source'], 'string', 'max' => 255],
 	        [['slug'], 'unique', 'targetAttribute' => ['category_id', 'slug']],
 	        [['published_at'], 'default', 'value' => date('d.m.Y')],
 	        [['albums'], 'safe'],
-	        [['hide_category_slug', 'is_main'], 'boolean'],
+	        [['is_main'], 'boolean'],
+	        [['is_main'], 'default', 'value' => 0],
 	        [['tagIds'], 'safe'],
         ];
     }
@@ -89,7 +90,6 @@ class Page extends ActiveRecord
             'id' => 'ID',
             'category_id' => Yii::t('custompages/backend/page', 'Category'),
             'slug' => Yii::t('custompages/backend/page', 'Slug'),
-            'hide_category_slug' => Yii::t('custompages/backend/page', 'Hide category slug from url'),
             'image' => Yii::t('custompages/backend/page', 'Cover'),
             'title' => Yii::t('custompages/backend/page', 'Title'),
             'text' => Yii::t('custompages/backend/page', 'Text'),

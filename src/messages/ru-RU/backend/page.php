@@ -15,10 +15,10 @@ return [
 	'Source' => 'Источник',
 	'Meta Title' => 'Мета-заголовок',
 	'Meta Description' => 'Мета-описание',
-	'Hide category slug from url' => 'Скрывать категорию из адреса ссылки',
 	'Cover' => 'Обложка',
 	'Published' => 'Опубликована',
 	'Main' => 'Главная',
 	'Tags' => 'Теги',
 	'Enter tag name...' => 'Введите тег...',
+	'Without Category' => 'Без категории',
 ];

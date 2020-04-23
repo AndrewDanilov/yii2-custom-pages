@@ -3,8 +3,9 @@
 use Yii;
 use yii\helpers\Html;
 use yii\grid\GridView;
-use andrewdanilov\custompages\models\Category;
 use andrewdanilov\custompages\Module as CustomPages;
+use andrewdanilov\custompages\models\Category;
+use andrewdanilov\helpers\NestedCategoryHelper;
 
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -51,6 +52,12 @@ $pages_templates = CustomPages::getInstance()->getPagesTemplates();
     	            return Html::tag('i', Yii::t('custompages/backend', 'No'));
 	            }
             ],
+	        [
+		        'attribute' => 'parent_id',
+		        'value' => 'parent.lang.name',
+		        'filter' => NestedCategoryHelper::getDropdownTree(Category::find()->all()),
+		        'filterOptions' => ['style' => 'font-family:monospace;'],
+	        ],
 	        [
 	        	'attribute' => 'pagesCount',
 		        'format' => 'raw',

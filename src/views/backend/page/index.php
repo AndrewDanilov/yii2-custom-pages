@@ -7,6 +7,7 @@ use dosamigos\datepicker\DatePicker;
 use andrewdanilov\custompages\assets\CustomPagesBackendAsset;
 use andrewdanilov\custompages\models\Category;
 use andrewdanilov\custompages\models\Page;
+use andrewdanilov\helpers\NestedCategoryHelper;
 
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -50,7 +51,8 @@ $asset = CustomPagesBackendAsset::register($this);
 	        	'attribute' => 'category_id',
 		        'format' => 'raw',
 		        'value' => function (Page $model) {
-    	            return Html::a($model->category->title, ['category/update', 'id' => $model->category_id]);
+    	            $path = NestedCategoryHelper::getCategoryPath(Category::find()->all(), $model->category_id, 'title', 'parent_id', ' > ');
+    	            return Html::a($path, ['category/update', 'id' => $model->category_id]);
 		        },
 		        'filter' => Category::getCategoriesList(),
 	        ],

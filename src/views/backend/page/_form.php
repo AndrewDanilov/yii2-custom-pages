@@ -1,5 +1,6 @@
 <?php
 
+use andrewdanilov\helpers\NestedCategoryHelper;
 use Yii;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
@@ -29,7 +30,7 @@ CustomPagesBackendAsset::register($this);
 
     <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'category_id')->dropDownList(Category::getCategoriesList()) ?>
+    <?= $form->field($model, 'category_id')->dropDownList(NestedCategoryHelper::getDropdownTree(Category::find()->all()), ['prompt' => Yii::t('custompages/backend/page', 'Without Category')]) ?>
 
 	<?php if (CustomPages::getInstance()->enableTags) { ?>
 		<?= $form->field($model, 'tagIds')->widget(Select2::class, [
@@ -110,8 +111,6 @@ CustomPagesBackendAsset::register($this);
 	<?= $form->field($model, 'source')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'slug')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'hide_category_slug')->checkbox() ?>
 
 	<?= $form->field($model, 'meta_title')->textInput(['maxlength' => true]) ?>
 

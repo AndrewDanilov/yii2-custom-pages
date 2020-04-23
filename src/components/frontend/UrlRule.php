@@ -6,6 +6,7 @@ use yii\web\UrlRuleInterface;
 use yii\base\BaseObject;
 use andrewdanilov\custompages\models\Page;
 use andrewdanilov\custompages\models\Category;
+use andrewdanilov\helpers\NestedCategoryHelper;
 
 class UrlRule extends BaseObject implements UrlRuleInterface
 {
@@ -13,9 +14,9 @@ class UrlRule extends BaseObject implements UrlRuleInterface
 	{
 		if ($route === 'custompages/default/category') {
 			if ($params['id']) {
-				$category = Category::findOne(['id' => $params['id']]);
-				if ($category) {
-					return $category->slug;
+				$path = NestedCategoryHelper::getCategoryPath(Category::find()->all(), $params['id'], 'slug');
+				if (!empty($path)) {
+					return $path;
 				}
 			}
 		}
@@ -23,10 +24,16 @@ class UrlRule extends BaseObject implements UrlRuleInterface
 			if ($params['id']) {
 				$page = Page::findOne(['id' => $params['id']]);
 				if ($page) {
-					if ($page->hide_category_slug) {
+					if ($page->is_main) {
+						return '/';
+					}
+					if ($page->category_id === 0) {
 						return $page->slug;
 					}
-					return $page->category->slug . '/' . $page->slug;
+					$path = NestedCategoryHelper::getCategoryPath(Category::find()->all(), $page->category->id, 'slug');
+					if (!empty($path)) {
+						return $path . '/' . $page->slug;
+					}
 				}
 			}
 		}
@@ -42,37 +49,37 @@ class UrlRule extends BaseObject implements UrlRuleInterface
 	public function parseRequest($manager, $request)
 	{
 		$pathInfo = $request->getPathInfo();
-		if (preg_match('%^([\w_-]+)(?:\/([\w_-]+))?$%', $pathInfo, $matches)) {
-			$category_slug = $matches[1];
-			$category = Category::findOne(['slug' => $category_slug]);
-			if ($category) {
-				if (isset($matches[2])) {
-					$page_slug = $matches[2];
-					$page = Page::find()->where([
-						'slug' => $page_slug,
-						'is_main' => 0,
-						'hide_category_slug' => 0,
-						'category_id' => $category->id,
-					])->andWhere(['<=', 'published_at', new Expression('curdate()')])->one();
-					if ($page) {
-						return ['custompages/default/page', ['id' => $page->id]];
-					}
+		if (preg_match('%^[\w\-]+(?:/[\w\-]+)*$%', $pathInfo, $matches)) {
+			$path = explode('/', $pathInfo);
+			$parent_id = 0;
+			// we need to go though all categories chain
+			foreach ($path as $index => $path_item) {
+				$category = Category::findOne([
+					'slug' => $path_item,
+					'parent_id' => $parent_id,
+				]);
+				if ($category) {
+					// category exists, store it and go to next path_item
+					$parent_id = $category->id;
 				} else {
-					return ['custompages/default/category', ['id' => $category->id]];
-				}
-			} else {
-				if (!isset($matches[2])) {
-					$page_slug = $matches[1];
-					$page = Page::find()->where([
-						'slug' => $page_slug,
-						'is_main' => 0,
-						'hide_category_slug' => 1,
-					])->andWhere(['<=', 'published_at', new Expression('curdate()')])->one();
-					if ($page) {
-						return ['custompages/default/page', ['id' => $page->id]];
+					// it's not category, maybe it's a page.
+					// only last path_item can be a page slug
+					if ($index === count($path) - 1) {
+						$page = Page::find()->where([
+							'slug' => $path_item,
+							'is_main' => 0,
+							'category_id' => $parent_id,
+						])->andWhere([
+							'<=', 'published_at', new Expression('curdate()'),
+						])->one();
+						if ($page) {
+							return ['custompages/default/page', ['id' => $page->id]];
+						}
 					}
+					return false;
 				}
 			}
+			return ['custompages/default/category', ['id' => $parent_id]];
 		}
 		if ($pathInfo === '') {
 			$page = Page::findOne(['is_main' => 1]);
