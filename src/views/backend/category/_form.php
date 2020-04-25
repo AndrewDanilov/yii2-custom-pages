@@ -20,9 +20,11 @@ use andrewdanilov\helpers\NestedCategoryHelper;
 
     <?php $form = ActiveForm::begin(); ?>
 
-	<?= $form->field($model, 'parent_id')->dropDownList(NestedCategoryHelper::getDropdownTree(Category::find()->all()), ['prompt' => 'Верхний уровень', 'style' => 'font-family:monospace;']) ?>
+	<?= $form->field($model, 'parent_id')->dropDownList(NestedCategoryHelper::getDropdownTree(Category::find()), ['prompt' => 'Верхний уровень', 'style' => 'font-family:monospace;']) ?>
 
 	<?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
+
+	<?= $form->field($model, 'menu_title')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'slug')->textInput(['maxlength' => true]) ?>
 

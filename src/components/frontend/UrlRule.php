@@ -4,23 +4,23 @@ namespace andrewdanilov\custompages\components\frontend;
 use yii\db\Expression;
 use yii\web\UrlRuleInterface;
 use yii\base\BaseObject;
-use andrewdanilov\custompages\models\Page;
 use andrewdanilov\custompages\models\Category;
+use andrewdanilov\custompages\models\Page;
+use andrewdanilov\custompages\models\PageTag;
 use andrewdanilov\helpers\NestedCategoryHelper;
 
 class UrlRule extends BaseObject implements UrlRuleInterface
 {
 	public function createUrl($manager, $route, $params)
 	{
-		if ($route === 'custompages/default/category') {
-			if ($params['id']) {
-				$path = NestedCategoryHelper::getCategoryPath(Category::find()->all(), $params['id'], 'slug');
-				if (!empty($path)) {
-					return $path;
+		if ($route === 'custompages/default/page-tag') {
+			if ($params['slug']) {
+				$tag = PageTag::findOne(['slug' => $params['slug']]);
+				if ($tag) {
+					return 'tag/' . $tag->slug;
 				}
 			}
-		}
-		if ($route === 'custompages/default/page') {
+		} elseif ($route === 'custompages/default/page') {
 			if ($params['id']) {
 				$page = Page::findOne(['id' => $params['id']]);
 				if ($page) {
@@ -30,10 +30,17 @@ class UrlRule extends BaseObject implements UrlRuleInterface
 					if ($page->category_id === 0) {
 						return $page->slug;
 					}
-					$path = NestedCategoryHelper::getCategoryPath(Category::find()->all(), $page->category->id, 'slug');
+					$path = NestedCategoryHelper::getCategoryPath(Category::find(), $page->category->id, 'slug');
 					if (!empty($path)) {
 						return $path . '/' . $page->slug;
 					}
+				}
+			}
+		} elseif ($route === 'custompages/default/category') {
+			if ($params['id']) {
+				$path = NestedCategoryHelper::getCategoryPath(Category::find(), $params['id'], 'slug');
+				if (!empty($path)) {
+					return $path;
 				}
 			}
 		}
@@ -49,10 +56,12 @@ class UrlRule extends BaseObject implements UrlRuleInterface
 	public function parseRequest($manager, $request)
 	{
 		$pathInfo = $request->getPathInfo();
-		if (preg_match('%^[\w\-]+(?:/[\w\-]+)*$%', $pathInfo, $matches)) {
+		if (preg_match('%^tag/([\w\-]+)$%', $pathInfo, $matches)) {
+			return ['custompages/default/page-tag', ['slug' => $matches[1]]];
+		} elseif (preg_match('%^[\w\-]+(?:/[\w\-]+)*$%', $pathInfo, $matches)) {
 			$path = explode('/', $pathInfo);
 			$parent_id = 0;
-			// we need to go though all categories chain
+			// we need to go though all nested categories chain
 			foreach ($path as $index => $path_item) {
 				$category = Category::findOne([
 					'slug' => $path_item,

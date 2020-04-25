@@ -3,7 +3,6 @@ namespace andrewdanilov\custompages\models;
 
 use Yii;
 use yii\db\ActiveRecord;
-use yii\db\Query;
 use yii\helpers\Inflector;
 
 /**
@@ -14,6 +13,7 @@ use yii\helpers\Inflector;
  * @property $name string
  * @property $meta_title string
  * @property $meta_description string
+ * @property $pages Page[]
  * @package andrewdanilov\custompages\models
  */
 class PageTag extends ActiveRecord
@@ -30,6 +30,11 @@ class PageTag extends ActiveRecord
 			[['slug', 'name', 'meta_title', 'meta_description'], 'string', 'max' => 255],
 			[['slug'], 'unique'],
 		];
+	}
+
+	public function getPages()
+	{
+		$this->hasMany(Page::class, ['id' => 'page_id'])->viaTable(PageTagRef::tableName(), ['tag_id' => 'id']);
 	}
 
 	public function attributeLabels()

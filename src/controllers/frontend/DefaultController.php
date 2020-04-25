@@ -5,6 +5,7 @@ use yii\db\Expression;
 use yii\web\Controller;
 use andrewdanilov\custompages\models\Category;
 use andrewdanilov\custompages\models\Page;
+use andrewdanilov\custompages\models\PageTag;
 use andrewdanilov\custompages\Module as CustomPages;
 use andrewdanilov\custompages\helpers\AlbumHelper;
 
@@ -13,6 +14,20 @@ use andrewdanilov\custompages\helpers\AlbumHelper;
  */
 class DefaultController extends Controller
 {
+	/**
+	 * @param $id
+	 * @return string
+	 */
+	public function actionCategory($id)
+	{
+		$category = Category::find()->where(['id' => $id])->one();
+		$template = CustomPages::getInstance()->templatesPath . '/' . $category->category_template;
+		return $this->render($template, [
+			'category' => $category,
+			'pages' => $category->pages,
+		]);
+	}
+
 	/**
 	 * @param int $id
 	 * @return mixed
@@ -42,16 +57,16 @@ class DefaultController extends Controller
 	}
 
 	/**
-	 * @param $id
+	 * @param string $slug
 	 * @return string
 	 */
-	public function actionCategory($id)
+	public function actionPageTag($slug)
 	{
-		$category = Category::find()->where(['id' => $id])->one();
-		$template = CustomPages::getInstance()->templatesPath . '/' . $category->category_template;
+		$pageTag = PageTag::findOne(['slug' => $slug]);
+		$template = CustomPages::getInstance()->templatesPath . '/page-tag.default';
 		return $this->render($template, [
-			'category' => $category,
-			'pages' => $category->pages,
+			'pageTag' => $pageTag,
+			'pages' => $pageTag->getPages(),
 		]);
 	}
 }

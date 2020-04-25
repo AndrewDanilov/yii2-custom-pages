@@ -30,7 +30,7 @@ CustomPagesBackendAsset::register($this);
 
     <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'category_id')->dropDownList(NestedCategoryHelper::getDropdownTree(Category::find()->all()), ['prompt' => Yii::t('custompages/backend/page', 'Without Category')]) ?>
+    <?= $form->field($model, 'category_id')->dropDownList(NestedCategoryHelper::getDropdownTree(Category::find()), ['prompt' => Yii::t('custompages/backend/page', 'Without Category')]) ?>
 
 	<?php if (CustomPages::getInstance()->enableTags) { ?>
 		<?= $form->field($model, 'tagIds')->widget(Select2::class, [

@@ -25,7 +25,7 @@ or add
 
 to the require section of your `composer.json` file.
 
-Than run db migrations, to create needed tables:
+Then run db migrations, to create needed tables:
 
 ```
 php yii migrate --migrationPath=@andrewdanilov/custompages/migrations
@@ -108,13 +108,14 @@ $config = [
 ];
 ```
 
-Frontend category and page urls:
+Frontend category, page and tag urls:
 
 ```php
 use yii\helpers\Url;
 
 $categoryUrl = Url::to(['custompages/default/category', 'id' => 1]);
 $pageUrl = Url::to(['custompages/default/page', 'id' => 123]);
+$pageTagUrl = Url::to(['custompages/default/page-tag', 'slug' => 'tagname']);
 ```
 
 If you use own _templatesPath_ you need to copy example templates from __/vendor/andrewdanilov/yii2-custom-pages/src/views/frontend__ to your _templatesPath_ directory. Modify them or add as many templates as you need.
@@ -172,7 +173,7 @@ There is ability to set seo-tags for any created page or category. You can defin
 
 ### Categories
 
-Pages grouped by categories. You can add unlimited count of categories with unlimited count of pages inside each other. Each category can have own template for itself and separete template for pages stored in it.
+Pages grouped by categories. You can add unlimited count of categories with unlimited count of pages inside each other. Each category can have own template for itself and separete template for pages stored in it. Categories can have unlimited nesting level. Pages can exist without any categories at all. In this case, the default template will be applied to them.
 
 ### Tags
 

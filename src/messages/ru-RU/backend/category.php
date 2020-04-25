@@ -7,6 +7,7 @@ return [
 	'Modify category' => 'Изменить категорию',
 	'Slug' => 'ЧПУ',
 	'Title' => 'Заголовок',
+	'Menu Title' => 'Заголовок в меню',
 	'Text' => 'Текст',
 	'Category template' => 'Шаблон категории',
 	'Page template' => 'Шаблон страниц',

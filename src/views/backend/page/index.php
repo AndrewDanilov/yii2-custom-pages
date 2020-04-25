@@ -51,7 +51,7 @@ $asset = CustomPagesBackendAsset::register($this);
 	        	'attribute' => 'category_id',
 		        'format' => 'raw',
 		        'value' => function (Page $model) {
-    	            $path = NestedCategoryHelper::getCategoryPath(Category::find()->all(), $model->category_id, 'title', 'parent_id', ' > ');
+    	            $path = NestedCategoryHelper::getCategoryPath(Category::find(), $model->category_id, 'title', 'parent_id', ' > ');
     	            return Html::a($path, ['category/update', 'id' => $model->category_id]);
 		        },
 		        'filter' => Category::getCategoriesList(),

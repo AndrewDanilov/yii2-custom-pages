@@ -9,15 +9,16 @@ use yii\helpers\Inflector;
  * This is the model class for table "page".
  *
  * @property int $id
+ * @property int $parent_id
  * @property string $slug
  * @property string $title
+ * @property string $menu_title
  * @property string $text
  * @property string $category_template
  * @property string $pages_template
  * @property string $order
  * @property string $meta_title
  * @property string $meta_description
- * @property int $parent_id
  * @property int $pagesCount
  * @property Page[] $pages
  */
@@ -39,7 +40,7 @@ class Category extends ActiveRecord
         return [
             [['title', 'category_template', 'pages_template'], 'required'],
             [['text'], 'string'],
-            [['slug', 'title', 'category_template', 'pages_template', 'meta_title', 'meta_description'], 'string', 'max' => 255],
+            [['slug', 'title', 'menu_title', 'category_template', 'pages_template', 'meta_title', 'meta_description'], 'string', 'max' => 255],
 	        [['slug'], 'unique', 'targetAttribute' => ['parent_id', 'slug']],
             [['order', 'parent_id'], 'integer'],
             [['order', 'parent_id'], 'default', 'value' => 0],
@@ -54,8 +55,10 @@ class Category extends ActiveRecord
     {
         return [
             'id' => 'ID',
+            'parent_id' => Yii::t('custompages/backend/category', 'Parent Category'),
             'slug' => Yii::t('custompages/backend/category', 'Slug'),
             'title' => Yii::t('custompages/backend/category', 'Title'),
+            'menu_title' => Yii::t('custompages/backend/category', 'Menu Title'),
             'text' => Yii::t('custompages/backend/category', 'Text'),
             'category_template' => Yii::t('custompages/backend/category', 'Category template'),
             'pages_template' => Yii::t('custompages/backend/category', 'Page template'),
@@ -63,7 +66,6 @@ class Category extends ActiveRecord
             'meta_title' => Yii::t('custompages/backend/category', 'Meta Title'),
             'meta_description' => Yii::t('custompages/backend/category', 'Meta Description'),
             'pagesCount' => Yii::t('custompages/backend/category', 'Pages'),
-            'parent_id' => Yii::t('custompages/backend/category', 'Parent Category'),
         ];
     }
 
