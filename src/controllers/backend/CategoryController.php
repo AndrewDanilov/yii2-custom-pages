@@ -35,14 +35,17 @@ class CategoryController extends BackendController
         ]);
     }
 
-    /**
-     * Creates a new Category model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
-     * @return mixed
-     */
-    public function actionCreate()
+	/**
+	 * Creates a new Category model.
+	 * If creation is successful, the browser will be redirected to the 'view' page.
+	 *
+	 * @param null|int $parent_id
+	 * @return mixed
+	 */
+    public function actionCreate($parent_id=null)
     {
         $model = new Category();
+	    $model->parent_id = $parent_id;
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['index']);

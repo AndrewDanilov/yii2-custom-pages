@@ -23,10 +23,11 @@ $asset = CustomPagesBackendAsset::register($this);
     <p>
 	    <?php if ($searchModel->category_id) { ?>
 	        <?= Html::a(Yii::t('custompages/backend/page', 'Add page'), ['page/create', 'category_id' => $searchModel->category_id], ['class' => 'btn btn-success']) ?>
+		    <?= Html::a(Yii::t('custompages/backend/page', 'Add category'), ['category/create', 'parent_id' => $searchModel->category_id], ['class' => 'btn btn-primary']) ?>
 	    <?php } else { ?>
 	        <?= Html::a(Yii::t('custompages/backend/page', 'Add page'), ['page/create'], ['class' => 'btn btn-success']) ?>
+		    <?= Html::a(Yii::t('custompages/backend/page', 'Add category'), ['category/create'], ['class' => 'btn btn-primary']) ?>
 	    <?php } ?>
-	    <?= Html::a(Yii::t('custompages/backend/page', 'Add category'), ['category/create'], ['class' => 'btn btn-primary']) ?>
     </p>
 
     <?= GridView::widget([
