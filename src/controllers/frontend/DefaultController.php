@@ -63,7 +63,7 @@ class DefaultController extends Controller
 	public function actionPageTag($slug)
 	{
 		$pageTag = PageTag::findOne(['slug' => $slug]);
-		$template = CustomPages::getInstance()->templatesPath . '/page-tag.default';
+		$template = CustomPages::getInstance()->templatesPath . '/page-tag.default.php';
 		return $this->render($template, [
 			'pageTag' => $pageTag,
 			'pages' => $pageTag->getPages(),
