@@ -14,5 +14,6 @@ class CustomPagesBackendAsset extends AssetBundle
 	];
 	public $depends = [
 		'yii\web\JqueryAsset',
+		'andrewdanilov\gridtools\GridToolsAsset',
 	];
 }
