@@ -54,7 +54,7 @@ $pages_templates = CustomPages::getInstance()->getPagesTemplates();
             ],
 	        [
 		        'attribute' => 'parent_id',
-		        'value' => 'parent.lang.name',
+		        'value' => 'parent.title',
 		        'filter' => NestedCategoryHelper::getDropdownTree(Category::find(), 0, 'title'),
 		        'filterOptions' => ['style' => 'font-family:monospace;'],
 	        ],
