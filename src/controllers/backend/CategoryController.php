@@ -1,6 +1,7 @@
 <?php
 namespace andrewdanilov\custompages\controllers\backend;
 
+use andrewdanilov\helpers\NestedCategoryHelper;
 use Yii;
 use yii\web\NotFoundHttpException;
 use andrewdanilov\custompages\models\Category;
@@ -26,12 +27,10 @@ class CategoryController extends BackendController
      */
     public function actionIndex()
     {
-        $searchModel = new CategorySearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $tree = NestedCategoryHelper::getPlaneTree(Category::find());
 
         return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
+            'tree' => $tree,
         ]);
     }
 

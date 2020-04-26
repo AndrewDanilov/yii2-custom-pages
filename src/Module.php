@@ -14,6 +14,7 @@ class Module extends \yii\base\Module
 	public $translatesPath;
 	public $pageShortTextWordsCount = 50;
 	public $pageTextFilter;
+	public $categoryTextFilter;
 	public $enableTags = true;
 	public $enableAlbums = true;
 

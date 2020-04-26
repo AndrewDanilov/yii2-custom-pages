@@ -101,8 +101,10 @@ $config = [
             'translatesPath' => '@common/messages/custompages',
             // optional, page text short version length, default is 50
             'pageShortTextWordsCount' => '100',
-            // optional, callable function to process page text, i.e. to replace shortcodes on it
+            // optional, callable functions to process page and category text,
+            // i.e. to replace some shortcodes on it
             'pageTextFilter' => 'frontend\components\MyPageTextFilter::replaceShortcodes',
+            'categoryTextFilter' => 'frontend\components\MyCategoryTextFilter::replaceShortcodes',
         ],
     ],
 ];
@@ -194,9 +196,23 @@ return [
 On the moment you can use one of languages out of the box: English, Russian. Also you can create and use your own
 translations by defining `translatesPath` property of custompages module (see above).
 
-### Page text processor
+### Page and Category text processor
 
-You can define static function, that will process content of page text. See example with parameter `pageTextFilter` in
-module config above. That function must accept one string parameter and return string with modifications made. In
-example, you can replace some shortcodes in text with that function. Function applies to the text right after gathering
-page data from database. Made changes are not storing to database.
+You can define static function, that will process and change content of page or category text. See example with
+parameter `pageTextFilter` and `categoryTextFilter` in module config above. That function must accept one string parameter and return string
+with modifications made. In example, you can replace some shortcodes in text with that function. Function applies to
+the text right after gathering page or category data from database. Made changes are not storing to database.
+
+Example of that function:
+
+```php
+namespace frontend\components;
+
+class MyPageTextFilter
+{
+    public static function replaceShortcodes($text)
+    {
+        return str_replace('some string', 'other string', $text);
+    }
+}
+```

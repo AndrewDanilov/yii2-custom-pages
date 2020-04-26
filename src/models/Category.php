@@ -1,6 +1,7 @@
 <?php
 namespace andrewdanilov\custompages\models;
 
+use andrewdanilov\custompages\Module as CustomPages;
 use Yii;
 use yii\db\ActiveRecord;
 use yii\helpers\Inflector;
@@ -103,6 +104,15 @@ class Category extends ActiveRecord
     {
     	return static::find()->select(['title', 'id'])->orderBy(['order' => SORT_ASC, 'id' => SORT_ASC])->indexBy('id')->column();
     }
+
+	public function afterFind()
+	{
+		parent::afterFind();
+		$categoryTextFilter = CustomPages::getInstance()->categoryTextFilter;
+		if (!empty($categoryTextFilter) && is_callable($categoryTextFilter)) {
+			$this->text = call_user_func($categoryTextFilter, $this->text);
+		}
+	}
 
 	public function beforeSave($insert)
 	{

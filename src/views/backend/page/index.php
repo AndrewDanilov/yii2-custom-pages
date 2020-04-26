@@ -55,7 +55,7 @@ $asset = CustomPagesBackendAsset::register($this);
     	            $path = NestedCategoryHelper::getCategoryPath(Category::find(), $model->category_id, 'title', 'parent_id', ' > ');
     	            return Html::a($path, ['category/update', 'id' => $model->category_id]);
 		        },
-		        'filter' => Category::getCategoriesList(),
+		        'filter' => NestedCategoryHelper::getDropdownTree(Category::find(), 0, 'title'),
 	        ],
 	        [
 		        'attribute' => 'published_at',
