@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use andrewdanilov\custompages\Module as CustomPages;
+use andrewdanilov\custompages\assets\CustomPagesBackendAsset;
 
 /* @var $this yii\web\View */
 /* @var $tree array */
@@ -11,6 +12,8 @@ $this->params['breadcrumbs'][] = $this->title;
 
 $category_templates = CustomPages::getInstance()->getCategoryTemplates();
 $pages_templates = CustomPages::getInstance()->getPagesTemplates();
+
+$asset = CustomPagesBackendAsset::register($this);
 ?>
 <div class="page-index">
 
