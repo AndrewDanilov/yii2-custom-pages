@@ -73,7 +73,6 @@ class Page extends ActiveRecord
             [['category_id'], 'default', 'value' => 0],
             [['slug', 'title', 'meta_title', 'meta_description', 'source'], 'string', 'max' => 255],
 	        [['slug'], 'unique', 'targetAttribute' => ['category_id', 'slug']],
-	        [['published_at'], 'default', 'value' => date('d.m.Y')],
 	        [['albums'], 'safe'],
 	        [['is_main'], 'boolean'],
 	        [['is_main'], 'default', 'value' => 0],
@@ -140,6 +139,9 @@ class Page extends ActiveRecord
 		}
 		if (!$this->slug) {
 			$this->slug = Inflector::slug($this->title);
+		}
+		if (!$this->published_at || !strtotime($this->published_at)) {
+			$this->published_at = date('d.m.Y');
 		}
 		if ($this->is_main) {
 			// drop all other is_main pages setting
