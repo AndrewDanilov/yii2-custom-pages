@@ -6,7 +6,6 @@ use Yii;
 use yii\db\ActiveRecord;
 use yii\db\Query;
 use yii\helpers\Inflector;
-use yii\helpers\StringHelper;
 use andrewdanilov\behaviors\DateBehavior;
 use andrewdanilov\behaviors\TagBehavior;
 use andrewdanilov\custompages\Module as CustomPages;
@@ -28,6 +27,7 @@ use andrewdanilov\custompages\Module as CustomPages;
  * @property string $source
  * @property Category $category
  * @property string $shortText
+ * @property string $processedText
  */
 class Page extends ActiveRecord
 {
@@ -108,6 +108,15 @@ class Page extends ActiveRecord
     	return $this->hasOne(Category::class, ['id' => 'category_id']);
     }
 
+	public function getProcessedText()
+	{
+		$pageTextProcessor = CustomPages::getInstance()->pageTextProcessor;
+		if (!empty($pageTextProcessor) && is_callable($pageTextProcessor)) {
+			return call_user_func($pageTextProcessor, $this->text);
+		}
+		return $this->text;
+	}
+
 	public function afterFind()
 	{
 		parent::afterFind();
@@ -117,10 +126,6 @@ class Page extends ActiveRecord
 			} else {
 				$this->albums = [];
 			}
-		}
-		$pageTextFilter = CustomPages::getInstance()->pageTextFilter;
-		if (!empty($pageTextFilter) && is_callable($pageTextFilter)) {
-			$this->text = call_user_func($pageTextFilter, $this->text);
 		}
 	}
 
@@ -148,6 +153,6 @@ class Page extends ActiveRecord
 
 	public function getShortText()
 	{
-		return TextHelper::shortText($this->text, CustomPages::getInstance()->pageShortTextWordsCount);
+		return TextHelper::shortText($this->processedText, CustomPages::getInstance()->pageShortTextWordsCount);
 	}
 }

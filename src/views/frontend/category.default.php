@@ -19,7 +19,7 @@ $this->registerMetaTag([
 
 		<div class="category-text">
 
-			<?= $category->text ?>
+			<?= $category->processedText ?>
 
 		</div>
 

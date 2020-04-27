@@ -22,6 +22,7 @@ use yii\helpers\Inflector;
  * @property string $meta_description
  * @property int $pagesCount
  * @property Page[] $pages
+ * @property string $processedText
  */
 class Category extends ActiveRecord
 {
@@ -105,13 +106,13 @@ class Category extends ActiveRecord
     	return static::find()->select(['title', 'id'])->orderBy(['order' => SORT_ASC, 'id' => SORT_ASC])->indexBy('id')->column();
     }
 
-	public function afterFind()
+	public function getProcessedText()
 	{
-		parent::afterFind();
-		$categoryTextFilter = CustomPages::getInstance()->categoryTextFilter;
-		if (!empty($categoryTextFilter) && is_callable($categoryTextFilter)) {
-			$this->text = call_user_func($categoryTextFilter, $this->text);
+		$categoryTextProcessor = CustomPages::getInstance()->categoryTextProcessor;
+		if (!empty($categoryTextProcessor) && is_callable($categoryTextProcessor)) {
+			return call_user_func($categoryTextProcessor, $this->text);
 		}
+		return $this->text;
 	}
 
 	public function beforeSave($insert)

@@ -23,7 +23,7 @@ CustomPagesAsset::register($this);
 		</div>
 
 		<div class="page-text">
-			<?= $page->text ?>
+			<?= $page->processedText ?>
 		</div>
 
 		<div class="page-source">
