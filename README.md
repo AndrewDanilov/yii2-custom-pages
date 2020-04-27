@@ -23,7 +23,7 @@ or add
 "andrewdanilov/yii2-custom-pages": "~1.0.0"
 ```
 
-to the require section of your `composer.json` file.
+to the `require` section of your `composer.json` file.
 
 Then run db migrations, to create needed tables:
 
@@ -75,7 +75,7 @@ $config = [
 ];
 ```
 
-Here 'access' option allows to restrict access to defined roles.
+Here 'access' option allows restricting access to defined roles.
 
 Backend CRUD actions available by links:
 
@@ -122,7 +122,7 @@ $pageTagUrl = Url::to(['/custompages/default/page-tag', 'slug' => 'tagname']);
 
 If you use own _templatesPath_ you need to copy example templates from __/vendor/andrewdanilov/yii2-custom-pages/src/views/frontend__ to your _templatesPath_ directory. Modify them or add as many templates as you need.
 
-Note, that template file name for category must begins with prefix 'category.', and template file name for page must begins with prefix 'page.'.
+Note, that template file name for a category must begin with the prefix 'category.', and template file name for a page must begin with the prefix 'page.'.
 
 Features
 --------
@@ -147,7 +147,7 @@ You can define page as main page of the site. Than it repleces default index con
 
 ### Publish date
 
-Any date can be define to pospone publication of page. If not set - it will be current date by default.
+Any date can be defined to pospone publication of page. If not set - it will be current date by default.
 
 ### Shortcodes
 

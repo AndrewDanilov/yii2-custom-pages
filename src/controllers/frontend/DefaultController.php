@@ -50,7 +50,11 @@ class DefaultController extends Controller
 				$page->text = str_replace($album['shortcode'], $this->renderPartial(CustomPages::getInstance()->templatesPath . '/_blocks/slider', ['album' => $album]), $page->text);
 			}
 		}
-		$template = CustomPages::getInstance()->templatesPath . '/' . $page->category->pages_template;
+		if ($page->category_id) {
+			$template = CustomPages::getInstance()->templatesPath . '/' . $page->category->pages_template;
+		} else {
+			$template = CustomPages::getInstance()->templatesPath . '/page.default.php';
+		}
 		return $this->render($template, [
 			'page' => $page,
 		]);
