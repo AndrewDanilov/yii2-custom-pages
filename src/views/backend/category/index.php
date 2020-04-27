@@ -1,5 +1,6 @@
 <?php
 
+use yii\grid\GridViewAsset;
 use yii\helpers\Html;
 use andrewdanilov\custompages\Module as CustomPages;
 use andrewdanilov\custompages\assets\CustomPagesBackendAsset;
@@ -14,6 +15,7 @@ $category_templates = CustomPages::getInstance()->getCategoryTemplates();
 $pages_templates = CustomPages::getInstance()->getPagesTemplates();
 
 $asset = CustomPagesBackendAsset::register($this);
+$asset = GridViewAsset::register($this);
 ?>
 <div class="page-index">
 
