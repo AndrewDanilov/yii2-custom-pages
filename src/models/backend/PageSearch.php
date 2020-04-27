@@ -1,6 +1,8 @@
 <?php
 namespace andrewdanilov\custompages\models\backend;
 
+use andrewdanilov\custompages\models\Category;
+use andrewdanilov\helpers\NestedCategoryHelper;
 use yii\data\ActiveDataProvider;
 use andrewdanilov\custompages\models\Page;
 
@@ -48,6 +50,13 @@ class PageSearch extends Page
             'id' => $this->id,
             'category_id' => $this->category_id,
         ]);
+
+        if ($this->category_id) {
+        	// search in category and subcategories
+        	$childrenIds = NestedCategoryHelper::getChildrenIds(Category::find(), $this->category_id);
+	        $childrenIds[] = $this->category_id;
+        	$query->andWhere(['category_id' => $childrenIds]);
+        }
 
 	    $published_at_search = implode('-', array_reverse(explode('.', $this->published_at)));
 

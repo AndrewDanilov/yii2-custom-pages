@@ -25,11 +25,11 @@ $asset = CustomPagesBackendAsset::register($this);
 	<div class="custompages-tree-list">
 		<?php foreach ($tree as $item) { ?>
 			<div class="custompages-list-item level-<?= $item['level'] ?>">
-				<div class="custompages-tree-link"><?= Html::a($item['category']->title . ' (' . $item['category']->getPages()->count() . ')', ['/custompages/page', 'PageSearch' => ['category_id' => $item['category']->id]]) ?></div>
 				<div class="custompages-tree-actions">
 					<?= Html::a('<span class="fa fa-pen"></span>', ['update', 'id' => $item['category']->id]) ?>
 					<?= Html::a('<span class="fa fa-trash"></span>', ['delete', 'id' => $item['category']->id], ['data' => ['confirm' => 'Вы уверены, что хотите удалить этот элемент?', 'method' => 'post']]) ?>
 				</div>
+				<div class="custompages-tree-link"><?= Html::a($item['category']->title . ' (' . $item['category']->getPages()->count() . ')', ['/custompages/page', 'PageSearch' => ['category_id' => $item['category']->id]]) ?></div>
 			</div>
 		<?php } ?>
 	</div>
