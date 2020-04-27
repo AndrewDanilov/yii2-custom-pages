@@ -115,9 +115,9 @@ Frontend category, page and tag urls:
 ```php
 use yii\helpers\Url;
 
-$categoryUrl = Url::to(['custompages/default/category', 'id' => 1]);
-$pageUrl = Url::to(['custompages/default/page', 'id' => 123]);
-$pageTagUrl = Url::to(['custompages/default/page-tag', 'slug' => 'tagname']);
+$categoryUrl = Url::to(['/custompages/default/category', 'id' => 1]);
+$pageUrl = Url::to(['/custompages/default/page', 'id' => 123]);
+$pageTagUrl = Url::to(['/custompages/default/page-tag', 'slug' => 'tagname']);
 ```
 
 If you use own _templatesPath_ you need to copy example templates from __/vendor/andrewdanilov/yii2-custom-pages/src/views/frontend__ to your _templatesPath_ directory. Modify them or add as many templates as you need.

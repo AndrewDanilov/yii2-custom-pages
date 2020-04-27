@@ -30,7 +30,7 @@ class UrlRule extends BaseObject implements UrlRuleInterface
 					if ($page->category_id === 0) {
 						return $page->slug;
 					}
-					$path = NestedCategoryHelper::getCategoryPath(Category::find(), $page->category->id, 'slug');
+					$path = NestedCategoryHelper::getCategoryPath(Category::find(), $page->category_id, 'slug');
 					if (!empty($path)) {
 						return $path . '/' . $page->slug;
 					}
