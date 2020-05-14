@@ -53,6 +53,8 @@ CustomPagesBackendAsset::register($this);
 		'editorOptions' => ElFinder::ckeditorOptions('elfinder', CKEditorHelper::defaultOptions()),
 	]) ?>
 
+	<?= $form->field($model, 'page_template')->dropDownList(CustomPages::getInstance()->getPagesTemplates(), ['prompt' => Yii::t('custompages/backend/page', 'From category settings / Default')]) ?>
+
 	<?= $form->field($model, 'is_main')->checkbox(['label' => Yii::t('custompages/backend/page', 'Use as main page')]) ?>
 
 	<?php if (CustomPages::getInstance()->enableAlbums) { ?>

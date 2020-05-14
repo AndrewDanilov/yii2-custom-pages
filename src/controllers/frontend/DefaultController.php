@@ -3,10 +3,10 @@ namespace andrewdanilov\custompages\controllers\frontend;
 
 use yii\db\Expression;
 use yii\web\Controller;
+use andrewdanilov\custompages\Module as CustomPages;
 use andrewdanilov\custompages\models\Category;
 use andrewdanilov\custompages\models\Page;
 use andrewdanilov\custompages\models\PageTag;
-use andrewdanilov\custompages\Module as CustomPages;
 use andrewdanilov\custompages\helpers\AlbumHelper;
 
 /**
@@ -50,7 +50,9 @@ class DefaultController extends Controller
 				$page->text = str_replace($album['shortcode'], $this->renderPartial(CustomPages::getInstance()->templatesPath . '/_blocks/slider', ['album' => $album]), $page->text);
 			}
 		}
-		if ($page->category_id) {
+		if ($page->page_template) {
+			$template = CustomPages::getInstance()->templatesPath . '/' . $page->page_template;
+		} elseif ($page->category_id) {
 			$template = CustomPages::getInstance()->templatesPath . '/' . $page->category->pages_template;
 		} else {
 			$template = CustomPages::getInstance()->templatesPath . '/page.default.php';

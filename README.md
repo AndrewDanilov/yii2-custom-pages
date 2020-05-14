@@ -4,7 +4,7 @@ Module contains backend and frontend parts.
 Placed to backend it gives you ability to create custom pages in cms-like way.
 Pages groups by categories, i.e. news, articles, etc.
 Placed to frontend module displays category (list of pages previews) and pages itself by their friendly urls.
-Pages of each category and category itself has own templates (Views), which you can define in category settings.
+Pages and categories has own templates (Views), which you can define in page or category settings.
 
 Installation
 ------------
@@ -175,7 +175,11 @@ There is ability to set seo-tags for any created page or category. You can defin
 
 ### Categories
 
-Pages grouped by categories. You can add unlimited count of categories with unlimited count of pages inside each other. Each category can have own template for itself and separete template for pages stored in it. Categories can have unlimited nesting level. Pages can exist without any categories at all. In this case, the default template will be applied to them.
+Pages grouped by categories. You can add unlimited count of categories with unlimited count of pages inside each other. Categories can have unlimited nesting level. Besides, pages can exist without any categories at all.
+
+### Templates
+
+Each category can have own template for itself and separete template for pages stored in it. At the same time, pages can have their own template, even if it was set in the category settings. If page template is not set in page settings, page template of category settings will be applied to it. If page have no own template and have no category, the default template will be used.
 
 ### Tags
 

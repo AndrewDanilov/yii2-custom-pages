@@ -21,4 +21,6 @@ return [
 	'Tags' => 'Теги',
 	'Enter tag name...' => 'Введите тег...',
 	'Without Category' => 'Без категории',
+	'Page Template' => 'Шаблон страницы',
+	'From category settings / Default' => 'Из настроек категории / По умолчанию',
 ];

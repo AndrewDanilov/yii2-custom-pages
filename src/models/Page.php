@@ -1,14 +1,14 @@
 <?php
 namespace andrewdanilov\custompages\models;
 
-use andrewdanilov\helpers\TextHelper;
 use Yii;
 use yii\db\ActiveRecord;
 use yii\db\Query;
 use yii\helpers\Inflector;
+use andrewdanilov\custompages\Module as CustomPages;
 use andrewdanilov\behaviors\DateBehavior;
 use andrewdanilov\behaviors\TagBehavior;
-use andrewdanilov\custompages\Module as CustomPages;
+use andrewdanilov\helpers\TextHelper;
 
 /**
  * This is the model class for table "page".
@@ -25,6 +25,7 @@ use andrewdanilov\custompages\Module as CustomPages;
  * @property string $meta_title
  * @property string $meta_description
  * @property string $source
+ * @property string $page_template
  * @property Category $category
  * @property string $shortText
  * @property string $processedText
@@ -71,7 +72,7 @@ class Page extends ActiveRecord
             [['image', 'text', 'published_at'], 'string'],
             [['category_id'], 'integer'],
             [['category_id'], 'default', 'value' => 0],
-            [['slug', 'title', 'meta_title', 'meta_description', 'source'], 'string', 'max' => 255],
+            [['slug', 'title', 'meta_title', 'meta_description', 'source', 'page_template'], 'string', 'max' => 255],
 	        [['slug'], 'unique', 'targetAttribute' => ['category_id', 'slug']],
 	        [['albums'], 'safe'],
 	        [['is_main'], 'boolean'],
@@ -99,6 +100,7 @@ class Page extends ActiveRecord
             'meta_description' => Yii::t('custompages/backend/page', 'Meta Description'),
             'tagIds' => Yii::t('custompages/backend/page', 'Tags'),
             'source' => Yii::t('custompages/backend/page', 'Source'),
+            'page_template' => Yii::t('custompages/backend/page', 'Page Template'),
         ];
     }
 
