@@ -36,7 +36,7 @@ Do not forget to run migrations after extension updates too.
 Usage
 -----
 
-In backend main config modules section add:
+In backend main config `modules` section add:
 ```php
 $config = [
     // ...
@@ -75,7 +75,7 @@ $config = [
 ];
 ```
 
-Here 'access' option allows restricting access to defined roles.
+Here `access` option allows restricting access to defined roles.
 
 Backend CRUD actions available by links:
 
@@ -87,7 +87,7 @@ $pageUrl = Url::to(['/custompages/page']);
 $pageTagUrl = Url::to(['/custompages/page-tag']);
 ```
 
-In frontend main config modules section add:
+In frontend main config `modules` section add:
 ```php
 $config = [
     // ...
@@ -110,7 +110,7 @@ $config = [
 ];
 ```
 
-Frontend category, page and tag urls:
+Frontend __category__, __page__ and __tag__ urls:
 
 ```php
 use yii\helpers\Url;
@@ -120,9 +120,9 @@ $pageUrl = Url::to(['/custompages/default/page', 'id' => 123]);
 $pageTagUrl = Url::to(['/custompages/default/page-tag', 'slug' => 'tagname']);
 ```
 
-If you use own _templatesPath_ you need to copy example templates from __/vendor/andrewdanilov/yii2-custom-pages/src/views/frontend__ to your _templatesPath_ directory. Modify them or add as many templates as you need.
+If you use own `templatesPath` you need to copy example templates from __/vendor/andrewdanilov/yii2-custom-pages/src/views/frontend__ to your `templatesPath` directory. Modify them or add as many templates as you need.
 
-Note, that template file name for a category must begin with the prefix 'category.', and template file name for a page must begin with the prefix 'page.'.
+Note, that template file name for a category must begin with the prefix '_category._', template file name for a page must begin with the prefix '_page._' and template file name for a tag must begin with the prefix '_page-tag._'. A dot at the end of the prefix is required.
 
 Features
 --------
@@ -171,19 +171,19 @@ With extended syntax of shortcode you can add "alt" attribute to all pictures of
 
 ### SEO
 
-There is ability to set seo-tags for any created page or category. You can define browser title and meta description.
+There is ability to set seo-fields for any created page or category. You can define browser title and meta description.
 
 ### Categories
 
 Pages grouped by categories. You can add unlimited count of categories with unlimited count of pages inside each other. Categories can have unlimited nesting level. Besides, pages can exist without any categories at all.
 
-### Templates
-
-Each category can have own template for itself and separete template for pages stored in it. At the same time, pages can have their own template, even if it was set in the category settings. If page template is not set in page settings, page template of category settings will be applied to it. If page have no own template and have no category, the default template will be used.
-
 ### Tags
 
 Pages also can be grouped by tags. One tag can represent several pages. One page can contain many tags.
+
+### Templates
+
+Each category can have own template for itself and separete template for pages stored in it. At the same time, pages can have their own template, even if it was set in the category settings. If page template is not set in page settings, page template of category settings will be applied to it. If page have no own template and have no category, the default template will be used.
 
 ### I18n
 
@@ -202,8 +202,8 @@ translations by defining `translatesPath` property of custompages module (see ab
 
 ### Page and Category text processor
 
-You can define static function, that will process and change content of page or category text. See example with
-parameter `pageTextProcessorProcessor` and `categoryTextProcessor` in module config above. That function must accept one string parameter and return string
+You can define static function, that will process and change page or category text content. See example with
+parameter `pageTextProcessor` and `categoryTextProcessor` in module config above. That function must accept one string parameter and return string
 with modifications made. In example, you can replace some shortcodes in text with that function. Function applies to
 the text when you get it via processedText property of Page or Category ActiveRecord object. Made changes are not storing to database.
 
