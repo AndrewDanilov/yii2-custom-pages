@@ -135,23 +135,23 @@ You can add some picture, represents your page. It is usefull in case of making 
 
 ### Html visual editor
 
-Embedded WYSIWYG-editor helps you easily make any visual content. It has ability to place images, videos and other usefull things in content of your pages. 
+Embedded WYSIWYG-editor helps you easily make any visual content. It has ability to place images, videos and other usefull things in content of your pages or categories. 
 
 ### Human-friendly urls
 
-You can define slugs for categories and pages. Pages can be under defined category or can has own url without relativity to category.
+You can define slugs for categories and pages. For nested categories and their pages, a link is consistently composed of slugs of hierarchically nested categories.
 
 ### Main page
 
-You can define page as main page of the site. Than it repleces default index controller/action.
+You can define page as main page of the site. Then it repleces index action of default controller.
 
 ### Publish date
 
-Any date can be defined to pospone publication of page. If not set - it will be current date by default.
+Any date can be defined to pospone publication of page. If not set manually, the creation date will be set as publish date.
 
 ### Shortcodes
 
-You can use some shortcodes in text content of created pages. To place gallery or slider inside page content, you can add theese shortcodes to page WYSIWYG-editor in admin area:
+You can use some predefined shortcodes in text content of created pages. To place gallery or slider inside page content, you can add theese shortcodes to page WYSIWYG-editor in admin area:
 
 ```text
 [gallery album1566731453428]
