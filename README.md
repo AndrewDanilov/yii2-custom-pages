@@ -143,7 +143,7 @@ You can define slugs for categories and pages. For nested categories and their p
 
 ### Main page
 
-You can define page as main page of the site. Then it repleces index action of default controller.
+You can define a page as main page of the site. Then it repleces index action of default controller.
 
 ### Publish date
 
