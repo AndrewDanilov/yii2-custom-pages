@@ -12,7 +12,9 @@ class m200424_002800_page_modify_fields extends Migration
 	 */
 	public function safeUp()
 	{
-		$this->dropColumn('page', 'hide_category_slug');
+		if ($this->getDb()->getSchema()->getTableSchema('page')->getColumn('hide_category_slug') !== null) {
+			$this->dropColumn('page', 'hide_category_slug');
+		}
 		$this->alterColumn('page', 'category_id', $this->integer()->notNull()->defaultValue(0));
 	}
 
