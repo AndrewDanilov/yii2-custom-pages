@@ -12,7 +12,9 @@ class m200411_032200_category_order extends Migration
 	 */
 	public function safeUp()
 	{
-		$this->addColumn('page_category', 'order', $this->integer()->notNull()->defaultValue(0));
+		if ($this->getDb()->getSchema()->getTableSchema('page_category')->getColumn('order') === null) {
+			$this->addColumn('page_category', 'order', $this->integer()->notNull()->defaultValue(0));
+		}
 	}
 
 	/**

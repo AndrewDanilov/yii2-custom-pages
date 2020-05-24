@@ -32,7 +32,6 @@ class m190717_085259_init extends Migration
 		    'id' => $this->primaryKey(),
 		    'category_id' => $this->integer()->notNull(),
 		    'slug' => $this->string(),
-		    'hide_category_slug' => $this->tinyInteger()->notNull()->defaultValue(0),
 		    'image' => $this->string(),
 		    'title' => $this->string(),
 		    'text' => $this->text(),
