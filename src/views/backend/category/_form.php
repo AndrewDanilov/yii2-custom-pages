@@ -4,7 +4,7 @@ use Yii;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use mihaildev\elfinder\ElFinder;
-use sadovojav\ckeditor\CKEditor;
+use andrewdanilov\ckeditor\CKEditor;
 use andrewdanilov\custompages\Module as CustomPages;
 use andrewdanilov\custompages\models\Category;
 use andrewdanilov\helpers\CKEditorHelper;
