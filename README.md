@@ -103,8 +103,8 @@ $config = [
             'pageShortTextWordsCount' => '100',
             // optional, callable functions to process page and category text,
             // i.e. to replace some shortcodes on it
-            'pageTextProcessorProcessorProcessor' => 'frontend\components\MyPageTextProcessorProcessorProcessor::replaceShortcodes',
-            'categoryTextProcessorProcessorProcessor' => 'frontend\components\MyCategoryTextProcessor::replaceShortcodes',
+            'pageTextProcessor' => 'frontend\components\MyPageTextProcessor::replaceShortcodes',
+            'categoryTextProcessor' => 'frontend\components\MyCategoryTextProcessor::replaceShortcodes',
         ],
     ],
 ];
