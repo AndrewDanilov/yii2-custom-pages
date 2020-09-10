@@ -39,43 +39,74 @@ Usage
 In backend main config `modules` section add:
 ```php
 $config = [
-    // ...
-    'modules' => [
-        // ...
-        'custompages' => [
-            'class' => 'andrewdanilov\custompages\Module',
-            'controllerMap' => [
-                'category' => [
-                    'class' => 'andrewdanilov\custompages\controllers\backend\CategoryController',
-                    // access role for category controller
-                    'access' => ['admin'],
-                ],
-                'page' => [
-                    'class' => 'andrewdanilov\custompages\controllers\backend\PageController',
-                    // access role for page controller
-                    'access' => ['admin'],
-                ],
-                // page-tag is optional controller. Define it if you want to use tags on your pages.
-                'page-tag' => [
-                    'class' => 'andrewdanilov\custompages\controllers\backend\PageTagController',
-                    // access role for page-tag controller
-                    'access' => ['admin'],
-                ],
-            ],
-            // path to Views for pages and categories
-            'templatesPath' => '@frontend/views/custompages',
-            // optional, path to user translates
-            'translatesPath' => '@common/messages/custompages',
-            // optional, enables controls for managing page tags, default is true
-            'enableTags' => false,
-            // optional, enables controls for managing page albums, default is true
-            'enableAlbums' => false,
-        ],
-    ],
+	// ...
+	'modules' => [
+		// ...
+		'custompages' => [
+			'class' => 'andrewdanilov\custompages\Module',
+			'controllerMap' => [
+				'category' => [
+					'class' => 'andrewdanilov\custompages\controllers\backend\CategoryController',
+					// access role for category controller
+					'access' => ['admin'],
+				],
+				'page' => [
+					'class' => 'andrewdanilov\custompages\controllers\backend\PageController',
+					// access role for page controller
+					'access' => ['admin'],
+				],
+				// page-tag is optional controller. Define it if you want to use tags on your pages.
+				'page-tag' => [
+					'class' => 'andrewdanilov\custompages\controllers\backend\PageTagController',
+					// access role for page-tag controller
+					'access' => ['admin'],
+				],
+			],
+			// path to Views for pages and categories
+			'templatesPath' => '@frontend/views/custompages',
+			// optional, path to user translates
+			'translatesPath' => '@common/messages/custompages',
+			// optional, enables controls for managing page tags, default is true
+			'enableTags' => false,
+			// optional, enables controls for managing page albums, default is true
+			'enableAlbums' => false,
+		],
+	],
 ];
 ```
 
 Here `access` option allows restricting access to defined roles.
+
+Extension uses Elfinder file manager for choosing images in Page and Category editors. You need to set it up in backend config:
+
+```php
+$config = [
+	// ...
+	'controllerMap' => [
+        // ...
+		'elfinder' => [
+			'class' => 'mihaildev\elfinder\Controller',
+			'access' => ['admin'],
+			'roots' => [
+				[
+					'baseUrl' => '',
+					'basePath' => '@frontend/web',
+					'path' => 'upload/images/news',
+					'name' => 'News',
+				],
+				[
+					'baseUrl' => '',
+					'basePath' => '@frontend/web',
+					'path' => 'upload/images/articles',
+					'name' => 'Articles',
+				],
+			],
+		],
+	],
+];
+```
+
+Here `access` option allows restricting access to defined roles. Option `roots` defines a set of paths where the different type of images or files will be stored.
 
 Backend CRUD actions available by links:
 
@@ -90,23 +121,23 @@ $pageTagUrl = Url::to(['/custompages/page-tag']);
 In frontend main config `modules` section add:
 ```php
 $config = [
-    // ...
-    'modules' => [
-        // ...
-        'custompages' => [
-            'class' => 'andrewdanilov\custompages\Module',
-            // optional, path to template Views for pages and categories
-            'templatesPath' => '@frontend/views/custompages',
-            // optional, path to user translates
-            'translatesPath' => '@common/messages/custompages',
-            // optional, page text short version length, default is 50
-            'pageShortTextWordsCount' => '100',
-            // optional, callable functions to process page and category text,
-            // i.e. to replace some shortcodes on it
-            'pageTextProcessor' => 'frontend\components\MyPageTextProcessor::replaceShortcodes',
-            'categoryTextProcessor' => 'frontend\components\MyCategoryTextProcessor::replaceShortcodes',
-        ],
-    ],
+	// ...
+	'modules' => [
+		// ...
+		'custompages' => [
+			'class' => 'andrewdanilov\custompages\Module',
+			// optional, path to template Views for pages and categories
+			'templatesPath' => '@frontend/views/custompages',
+			// optional, path to user translates
+			'translatesPath' => '@common/messages/custompages',
+			// optional, page text short version length, default is 50
+			'pageShortTextWordsCount' => '100',
+			// optional, callable functions to process page and category text,
+			// i.e. to replace some shortcodes on it
+			'pageTextProcessor' => 'frontend\components\MyPageTextProcessor::replaceShortcodes',
+			'categoryTextProcessor' => 'frontend\components\MyCategoryTextProcessor::replaceShortcodes',
+		],
+	],
 ];
 ```
 
@@ -191,9 +222,9 @@ Extension supports internationalisation. You can set your language in `common/co
 
 ```php
 return [
-    // ...
-    'language' => 'ru-RU',
-    // ...
+	// ...
+	'language' => 'ru-RU',
+	// ...
 ];
 ```
 
@@ -214,9 +245,9 @@ namespace frontend\components;
 
 class MyPageTextProcessor
 {
-    public static function replaceShortcodes($text)
-    {
-        return str_replace('some string', 'other string', $text);
-    }
+	public static function replaceShortcodes($text)
+	{
+		return str_replace('some string', 'other string', $text);
+	}
 }
 ```
