@@ -3,6 +3,9 @@ namespace andrewdanilov\custompages;
 
 use Yii;
 use yii\helpers\FileHelper;
+use andrewdanilov\exceptions\CategoryDefaultTemplatePathNotFoundException;
+use andrewdanilov\exceptions\PageDefaultTemplatePathNotFoundException;
+use andrewdanilov\exceptions\TemplatesPathNotFoundException;
 
 /**
  * @property array $categoryTemplates
@@ -39,7 +42,14 @@ class Module extends \yii\base\Module
 
 	public function getCategoryTemplates()
 	{
-		$files = FileHelper::findFiles(Yii::getAlias($this->templatesPath), [
+		$path = Yii::getAlias($this->templatesPath);
+		if (!is_dir($path)) {
+			throw new TemplatesPathNotFoundException($path);
+		}
+		if (!file_exists($path . '/category.default.php')) {
+			throw new CategoryDefaultTemplatePathNotFoundException($path . '/category.default.php');
+		}
+		$files = FileHelper::findFiles($path, [
 			'except' => ['category.default.php'],
 			'only' => ['category.*.php'],
 			'recursive' => false,
@@ -56,7 +66,14 @@ class Module extends \yii\base\Module
 
 	public function getPagesTemplates()
 	{
-		$files = FileHelper::findFiles(Yii::getAlias($this->templatesPath), [
+		$path = Yii::getAlias($this->templatesPath);
+		if (!is_dir($path)) {
+			throw new TemplatesPathNotFoundException($path);
+		}
+		if (!file_exists($path . '/category.default.php')) {
+			throw new PageDefaultTemplatePathNotFoundException($path . '/page.default.php');
+		}
+		$files = FileHelper::findFiles($path, [
 			'except' => ['page.default.php'],
 			'only' => ['page.*.php'],
 			'recursive' => false,
