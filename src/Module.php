@@ -3,9 +3,9 @@ namespace andrewdanilov\custompages;
 
 use Yii;
 use yii\helpers\FileHelper;
-use andrewdanilov\exceptions\CategoryDefaultTemplatePathNotFoundException;
-use andrewdanilov\exceptions\PageDefaultTemplatePathNotFoundException;
-use andrewdanilov\exceptions\TemplatesPathNotFoundException;
+use andrewdanilov\custompages\exceptions\CategoryDefaultTemplatePathNotFoundException;
+use andrewdanilov\custompages\exceptions\PageDefaultTemplatePathNotFoundException;
+use andrewdanilov\custompages\exceptions\TemplatesPathNotFoundException;
 
 /**
  * @property array $categoryTemplates

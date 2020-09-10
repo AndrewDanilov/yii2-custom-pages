@@ -1,5 +1,5 @@
 <?php
-namespace andrewdanilov\exceptions;
+namespace andrewdanilov\custompages\exceptions;
 
 class PageDefaultTemplatePathNotFoundException extends \Exception
 {
