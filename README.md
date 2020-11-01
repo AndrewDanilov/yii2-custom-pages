@@ -37,6 +37,7 @@ Usage
 -----
 
 In backend main config `modules` section add:
+
 ```php
 $config = [
 	// ...
@@ -54,7 +55,7 @@ $config = [
 			'enableTags' => false,
 			// optional, enables controls for managing page albums, default is true
 			'enableAlbums' => false,
-			// file manager configuration
+			// file manager configuration, optional, default is:
 			'fileManager' => [
 				'basePath' => '@frontend/web',
 				'paths' => [
