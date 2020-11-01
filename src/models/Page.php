@@ -5,7 +5,7 @@ use Yii;
 use yii\db\ActiveRecord;
 use yii\db\Query;
 use yii\helpers\Inflector;
-use andrewdanilov\custompages\BaseModule as CustomPages;
+use andrewdanilov\custompages\FrontendModule;
 use andrewdanilov\behaviors\DateBehavior;
 use andrewdanilov\behaviors\TagBehavior;
 use andrewdanilov\helpers\TextHelper;
@@ -111,7 +111,7 @@ class Page extends ActiveRecord
 
 	public function getProcessedText()
 	{
-		$pageTextProcessor = CustomPages::getInstance()->pageTextProcessor;
+		$pageTextProcessor = FrontendModule::getInstance()->pageTextProcessor;
 		if (!empty($pageTextProcessor) && is_callable($pageTextProcessor)) {
 			return call_user_func($pageTextProcessor, $this->text);
 		}
@@ -157,6 +157,6 @@ class Page extends ActiveRecord
 
 	public function getShortText()
 	{
-		return TextHelper::shortText($this->processedText, CustomPages::getInstance()->pageShortTextWordsCount);
+		return TextHelper::shortText($this->processedText, FrontendModule::getInstance()->pageShortTextWordsCount);
 	}
 }

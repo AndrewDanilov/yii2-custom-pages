@@ -14,7 +14,7 @@ use andrewdanilov\custompages\models\Page;
 use andrewdanilov\custompages\models\PageTag;
 use andrewdanilov\custompages\models\Category;
 use andrewdanilov\custompages\assets\CustomPagesBackendAsset;
-use andrewdanilov\custompages\BaseModule as CustomPages;
+use andrewdanilov\custompages\BackendModule as CustomPages;
 use andrewdanilov\helpers\CKEditorHelper;
 
 /* @var $this yii\web\View */

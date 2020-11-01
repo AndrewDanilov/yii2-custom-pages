@@ -1,7 +1,7 @@
 <?php
 namespace andrewdanilov\custompages\models;
 
-use andrewdanilov\custompages\BaseModule as CustomPages;
+use andrewdanilov\custompages\FrontendModule;
 use Yii;
 use yii\db\ActiveRecord;
 use yii\helpers\Inflector;
@@ -108,7 +108,7 @@ class Category extends ActiveRecord
 
 	public function getProcessedText()
 	{
-		$categoryTextProcessor = CustomPages::getInstance()->categoryTextProcessor;
+		$categoryTextProcessor = FrontendModule::getInstance()->categoryTextProcessor;
 		if (!empty($categoryTextProcessor) && is_callable($categoryTextProcessor)) {
 			return call_user_func($categoryTextProcessor, $this->text);
 		}
