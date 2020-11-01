@@ -44,8 +44,8 @@ $config = [
 		// ...
 		'custompages' => [
 			'class' => 'andrewdanilov\custompages\BackendModule',
-            // access role for module controllers, optional, default is ['@']
-            'access' => ['admin'],
+			// access role for module controllers, optional, default is ['@']
+			'access' => ['admin'],
 			// path to Views for pages and categories
 			'templatesPath' => '@frontend/views/custompages',
 			// optional, path to user translates
@@ -54,20 +54,20 @@ $config = [
 			'enableTags' => false,
 			// optional, enables controls for managing page albums, default is true
 			'enableAlbums' => false,
-            // file manager configuration
-            'fileManager' => [
-                'basePath' => '@frontend/web',
-                'paths' => [
-                    [
-                        'name' => 'News',
-                        'path' => 'upload/images/news',
-                    ],
-                    [
-                        'name' => 'Articles',
-                        'path' => 'upload/images/articles',
-                    ],
-                ],
-            ],
+			// file manager configuration
+			'fileManager' => [
+				'basePath' => '@frontend/web',
+				'paths' => [
+					[
+						'name' => 'News',
+						'path' => 'upload/images/news',
+					],
+					[
+						'name' => 'Articles',
+						'path' => 'upload/images/articles',
+					],
+				],
+			],
 		],
 	],
 ];
