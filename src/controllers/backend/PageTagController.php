@@ -9,7 +9,7 @@ use andrewdanilov\custompages\models\backend\PageTagSearch;
 /**
  * PageTagController implements the CRUD actions for PageTag model.
  */
-class PageTagController extends BackendController
+class PageTagController extends BaseController
 {
 	/**
 	 * @inheritDoc

@@ -9,7 +9,7 @@ use andrewdanilov\custompages\models\backend\PageSearch;
 /**
  * PageController implements the CRUD actions for Page model.
  */
-class PageController extends BackendController
+class PageController extends BaseController
 {
 	/**
 	 * @inheritDoc

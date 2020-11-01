@@ -5,7 +5,7 @@ use Yii;
 use yii\db\ActiveRecord;
 use yii\db\Query;
 use yii\helpers\Inflector;
-use andrewdanilov\custompages\Module as CustomPages;
+use andrewdanilov\custompages\BaseModule as CustomPages;
 use andrewdanilov\behaviors\DateBehavior;
 use andrewdanilov\behaviors\TagBehavior;
 use andrewdanilov\helpers\TextHelper;

@@ -14,13 +14,13 @@ The preferred way to install this extension is through [composer](http://getcomp
 Either run
 
 ```
-composer require andrewdanilov/yii2-custom-pages "~1.0.0"
+composer require andrewdanilov/yii2-custom-pages "~2.0.0"
 ```
 
 or add
 
 ```
-"andrewdanilov/yii2-custom-pages": "~1.0.0"
+"andrewdanilov/yii2-custom-pages": "~2.0.0"
 ```
 
 to the `require` section of your `composer.json` file.
@@ -43,25 +43,9 @@ $config = [
 	'modules' => [
 		// ...
 		'custompages' => [
-			'class' => 'andrewdanilov\custompages\Module',
-			'controllerMap' => [
-				'category' => [
-					'class' => 'andrewdanilov\custompages\controllers\backend\CategoryController',
-					// access role for category controller
-					'access' => ['admin'],
-				],
-				'page' => [
-					'class' => 'andrewdanilov\custompages\controllers\backend\PageController',
-					// access role for page controller
-					'access' => ['admin'],
-				],
-				// page-tag is optional controller. Define it if you want to use tags on your pages.
-				'page-tag' => [
-					'class' => 'andrewdanilov\custompages\controllers\backend\PageTagController',
-					// access role for page-tag controller
-					'access' => ['admin'],
-				],
-			],
+			'class' => 'andrewdanilov\custompages\BackendModule',
+            // access role for module controllers, optional, default is ['@']
+            'access' => ['admin'],
 			// path to Views for pages and categories
 			'templatesPath' => '@frontend/views/custompages',
 			// optional, path to user translates
@@ -70,43 +54,26 @@ $config = [
 			'enableTags' => false,
 			// optional, enables controls for managing page albums, default is true
 			'enableAlbums' => false,
+            // file manager configuration
+            'fileManager' => [
+                'basePath' => '@frontend/web',
+                'paths' => [
+                    [
+                        'name' => 'News',
+                        'path' => 'upload/images/news',
+                    ],
+                    [
+                        'name' => 'Articles',
+                        'path' => 'upload/images/articles',
+                    ],
+                ],
+            ],
 		],
 	],
 ];
 ```
 
 Here `access` option allows restricting access to defined roles.
-
-Extension uses Elfinder file manager for choosing images in Page and Category editors. You need to set it up in backend config:
-
-```php
-$config = [
-	// ...
-	'controllerMap' => [
-		// ...
-		'elfinder' => [
-			'class' => 'mihaildev\elfinder\Controller',
-			'access' => ['admin'],
-			'roots' => [
-				[
-					'baseUrl' => '',
-					'basePath' => '@frontend/web',
-					'path' => 'upload/images/news',
-					'name' => 'News',
-				],
-				[
-					'baseUrl' => '',
-					'basePath' => '@frontend/web',
-					'path' => 'upload/images/articles',
-					'name' => 'Articles',
-				],
-			],
-		],
-	],
-];
-```
-
-Here `access` option allows restricting access to defined roles. Option `roots` defines a set of paths where the different type of images or files will be stored.
 
 Backend CRUD actions available by links:
 
@@ -125,7 +92,7 @@ $config = [
 	'modules' => [
 		// ...
 		'custompages' => [
-			'class' => 'andrewdanilov\custompages\Module',
+			'class' => 'andrewdanilov\custompages\FrontendModule',
 			// optional, path to template Views for pages and categories
 			'templatesPath' => '@frontend/views/custompages',
 			// optional, path to user translates

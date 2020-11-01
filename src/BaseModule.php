@@ -11,22 +11,13 @@ use andrewdanilov\custompages\exceptions\TemplatesPathNotFoundException;
  * @property array $categoryTemplates
  * @property array $pagesTemplates
  */
-class Module extends \yii\base\Module
+class BaseModule extends \yii\base\Module
 {
 	public $templatesPath;
 	public $translatesPath;
-	public $pageShortTextWordsCount = 50;
-	public $pageTextProcessor;
-	public $categoryTextProcessor;
-	public $enableTags = true;
-	public $enableAlbums = true;
 
 	public function init()
 	{
-		// frontend by default
-		if (empty($this->controllerNamespace) && empty($this->controllerMap)) {
-			$this->controllerNamespace = 'andrewdanilov\custompages\controllers\frontend';
-		}
 		// path to categories and pages templates
 		if (empty($this->templatesPath)) {
 			$this->templatesPath = '@andrewdanilov/custompages/views/frontend';

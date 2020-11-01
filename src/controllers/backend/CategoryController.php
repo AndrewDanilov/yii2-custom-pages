@@ -1,15 +1,15 @@
 <?php
 namespace andrewdanilov\custompages\controllers\backend;
 
-use andrewdanilov\helpers\NestedCategoryHelper;
 use Yii;
 use yii\web\NotFoundHttpException;
+use andrewdanilov\helpers\NestedCategoryHelper;
 use andrewdanilov\custompages\models\Category;
 
 /**
  * CategoryController implements the CRUD actions for Category model.
  */
-class CategoryController extends BackendController
+class CategoryController extends BaseController
 {
 	/**
 	 * @inheritDoc

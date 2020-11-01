@@ -1,7 +1,7 @@
 <?php
 namespace andrewdanilov\custompages\models;
 
-use andrewdanilov\custompages\Module as CustomPages;
+use andrewdanilov\custompages\BaseModule as CustomPages;
 use Yii;
 use yii\db\ActiveRecord;
 use yii\helpers\Inflector;
