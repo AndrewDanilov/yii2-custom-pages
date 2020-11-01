@@ -3,7 +3,7 @@ namespace andrewdanilov\custompages\controllers\frontend;
 
 use yii\db\Expression;
 use yii\web\Controller;
-use andrewdanilov\custompages\BaseModule as CustomPages;
+use andrewdanilov\custompages\FrontendModule as CustomPages;
 use andrewdanilov\custompages\models\Category;
 use andrewdanilov\custompages\models\Page;
 use andrewdanilov\custompages\models\PageTag;
