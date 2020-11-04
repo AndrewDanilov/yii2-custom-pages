@@ -17,7 +17,7 @@ class CategoryController extends BaseController
 	public function init()
 	{
 		parent::init();
-		$this->viewPath = '@andrewdanilov/custompages/views/backend/category';
+		$this->viewPath = '@andrewdanilov/custompages/backend/views/category';
 	}
 
 	/**
