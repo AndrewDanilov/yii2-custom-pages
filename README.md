@@ -28,7 +28,7 @@ to the `require` section of your `composer.json` file.
 Then run db migrations, to create needed tables:
 
 ```
-php yii migrate --migrationPath=@andrewdanilov/custompages/migrations
+php yii migrate --migrationPath=@andrewdanilov/custompages/console/migrations
 ```
 
 Do not forget to run migrations after extension updates too.
@@ -44,7 +44,7 @@ $config = [
 	'modules' => [
 		// ...
 		'custompages' => [
-			'class' => 'andrewdanilov\custompages\BackendModule',
+			'class' => 'andrewdanilov\custompages\backend\Module',
 			// access role for module controllers, optional, default is ['@']
 			'access' => ['admin'],
 			// path to Views for pages and categories
@@ -93,7 +93,7 @@ $config = [
 	'modules' => [
 		// ...
 		'custompages' => [
-			'class' => 'andrewdanilov\custompages\FrontendModule',
+			'class' => 'andrewdanilov\custompages\frontend\Module',
 			// optional, path to template Views for pages and categories
 			'templatesPath' => '@frontend/views/custompages',
 			// optional, path to user translates
@@ -119,7 +119,7 @@ $pageUrl = Url::to(['/custompages/default/page', 'id' => 123]);
 $pageTagUrl = Url::to(['/custompages/default/page-tag', 'slug' => 'tagname']);
 ```
 
-If you use own `templatesPath` you need to copy example templates from __/vendor/andrewdanilov/yii2-custom-pages/src/views/frontend__ to your `templatesPath` directory. Modify them or add as many templates as you need.
+If you use own `templatesPath` you need to copy example templates from __/vendor/andrewdanilov/yii2-custom-pages/src/frontend/views__ to your `templatesPath` directory. Modify them or add as many templates as you need.
 
 Note, that template file name for a category must begin with the prefix '_category._', template file name for a page must begin with the prefix '_page._' and template file name for a tag must begin with the prefix '_page-tag._'. A dot at the end of the prefix is required.
 

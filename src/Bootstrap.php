@@ -16,7 +16,7 @@ class Bootstrap implements BootstrapInterface
 		if (Yii::$app->id === $this->appFrontendId) {
 			$app->getUrlManager()->addRules([
 				[
-					'class' => 'andrewdanilov\custompages\components\frontend\UrlRule',
+					'class' => 'andrewdanilov\custompages\frontend\components\UrlRule',
 				]
 			], false);
 		}
