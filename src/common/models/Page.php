@@ -48,7 +48,7 @@ class Page extends ActiveRecord
 				'class' => TagBehavior::class,
 				'referenceModelClass' => 'andrewdanilov\custompages\common\models\PageTagRef',
 				'referenceModelAttribute' => 'page_id',
-				'referenceTagModelAttribute' => 'tag_id',
+				'referenceModelTagAttribute' => 'tag_id',
 				'tagModelClass' => 'andrewdanilov\custompages\common\models\PageTag',
 			],
 		];
