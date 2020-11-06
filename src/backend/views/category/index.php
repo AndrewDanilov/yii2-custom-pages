@@ -1,6 +1,5 @@
 <?php
 
-use yii\grid\GridViewAsset;
 use yii\helpers\Html;
 use andrewdanilov\custompages\backend\assets\CustomPagesAsset;
 
@@ -10,8 +9,7 @@ use andrewdanilov\custompages\backend\assets\CustomPagesAsset;
 $this->title = Yii::t('custompages/category', 'Categories');
 $this->params['breadcrumbs'][] = $this->title;
 
-$asset = CustomPagesAsset::register($this);
-$asset = GridViewAsset::register($this);
+CustomPagesAsset::register($this);
 ?>
 <div class="page-index">
 
@@ -24,10 +22,10 @@ $asset = GridViewAsset::register($this);
 		<?php foreach ($tree as $item) { ?>
 			<div class="custompages-list-item level-<?= $item['level'] ?>">
 				<div class="custompages-tree-actions">
-					<?= Html::a('<span class="fa fa-pen"></span>', ['update', 'id' => $item['category']->id]) ?>
-					<?= Html::a('<span class="fa fa-trash"></span>', ['delete', 'id' => $item['category']->id], ['data' => ['confirm' => 'Вы уверены, что хотите удалить этот элемент?', 'method' => 'post']]) ?>
+					<?= Html::a('<span class="fa fa-pen"></span>', ['category/update', 'id' => $item['category']->id]) ?>
+					<?= Html::a('<span class="fa fa-trash"></span>', ['category/delete', 'id' => $item['category']->id], ['data' => ['confirm' => 'Вы уверены, что хотите удалить этот элемент?', 'method' => 'post']]) ?>
 				</div>
-				<div class="custompages-tree-link"><?= Html::a($item['category']->title . ' (' . $item['category']->getPages()->count() . ')', ['/custompages/page', 'PageSearch' => ['category_id' => $item['category']->id]]) ?></div>
+				<div class="custompages-tree-link"><?= Html::a($item['category']->title . ' (' . $item['category']->getPages()->count() . ')', ['page/index', 'PageSearch' => ['category_id' => $item['category']->id]]) ?></div>
 			</div>
 		<?php } ?>
 	</div>

@@ -4,13 +4,15 @@
 /* @var $category \andrewdanilov\custompages\common\models\Category */
 /* @var $pages \andrewdanilov\custompages\common\models\Page[] */
 
+use andrewdanilov\custompages\frontend\assets\CustomPagesAsset;
+
 $this->title = $category->meta_title ?: $category->title;
 $this->registerMetaTag([
 	'name' => 'description',
 	'content' => $category->meta_description,
 ]);
 
-\andrewdanilov\custompages\frontend\assets\CustomPagesAsset::register($this);
+CustomPagesAsset::register($this);
 ?>
 
 <div class="section">

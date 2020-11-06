@@ -3,10 +3,10 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 use dosamigos\datepicker\DatePicker;
+use andrewdanilov\helpers\NestedCategoryHelper;
 use andrewdanilov\custompages\backend\assets\CustomPagesAsset;
 use andrewdanilov\custompages\common\models\Category;
 use andrewdanilov\custompages\common\models\Page;
-use andrewdanilov\helpers\NestedCategoryHelper;
 
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
