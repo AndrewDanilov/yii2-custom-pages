@@ -55,6 +55,8 @@ $config = [
 			'enableTags' => false,
 			// optional, enables controls for managing page albums, default is true
 			'enableAlbums' => false,
+			// optional, enables controls for managing categories, default is true
+			'enableCategories' => false,
 			// file manager configuration, optional, default is:
 			'fileManager' => [
 				'basePath' => '@frontend/web',

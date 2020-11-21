@@ -29,7 +29,9 @@ CustomPagesAsset::register($this);
 
     <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'category_id')->dropDownList(NestedCategoryHelper::getDropdownTree(Category::find(), 0, 'title'), ['prompt' => Yii::t('custompages/page', 'Without Category')]) ?>
+	<?php if (Module::getInstance()->enableCategories) { ?>
+        <?= $form->field($model, 'category_id')->dropDownList(NestedCategoryHelper::getDropdownTree(Category::find(), 0, 'title'), ['prompt' => Yii::t('custompages/page', 'Without Category')]) ?>
+	<?php } ?>
 
 	<?php if (Module::getInstance()->enableTags) { ?>
 		<?= $form->field($model, 'tagIds')->widget(Select2::class, [

@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 use dosamigos\datepicker\DatePicker;
 use andrewdanilov\helpers\NestedCategoryHelper;
+use andrewdanilov\custompages\backend\Module;
 use andrewdanilov\custompages\backend\assets\CustomPagesAsset;
 use andrewdanilov\custompages\common\models\Category;
 use andrewdanilov\custompages\common\models\Page;
@@ -20,7 +21,9 @@ $asset = CustomPagesAsset::register($this);
 <div class="page-index">
 
     <p>
-	    <?php if ($searchModel->category_id) { ?>
+	    <?php if (!Module::getInstance()->enableCategories) { ?>
+		    <?= Html::a(Yii::t('custompages/page', 'Add page'), ['page/create'], ['class' => 'btn btn-success']) ?>
+	    <?php } elseif ($searchModel->category_id) { ?>
 	        <?= Html::a(Yii::t('custompages/page', 'Add page'), ['page/create', 'category_id' => $searchModel->category_id], ['class' => 'btn btn-success']) ?>
 		    <?= Html::a(Yii::t('custompages/page', 'Add category'), ['category/create', 'parent_id' => $searchModel->category_id], ['class' => 'btn btn-primary']) ?>
 	    <?php } else { ?>

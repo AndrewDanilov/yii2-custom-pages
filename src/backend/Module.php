@@ -1,11 +1,22 @@
 <?php
 namespace andrewdanilov\custompages\backend;
 
+/**
+ * Class Module
+ *
+ * @package andrewdanilov\custompages\backend
+ * @property string|array $access
+ * @property bool $enableTags
+ * @property bool $enableAlbums
+ * @property bool $enableCategories
+ * @property array $fileManager
+ */
 class Module extends \andrewdanilov\custompages\Module
 {
 	public $access = ['@'];
 	public $enableTags = true;
 	public $enableAlbums = true;
+	public $enableCategories = true;
 	public $fileManager;
 
 	public function init()
