@@ -30,7 +30,7 @@ class UrlRule extends BaseObject implements UrlRuleInterface
 					if ($page->category_id === 0) {
 						return $page->slug;
 					}
-					$path = NestedCategoryHelper::getCategoryPath(Category::find(), $page->category_id, 'slug');
+					$path = NestedCategoryHelper::getCategoryPathDelimitedStr(Category::find(), $page->category_id, '/', 'slug');
 					if (!empty($path)) {
 						return $path . '/' . $page->slug;
 					}
@@ -38,7 +38,7 @@ class UrlRule extends BaseObject implements UrlRuleInterface
 			}
 		} elseif ($route === 'custompages/default/category') {
 			if ($params['id']) {
-				$path = NestedCategoryHelper::getCategoryPath(Category::find(), $params['id'], 'slug');
+				$path = NestedCategoryHelper::getCategoryPathDelimitedStr(Category::find(), $params['id'], '/', 'slug');
 				if (!empty($path)) {
 					return $path;
 				}

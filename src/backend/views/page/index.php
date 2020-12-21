@@ -40,7 +40,7 @@ if (Module::getInstance()->enableCategories) {
 		'attribute' => 'category_id',
 		'format' => 'raw',
 		'value' => function (Page $model) {
-			$path = NestedCategoryHelper::getCategoryPath(Category::find(), $model->category_id, 'title', 'parent_id', ' > ');
+			$path = NestedCategoryHelper::getCategoryPathDelimitedStr(Category::find(), $model->category_id, ' > ', 'title');
 			return Html::a($path, ['category/update', 'id' => $model->category_id]);
 		},
 		'filter' => NestedCategoryHelper::getDropdownTree(Category::find(), 0, 'title'),
