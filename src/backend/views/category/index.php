@@ -22,10 +22,10 @@ CustomPagesAsset::register($this);
 		<?php foreach ($tree as $item) { ?>
 			<div class="custompages-list-item level-<?= $item['level'] ?>">
 				<div class="custompages-tree-actions">
-					<?= Html::a('<span class="fa fa-pen"></span>', ['category/update', 'id' => $item['category']->id]) ?>
-					<?= Html::a('<span class="fa fa-trash"></span>', ['category/delete', 'id' => $item['category']->id], ['data' => ['confirm' => 'Вы уверены, что хотите удалить этот элемент?', 'method' => 'post']]) ?>
+					<?= Html::a('<span class="fa fa-pen"></span>', ['category/update', 'id' => $item['category']['id']]) ?>
+					<?= Html::a('<span class="fa fa-trash"></span>', ['category/delete', 'id' => $item['category']['id']], ['data' => ['confirm' => 'Вы уверены, что хотите удалить этот элемент?', 'method' => 'post']]) ?>
 				</div>
-				<div class="custompages-tree-link"><?= Html::a($item['category']->title . ' (' . $item['category']->getPages()->count() . ')', ['page/index', 'PageSearch' => ['category_id' => $item['category']->id]]) ?></div>
+				<div class="custompages-tree-link"><?= Html::a($item['category']['title'] . ' (' . $item['category']['count'] . ')', ['page/index', 'PageSearch' => ['category_id' => $item['category']['id']]]) ?></div>
 			</div>
 		<?php } ?>
 	</div>
