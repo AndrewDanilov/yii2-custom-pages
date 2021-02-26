@@ -1,26 +1,34 @@
 <?php
 
+use andrewdanilov\ckeditor\CKEditor;
+use andrewdanilov\custompages\backend\assets\CustomPagesAsset;
+use andrewdanilov\custompages\backend\Module;
+use andrewdanilov\custompages\common\models\Category;
+use andrewdanilov\custompages\common\models\Page;
+use andrewdanilov\custompages\common\models\PageTag;
+use andrewdanilov\helpers\CKEditorHelper;
+use andrewdanilov\helpers\NestedCategoryHelper;
+use andrewdanilov\InputImages\InputImages;
+use dosamigos\datepicker\DatePicker;
+use kartik\select2\Select2;
+use mihaildev\elfinder\ElFinder;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-use mihaildev\elfinder\ElFinder;
-use dosamigos\datepicker\DatePicker;
-use kartik\select2\Select2;
-use andrewdanilov\ckeditor\CKEditor;
-use andrewdanilov\helpers\NestedCategoryHelper;
-use andrewdanilov\helpers\CKEditorHelper;
-use andrewdanilov\InputImages\InputImages;
-use andrewdanilov\custompages\common\models\Page;
-use andrewdanilov\custompages\common\models\PageTag;
-use andrewdanilov\custompages\common\models\Category;
-use andrewdanilov\custompages\backend\assets\CustomPagesAsset;
-use andrewdanilov\custompages\backend\Module;
 
 /* @var $this yii\web\View */
 /* @var $form yii\widgets\ActiveForm */
 /* @var $model Page */
 
 CustomPagesAsset::register($this);
+
+$elfinder_controller_path = 'elfinder';
+$module = Yii::$app->controller->module;
+while ($module->module !== null) {
+	$elfinder_controller_path = $module->id . '/' . $elfinder_controller_path;
+	$module = $module->module;
+}
+$elfinder_controller_path = Yii::$app->request->baseUrl . '/' . $elfinder_controller_path;
 ?>
 
 <div class="page-form">
@@ -79,7 +87,7 @@ CustomPagesAsset::register($this);
 				<?php } ?>
 			</div>
 			<div class="albums-controls">
-				<a href="#" class="btn btn-primary albums-controls-add">Add album</a>
+				<a href="#" class="btn btn-primary albums-controls-add" data-controller="<?= $elfinder_controller_path ?>">Add album</a>
 			</div>
 			<div class="albums-blank" style="display:none;">
 				<div class="albums-item">

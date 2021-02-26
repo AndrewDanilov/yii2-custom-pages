@@ -13,6 +13,7 @@ $(function () {
 	$('.custom-pages-albums')
 		.on('click', '.albums-controls-add', function (e) {
 			e.preventDefault();
+			var elfinder_controller_path = $(this).attr('data-controller');
 			var wrapper = $(this).parents('.custom-pages-albums');
 			var list = wrapper.find('.albums-list');
 			var blank = wrapper.find('.albums-blank').clone();
@@ -26,7 +27,7 @@ $(function () {
 			mihaildev.elFinder.register(callback_id, InputImagesHandler);
 			$(document).on('click', '#' + callback_id + '_button', function () {
 				mihaildev.elFinder.openManager({
-					"url": "/admin/elfinder/manager?filter=image&callback=" + callback_id + "&lang=ru&multiple=1",
+					"url": elfinder_controller_path + "/manager?filter=image&callback=" + callback_id + "&lang=ru&multiple=1",
 					"width": "auto",
 					"height": "auto",
 					"id": callback_id
