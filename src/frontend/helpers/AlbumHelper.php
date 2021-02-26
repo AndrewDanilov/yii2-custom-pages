@@ -20,7 +20,11 @@ class AlbumHelper
 				if ($shortcode_name === $match[1]) {
 					$shortcode = $match[0];
 					$album_id = $match[2];
-					$params = static::parseShortcodeParams($match[3]);
+					if (!empty($match[3])) {
+						$params = static::parseShortcodeParams($match[3]);
+					} else {
+						$params = [];
+					}
 					$_albums[] = [
 						'id' => $album_id,
 						'shortcode' => $shortcode,
@@ -71,6 +75,9 @@ class AlbumHelper
 				'{basename}' => pathinfo($image, PATHINFO_BASENAME),
 				'{extension}' => pathinfo($image, PATHINFO_EXTENSION),
 			];
+			if (empty($params['alt'])) {
+				$params['alt'] = '';
+			}
 			$photos[] = [
 				'image' => $image,
 				'alt' => strtr($params['alt'], $replaces),
