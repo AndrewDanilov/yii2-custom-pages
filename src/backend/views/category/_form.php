@@ -13,6 +13,13 @@ use andrewdanilov\helpers\NestedCategoryHelper;
 /* @var $form yii\widgets\ActiveForm */
 /* @var $model Category */
 
+$elfinder_controller_path = 'elfinder';
+$module = Yii::$app->controller->module;
+while ($module->module !== null) {
+	$elfinder_controller_path = $module->id . '/' . $elfinder_controller_path;
+	$module = $module->module;
+}
+$elfinder_controller_url = Yii::$app->request->baseUrl . '/' . $elfinder_controller_path;
 ?>
 
 <div class="page-form">
@@ -28,7 +35,7 @@ use andrewdanilov\helpers\NestedCategoryHelper;
     <?= $form->field($model, 'slug')->textInput(['maxlength' => true]) ?>
 
 	<?= $form->field($model, 'text')->widget(CKEditor::class, [
-		'editorOptions' => ElFinder::ckeditorOptions('elfinder', CKEditorHelper::defaultOptions()),
+		'editorOptions' => ElFinder::ckeditorOptions($elfinder_controller_path, CKEditorHelper::defaultOptions()),
 	]) ?>
 
     <?= $form->field($model, 'category_template')->dropDownList(Module::getInstance()->getCategoryTemplates()) ?>

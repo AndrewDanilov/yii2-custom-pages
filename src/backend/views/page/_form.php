@@ -28,7 +28,7 @@ while ($module->module !== null) {
 	$elfinder_controller_path = $module->id . '/' . $elfinder_controller_path;
 	$module = $module->module;
 }
-$elfinder_controller_path = Yii::$app->request->baseUrl . '/' . $elfinder_controller_path;
+$elfinder_controller_url = Yii::$app->request->baseUrl . '/' . $elfinder_controller_path;
 ?>
 
 <div class="page-form">
@@ -59,7 +59,7 @@ $elfinder_controller_path = Yii::$app->request->baseUrl . '/' . $elfinder_contro
 	<?= $form->field($model, 'image')->widget(InputImages::class) ?>
 
 	<?= $form->field($model, 'text')->widget(CKEditor::class, [
-		'editorOptions' => ElFinder::ckeditorOptions('elfinder', CKEditorHelper::defaultOptions()),
+		'editorOptions' => ElFinder::ckeditorOptions($elfinder_controller_path, CKEditorHelper::defaultOptions()),
 	]) ?>
 
 	<?= $form->field($model, 'page_template')->dropDownList(Module::getInstance()->getPagesTemplates(), ['prompt' => Yii::t('custompages/page', 'From category settings / Default')]) ?>
@@ -87,7 +87,7 @@ $elfinder_controller_path = Yii::$app->request->baseUrl . '/' . $elfinder_contro
 				<?php } ?>
 			</div>
 			<div class="albums-controls">
-				<a href="#" class="btn btn-primary albums-controls-add" data-controller="<?= $elfinder_controller_path ?>">Add album</a>
+				<a href="#" class="btn btn-primary albums-controls-add" data-controller="<?= $elfinder_controller_url ?>">Add album</a>
 			</div>
 			<div class="albums-blank" style="display:none;">
 				<div class="albums-item">
