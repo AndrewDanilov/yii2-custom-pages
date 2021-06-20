@@ -199,7 +199,9 @@ return [
 ```
 
 On the moment you can use one of languages out of the box: English, Russian. Also you can create and use your own
-translations by defining `translatesPath` property of custompages module (see above).
+translations by defining `translatesPath` property of custompages module (see above). Therefore, you need to place
+the files `xx-XX/category.php`, `xx-XX/page.php`, `xx-XX/page-tag.php`, `xx-XX/common.php` in this path.
+You can copy them from `src/common/messages` path of extension.
 
 ### Page and Category text processor
 
