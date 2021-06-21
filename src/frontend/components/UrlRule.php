@@ -14,14 +14,14 @@ class UrlRule extends BaseObject implements UrlRuleInterface
 	public function createUrl($manager, $route, $params)
 	{
 		if ($route === 'custompages/default/page-tag') {
-			if ($params['slug']) {
+			if (!empty($params['slug'])) {
 				$tag = PageTag::findOne(['slug' => $params['slug']]);
 				if ($tag) {
 					return 'tag/' . $tag->slug;
 				}
 			}
 		} elseif ($route === 'custompages/default/page') {
-			if ($params['id']) {
+			if (!empty($params['id'])) {
 				$page = Page::findOne(['id' => $params['id']]);
 				if ($page) {
 					if ($page->is_main) {
@@ -37,7 +37,7 @@ class UrlRule extends BaseObject implements UrlRuleInterface
 				}
 			}
 		} elseif ($route === 'custompages/default/category') {
-			if ($params['id']) {
+			if (!empty($params['id'])) {
 				$path = NestedCategoryHelper::getCategoryPathDelimitedStr(Category::find(), $params['id'], '/', 'slug');
 				if (!empty($path)) {
 					return $path;
