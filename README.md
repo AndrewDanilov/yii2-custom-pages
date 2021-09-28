@@ -78,7 +78,7 @@ $config = [
 
 Here `access` option allows restricting access to defined roles.
 
-Backend CRUD actions available by links:
+Backend CRUD actions are available by links:
 
 ```php
 use yii\helpers\Url;
