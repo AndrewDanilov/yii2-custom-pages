@@ -88,6 +88,17 @@ $pageUrl = Url::to(['/custompages/page']);
 $pageTagUrl = Url::to(['/custompages/page-tag']);
 ```
 
+Backend menu items:
+
+```php
+$custom_pages_menu_items = [
+    ['label' => 'Custom Pages'],
+    ['label' => 'Pages', 'url' => ['/custompages/page'], 'icon' => 'newspaper'],
+];
+
+echo \yii\widgets\Menu::widget(['items' => $custom_pages_menu_items]);
+```
+
 In frontend main config `modules` section add:
 ```php
 $config = [
