@@ -13,10 +13,10 @@ CustomPagesAsset::register($this);
 ?>
 <div class="page-index">
 
-	<p>
+	<div class="custompages-editor-actions">
 		<?= Html::a(Yii::t('custompages/category', 'Add page'), ['page/create'], ['class' => 'btn btn-success']) ?>
 		<?= Html::a(Yii::t('custompages/category', 'Add category'), ['category/create'], ['class' => 'btn btn-primary']) ?>
-	</p>
+	</div>
 
 	<div class="custompages-tree-list">
 		<?php foreach ($tree as $item) { ?>

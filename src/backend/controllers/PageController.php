@@ -1,7 +1,10 @@
 <?php
 namespace andrewdanilov\custompages\backend\controllers;
 
+use andrewdanilov\custompages\common\models\Category;
+use andrewdanilov\helpers\NestedCategoryHelper;
 use Yii;
+use yii\db\Query;
 use yii\web\NotFoundHttpException;
 use andrewdanilov\custompages\common\models\Page;
 use andrewdanilov\custompages\backend\models\PageSearch;
@@ -26,12 +29,27 @@ class PageController extends BaseController
      */
     public function actionIndex()
     {
+	    $pages_query = (new Query())
+		    ->select('COUNT(*)')
+		    ->from(Page::tableName())
+		    ->where(Page::tableName() . '.category_id = ' . Category::tableName() . '.id');
+	    $categories_query = Category::find()
+		    ->select([
+			    Category::tableName() . '.id',
+			    Category::tableName() . '.parent_id',
+			    Category::tableName() . '.title',
+			    'count' => $pages_query,
+		    ])
+		    ->orderBy(['order' => SORT_ASC]);
+	    $tree = NestedCategoryHelper::getPlaneTree($categories_query);
+
         $searchModel = new PageSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+	        'tree' => $tree,
         ]);
     }
 

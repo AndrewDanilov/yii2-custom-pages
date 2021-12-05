@@ -88,12 +88,15 @@ $pageUrl = Url::to(['/custompages/page']);
 $pageTagUrl = Url::to(['/custompages/page-tag']);
 ```
 
-Backend menu items:
+Backend menu items example:
 
 ```php
 $custom_pages_menu_items = [
     ['label' => 'Custom Pages'],
-    ['label' => 'Pages', 'url' => ['/custompages/page'], 'icon' => 'newspaper'],
+    ['label' => 'Articles', 'url' => ['/custompages/page', 'PageSearch' => ['category_id' => 123]], 'icon' => 'file']
+    ['label' => 'Without Category', 'url' => ['/custompages/page', 'PageSearch' => ['category_id' => 0]], 'icon' => 'file'],
+    ['label' => 'All Pages', 'url' => ['/custompages/page'], 'icon' => 'file'],
+    ['label' => 'Categories', 'url' => ['/custompages/category'], 'icon' => 'folder']
 ];
 
 echo \yii\widgets\Menu::widget(['items' => $custom_pages_menu_items]);

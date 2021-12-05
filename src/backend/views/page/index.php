@@ -1,17 +1,19 @@
 <?php
 
-use yii\helpers\Html;
-use yii\grid\GridView;
-use dosamigos\datepicker\DatePicker;
 use andrewdanilov\helpers\NestedCategoryHelper;
-use andrewdanilov\custompages\backend\Module;
 use andrewdanilov\custompages\backend\assets\CustomPagesAsset;
+use andrewdanilov\custompages\backend\Module;
+use andrewdanilov\custompages\backend\widgets\CategoryTree\CategoryTreeFilterList;
 use andrewdanilov\custompages\common\models\Category;
 use andrewdanilov\custompages\common\models\Page;
+use dosamigos\datepicker\DatePicker;
+use yii\helpers\Html;
+use yii\grid\GridView;
 
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 /* @var $searchModel andrewdanilov\custompages\backend\models\PageSearch */
+/* @var $tree array */
 
 $this->title = Yii::t('custompages/page', 'Pages');
 $this->params['breadcrumbs'][] = $this->title;
@@ -36,6 +38,8 @@ $columns1 = [
 ];
 
 if (Module::getInstance()->enableCategories) {
+	$category_filter = NestedCategoryHelper::getDropdownTree(Category::find(), 0, 'title');
+	array_unshift($category_filter, Yii::t('custompages/page', 'Without Category'));
 	$columns1[] = [
 		'attribute' => 'category_id',
 		'format' => 'raw',
@@ -43,7 +47,7 @@ if (Module::getInstance()->enableCategories) {
 			$path = NestedCategoryHelper::getCategoryPathDelimitedStr(Category::find(), $model->category_id, ' > ', 'title');
 			return Html::a($path, ['category/update', 'id' => $model->category_id]);
 		},
-		'filter' => NestedCategoryHelper::getDropdownTree(Category::find(), 0, 'title'),
+		'filter' => $category_filter,
 	];
 }
 
@@ -86,7 +90,7 @@ $columns2 = [
 ?>
 <div class="page-index">
 
-	<p>
+	<div class="custompages-editor-actions">
 		<?php if (!Module::getInstance()->enableCategories) { ?>
 			<?= Html::a(Yii::t('custompages/page', 'Add page'), ['page/create'], ['class' => 'btn btn-success']) ?>
 		<?php } elseif ($searchModel->category_id) { ?>
@@ -96,7 +100,17 @@ $columns2 = [
 			<?= Html::a(Yii::t('custompages/page', 'Add page'), ['page/create'], ['class' => 'btn btn-success']) ?>
 			<?= Html::a(Yii::t('custompages/page', 'Add category'), ['category/create'], ['class' => 'btn btn-primary']) ?>
 		<?php } ?>
-	</p>
+	</div>
+
+	<div class="custompages-editor-boxes">
+		<div class="shop-editor-box">
+			<?= CategoryTreeFilterList::widget([
+				'tree' => $tree,
+				'filteredItemsListUriAction' => 'property/index',
+				'filteredItemsListUriParamName' => 'PropertySearch',
+			]) ?>
+		</div>
+	</div>
 
 	<?= GridView::widget([
 		'dataProvider' => $dataProvider,
