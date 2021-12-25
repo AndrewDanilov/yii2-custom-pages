@@ -40,39 +40,39 @@ In backend main config `modules` section add:
 
 ```php
 $config = [
-	// ...
-	'modules' => [
-		// ...
-		'custompages' => [
-			'class' => 'andrewdanilov\custompages\backend\Module',
-			// access role for module controllers, optional, default is ['@']
-			'access' => ['admin'],
-			// path to Views for pages and categories
-			'templatesPath' => '@frontend/views/custompages',
-			// optional, path to user translates
-			'translatesPath' => '@common/messages/custompages',
-			// optional, enables controls for managing page tags, default is true
-			'enableTags' => false,
-			// optional, enables controls for managing page albums, default is true
-			'enableAlbums' => false,
-			// optional, enables controls for managing categories, default is true
-			'enableCategories' => false,
-			// file manager configuration, optional, default is:
-			'fileManager' => [
-				'basePath' => '@frontend/web',
-				'paths' => [
-					[
-						'name' => 'News',
-						'path' => 'upload/images/news',
-					],
-					[
-						'name' => 'Articles',
-						'path' => 'upload/images/articles',
-					],
-				],
-			],
-		],
-	],
+    // ...
+    'modules' => [
+        // ...
+        'custompages' => [
+            'class' => 'andrewdanilov\custompages\backend\Module',
+            // access role for module controllers, optional, default is ['@']
+            'access' => ['admin'],
+            // path to Views for pages and categories
+            'templatesPath' => '@frontend/views/custompages',
+            // optional, path to user translates
+            'translatesPath' => '@common/messages/custompages',
+            // optional, enables controls for managing page tags, default is true
+            'enableTags' => false,
+            // optional, enables controls for managing page albums, default is true
+            'enableAlbums' => false,
+            // optional, enables controls for managing categories, default is true
+            'enableCategories' => false,
+            // file manager configuration, optional, default is:
+            'fileManager' => [
+                'basePath' => '@frontend/web',
+                'paths' => [
+                    [
+                        'name' => 'News',
+                        'path' => 'upload/images/news',
+                    ],
+                    [
+                        'name' => 'Articles',
+                        'path' => 'upload/images/articles',
+                    ],
+                ],
+            ],
+        ],
+    ],
 ];
 ```
 
@@ -93,10 +93,10 @@ Backend menu items example:
 ```php
 $custom_pages_menu_items = [
     ['label' => 'Custom Pages'],
-    ['label' => 'Articles', 'url' => ['/custompages/page', 'PageSearch' => ['category_id' => 123]], 'icon' => 'file']
+    ['label' => 'Articles', 'url' => ['/custompages/page', 'PageSearch' => ['category_id' => 123]], 'icon' => 'file'],
     ['label' => 'Without Category', 'url' => ['/custompages/page', 'PageSearch' => ['category_id' => 0]], 'icon' => 'file'],
     ['label' => 'All Pages', 'url' => ['/custompages/page'], 'icon' => 'file'],
-    ['label' => 'Categories', 'url' => ['/custompages/category'], 'icon' => 'folder']
+    ['label' => 'Categories', 'url' => ['/custompages/category'], 'icon' => 'folder'],
 ];
 
 echo \yii\widgets\Menu::widget(['items' => $custom_pages_menu_items]);
@@ -105,23 +105,23 @@ echo \yii\widgets\Menu::widget(['items' => $custom_pages_menu_items]);
 In frontend main config `modules` section add:
 ```php
 $config = [
-	// ...
-	'modules' => [
-		// ...
-		'custompages' => [
-			'class' => 'andrewdanilov\custompages\frontend\Module',
-			// optional, path to template Views for pages and categories
-			'templatesPath' => '@frontend/views/custompages',
-			// optional, path to user translates
-			'translatesPath' => '@common/messages/custompages',
-			// optional, page text short version length, default is 50
-			'pageShortTextWordsCount' => '100',
-			// optional, callable functions to process page and category text,
-			// i.e. to replace some shortcodes on it
-			'pageTextProcessor' => 'frontend\components\MyPageTextProcessor::replaceShortcodes',
-			'categoryTextProcessor' => 'frontend\components\MyCategoryTextProcessor::replaceShortcodes',
-		],
-	],
+    // ...
+    'modules' => [
+        // ...
+        'custompages' => [
+            'class' => 'andrewdanilov\custompages\frontend\Module',
+            // optional, path to template Views for pages and categories
+            'templatesPath' => '@frontend/views/custompages',
+            // optional, path to user translates
+            'translatesPath' => '@common/messages/custompages',
+            // optional, page text short version length, default is 50
+            'pageShortTextWordsCount' => '100',
+            // optional, callable functions to process page and category text,
+            // i.e. to replace some shortcodes on it
+            'pageTextProcessor' => 'frontend\components\MyPageTextProcessor::replaceShortcodes',
+            'categoryTextProcessor' => 'frontend\components\MyCategoryTextProcessor::replaceShortcodes',
+        ],
+    ],
 ];
 ```
 
@@ -206,9 +206,9 @@ Extension supports internationalisation. You can set your language in `common/co
 
 ```php
 return [
-	// ...
-	'language' => 'ru-RU',
-	// ...
+    // ...
+    'language' => 'ru-RU',
+    // ...
 ];
 ```
 
@@ -231,9 +231,9 @@ namespace frontend\components;
 
 class MyPageTextProcessor
 {
-	public static function replaceShortcodes($text)
-	{
-		return str_replace('some string', 'other string', $text);
-	}
+    public static function replaceShortcodes($text)
+    {
+        return str_replace('some string', 'other string', $text);
+    }
 }
 ```
