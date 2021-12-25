@@ -103,12 +103,14 @@ $columns2 = [
 	</div>
 
 	<div class="custompages-editor-boxes">
-		<div class="shop-editor-box">
-			<?= CategoryTreeFilterList::widget([
-				'tree' => $tree,
-				'filteredItemsListUriAction' => 'property/index',
-				'filteredItemsListUriParamName' => 'PropertySearch',
-			]) ?>
+		<div class="custompages-editor-box">
+			<?php if (Module::getInstance()->enableCategories) { ?>
+				<?= CategoryTreeFilterList::widget([
+					'tree' => $tree,
+					'filteredItemsListUriAction' => 'property/index',
+					'filteredItemsListUriParamName' => 'PropertySearch',
+				]) ?>
+			<?php } ?>
 		</div>
 	</div>
 

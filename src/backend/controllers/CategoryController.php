@@ -23,31 +23,6 @@ class CategoryController extends BaseController
 	}
 
 	/**
-	 * Lists all Category models.
-	 * @return mixed
-	 */
-	public function actionIndex()
-	{
-		$pages_query = (new Query())
-			->select('COUNT(*)')
-			->from(Page::tableName())
-			->where(Page::tableName() . '.category_id = ' . Category::tableName() . '.id');
-		$categories_query = Category::find()
-			->select([
-				Category::tableName() . '.id',
-				Category::tableName() . '.parent_id',
-				Category::tableName() . '.title',
-				'count' => $pages_query,
-			])
-			->orderBy(['order' => SORT_ASC]);
-		$tree = NestedCategoryHelper::getPlaneTree($categories_query);
-
-		return $this->render('index', [
-			'tree' => $tree,
-		]);
-	}
-
-	/**
 	 * Creates a new Category model.
 	 * If creation is successful, the browser will be redirected to the 'view' page.
 	 *
@@ -60,7 +35,7 @@ class CategoryController extends BaseController
 		$model->parent_id = $parent_id;
 
 		if ($model->load(Yii::$app->request->post()) && $model->save()) {
-			return $this->redirect(['index']);
+			return $this->redirect(['update', 'id' => $model->id]);
 		}
 
 		return $this->render('create', [
@@ -80,7 +55,7 @@ class CategoryController extends BaseController
 		$model = $this->findModel($id);
 
 		if ($model->load(Yii::$app->request->post()) && $model->save()) {
-			return $this->redirect(['index']);
+			return $this->redirect(['update', 'id' => $model->id]);
 		}
 
 		return $this->render('update', [
@@ -99,7 +74,7 @@ class CategoryController extends BaseController
 	{
 		$this->findModel($id)->delete();
 
-		return $this->redirect(['index']);
+		return $this->redirect(['page/index']);
 	}
 
 	/**

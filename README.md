@@ -96,7 +96,6 @@ $custom_pages_menu_items = [
     ['label' => 'Articles', 'url' => ['/custompages/page', 'PageSearch' => ['category_id' => 123]], 'icon' => 'file'],
     ['label' => 'Without Category', 'url' => ['/custompages/page', 'PageSearch' => ['category_id' => 0]], 'icon' => 'file'],
     ['label' => 'All Pages', 'url' => ['/custompages/page'], 'icon' => 'file'],
-    ['label' => 'Categories', 'url' => ['/custompages/category'], 'icon' => 'folder'],
 ];
 
 echo \yii\widgets\Menu::widget(['items' => $custom_pages_menu_items]);
