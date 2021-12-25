@@ -102,17 +102,17 @@ $columns2 = [
 		<?php } ?>
 	</div>
 
-	<div class="custompages-editor-boxes">
-		<div class="custompages-editor-box">
-			<?php if (Module::getInstance()->enableCategories) { ?>
+	<?php if (Module::getInstance()->enableCategories) { ?>
+		<div class="custompages-editor-boxes">
+			<div class="custompages-editor-box">
 				<?= CategoryTreeFilterList::widget([
 					'tree' => $tree,
 					'filteredItemsListUriAction' => 'property/index',
 					'filteredItemsListUriParamName' => 'PropertySearch',
 				]) ?>
-			<?php } ?>
+			</div>
 		</div>
-	</div>
+	<?php } ?>
 
 	<?= GridView::widget([
 		'dataProvider' => $dataProvider,
