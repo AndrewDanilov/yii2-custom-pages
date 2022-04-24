@@ -1,13 +1,13 @@
 <?php
 namespace andrewdanilov\custompages\frontend\controllers;
 
-use yii\db\Expression;
-use yii\web\Controller;
-use andrewdanilov\custompages\frontend\Module;
 use andrewdanilov\custompages\common\models\Category;
 use andrewdanilov\custompages\common\models\Page;
 use andrewdanilov\custompages\common\models\PageTag;
 use andrewdanilov\custompages\frontend\helpers\AlbumHelper;
+use andrewdanilov\custompages\frontend\Module;
+use yii\db\Expression;
+use yii\web\Controller;
 
 /**
  * Default controller
@@ -15,25 +15,27 @@ use andrewdanilov\custompages\frontend\helpers\AlbumHelper;
 class DefaultController extends Controller
 {
 	/**
-	 * @param $id
+	 * @param int $id
 	 * @return string
 	 */
 	public function actionCategory($id)
 	{
-		$category = Category::find()->where(['id' => $id])->one();
+		$category = Category::findOne(['id' => $id]);
 		$template = Module::getInstance()->templatesPath . '/' . $category->category_template;
 		return $this->render($template, [
 			'category' => $category,
 			'pages' => $category->pages,
+			'tags' => PageTag::getAllTags(),
 		]);
 	}
 
 	/**
 	 * @param int $id
-	 * @return mixed
+	 * @return string
 	 */
 	public function actionPage($id)
 	{
+		/* @var $page Page */
 		$page = Page::find()
 			->andWhere(['id' => $id])
 			->andWhere(['<=', 'published_at', new Expression('curdate()')])
@@ -59,6 +61,7 @@ class DefaultController extends Controller
 		}
 		return $this->render($template, [
 			'page' => $page,
+			'tags' => PageTag::getAllTags(),
 		]);
 	}
 
@@ -72,7 +75,8 @@ class DefaultController extends Controller
 		$template = Module::getInstance()->templatesPath . '/page-tag.default.php';
 		return $this->render($template, [
 			'pageTag' => $pageTag,
-			'pages' => $pageTag->getPages(),
+			'pages' => $pageTag->pages,
+			'tags' => PageTag::getAllTags(),
 		]);
 	}
 }

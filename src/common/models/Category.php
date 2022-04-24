@@ -93,7 +93,7 @@ class Category extends ActiveRecord
 
     public function getPages()
     {
-    	return $this->hasMany(Page::class, ['category_id' => 'id']);
+    	return $this->hasMany(Page::class, ['category_id' => 'id'])->orderBy(['published_at' => SORT_DESC, 'id' => SORT_DESC]);
     }
 
     public function getPagesCount()

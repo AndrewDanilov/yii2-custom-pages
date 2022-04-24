@@ -34,7 +34,7 @@ class PageTag extends ActiveRecord
 
 	public function getPages()
 	{
-		$this->hasMany(Page::class, ['id' => 'page_id'])->viaTable(PageTagRef::tableName(), ['tag_id' => 'id']);
+		return $this->hasMany(Page::class, ['id' => 'page_id'])->viaTable(PageTagRef::tableName(), ['tag_id' => 'id'])->orderBy(['published_at' => SORT_DESC, 'id' => SORT_DESC]);
 	}
 
 	public function attributeLabels()
@@ -54,5 +54,10 @@ class PageTag extends ActiveRecord
 			$this->slug = Inflector::slug($this->name);
 		}
 		return parent::beforeSave($insert);
+	}
+
+	public static function getAllTags()
+	{
+		return self::find()->all();
 	}
 }

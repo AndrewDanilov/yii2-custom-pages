@@ -3,8 +3,10 @@
 /* @var $this \yii\web\View */
 /* @var $pageTag \andrewdanilov\custompages\common\models\PageTag */
 /* @var $pages \andrewdanilov\custompages\common\models\Page[] */
+/* @var $tags \andrewdanilov\custompages\common\models\PageTag[] */
 
 use andrewdanilov\custompages\frontend\assets\CustomPagesAsset;
+use yii\helpers\Url;
 
 $this->title = $pageTag->meta_title ?: $pageTag->name;
 $this->registerMetaTag([
@@ -18,6 +20,12 @@ CustomPagesAsset::register($this);
 <div class="section">
 	<div class="container">
 		<h1><?= $pageTag->name ?></h1>
+
+		<div class="all-tags">
+			<?php foreach ($tags as $tag) { ?>
+				<a href="<?= Url::to(['/custompages/default/page-tag', 'slug' => $tag->slug]) ?>" class="blog__tag"><?= $tag->name ?></a>
+			<?php } ?>
+		</div>
 
 		<div class="tag-list">
 

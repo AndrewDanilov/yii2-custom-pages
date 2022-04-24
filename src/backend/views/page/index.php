@@ -107,8 +107,8 @@ $columns2 = [
 			<div class="custompages-editor-box">
 				<?= CategoryTreeFilterList::widget([
 					'tree' => $tree,
-					'filteredItemsListUriAction' => 'property/index',
-					'filteredItemsListUriParamName' => 'PropertySearch',
+					'filteredItemsListUriAction' => 'page/index',
+					'filteredItemsListUriParamName' => 'PageSearch',
 				]) ?>
 			</div>
 		</div>
