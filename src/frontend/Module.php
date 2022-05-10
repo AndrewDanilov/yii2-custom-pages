@@ -6,6 +6,10 @@ class Module extends \andrewdanilov\custompages\Module
 	public $pageShortTextWordsCount = 50;
 	public $pageTextProcessor;
 	public $categoryTextProcessor;
+	public $paginationForcePageParam = false;
+	public $paginationPageParam = 'page';
+	public $paginationPageSizeParam = false;
+	public $paginationPageSize = 20;
 
 	public function init()
 	{

@@ -4,9 +4,11 @@
 /* @var $category \andrewdanilov\custompages\common\models\Category */
 /* @var $pages \andrewdanilov\custompages\common\models\Page[] */
 /* @var $tags \andrewdanilov\custompages\common\models\PageTag[] */
+/* @var $pagination \yii\data\Pagination */
 
 use andrewdanilov\custompages\frontend\assets\CustomPagesAsset;
 use yii\helpers\Url;
+use yii\widgets\LinkPager;
 
 $this->title = $category->meta_title ?: $category->title;
 $this->registerMetaTag([
@@ -43,7 +45,7 @@ CustomPagesAsset::register($this);
 						<img src="<?= $page->image ?>" alt="">
 					</div>
 					<div class="list-item-content">
-						<a class="list-item-title" href="<?= \yii\helpers\Url::to(['default/page', 'id' => $page->id]) ?>"><?= $page->title ?></a>
+						<a class="list-item-title" href="<?= Url::to(['default/page', 'id' => $page->id]) ?>"><?= $page->title ?></a>
 						<div>
 							<?= $page->shortText ?>
 						</div>
@@ -54,5 +56,9 @@ CustomPagesAsset::register($this);
 			<?php } ?>
 
 		</div>
+
+        <?= LinkPager::widget([
+            'pagination' => $pagination,
+        ]); ?>
 	</div>
 </div>

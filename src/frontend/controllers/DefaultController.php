@@ -6,6 +6,7 @@ use andrewdanilov\custompages\common\models\Page;
 use andrewdanilov\custompages\common\models\PageTag;
 use andrewdanilov\custompages\frontend\helpers\AlbumHelper;
 use andrewdanilov\custompages\frontend\Module;
+use yii\data\Pagination;
 use yii\db\Expression;
 use yii\web\Controller;
 
@@ -22,9 +23,23 @@ class DefaultController extends Controller
 	{
 		$category = Category::findOne(['id' => $id]);
 		$template = Module::getInstance()->templatesPath . '/' . $category->category_template;
+
+        $query = $category->getPages();
+        $pagination = new Pagination([
+            'totalCount' => (clone $query)->count(),
+            'forcePageParam' => Module::getInstance()->paginationForcePageParam,
+            'pageParam' => Module::getInstance()->paginationPageParam,
+            'pageSizeParam' => Module::getInstance()->paginationPageSizeParam,
+            'pageSize' => Module::getInstance()->paginationPageSize,
+        ]);
+        $query
+            ->offset($pagination->offset)
+            ->limit($pagination->limit);
+
 		return $this->render($template, [
 			'category' => $category,
-			'pages' => $category->pages,
+			'pages' => $query->all(),
+            'pagination' => $pagination,
 			'tags' => PageTag::getAllTags(),
 		]);
 	}
@@ -73,9 +88,23 @@ class DefaultController extends Controller
 	{
 		$pageTag = PageTag::findOne(['slug' => $slug]);
 		$template = Module::getInstance()->templatesPath . '/page-tag.default.php';
+
+        $query = $pageTag->getPages();
+        $pagination = new Pagination([
+            'totalCount' => (clone $query)->count(),
+            'forcePageParam' => Module::getInstance()->paginationForcePageParam,
+            'pageParam' => Module::getInstance()->paginationPageParam,
+            'pageSizeParam' => Module::getInstance()->paginationPageSizeParam,
+            'pageSize' => Module::getInstance()->paginationPageSize,
+        ]);
+        $query
+            ->offset($pagination->offset)
+            ->limit($pagination->limit);
+
 		return $this->render($template, [
 			'pageTag' => $pageTag,
-			'pages' => $pageTag->pages,
+            'pages' => $query->all(),
+            'pagination' => $pagination,
 			'tags' => PageTag::getAllTags(),
 		]);
 	}

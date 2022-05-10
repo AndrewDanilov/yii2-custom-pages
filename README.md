@@ -119,6 +119,11 @@ $config = [
             // i.e. to replace some shortcodes on it
             'pageTextProcessor' => 'frontend\components\MyPageTextProcessor::replaceShortcodes',
             'categoryTextProcessor' => 'frontend\components\MyCategoryTextProcessor::replaceShortcodes',
+            // pagination settings
+            'paginationForcePageParam' => false, // optional, whether to always have the page parameter in the URL, even on first page, default is false
+            'paginationPageParam' => 'page', // optional, name of the parameter storing the current page index, default is 'page'
+            'paginationPageSizeParam' => false, // optional, false or name of the parameter storing the page size, default is false
+            'paginationPageSize' => 20, // optional, number of items per page, default is 20
         ],
     ],
 ];

@@ -17,7 +17,12 @@ class UrlRule extends BaseObject implements UrlRuleInterface
 			if (!empty($params['slug'])) {
 				$tag = PageTag::findOne(['slug' => $params['slug']]);
 				if ($tag) {
-					return 'tag/' . $tag->slug;
+					$path = 'tag/' . $tag->slug;
+                    unset($params['slug']);
+                    if (!empty($params) && ($query = http_build_query($params)) !== '') {
+                        $path .= '?' . $query;
+                    }
+                    return $path;
 				}
 			}
 		} elseif ($route === 'custompages/default/page') {
@@ -40,7 +45,11 @@ class UrlRule extends BaseObject implements UrlRuleInterface
 			if (!empty($params['id'])) {
 				$path = NestedCategoryHelper::getCategoryPathDelimitedStr(Category::find(), $params['id'], '/', 'slug');
 				if (!empty($path)) {
-					return $path;
+                    unset($params['id']);
+                    if (!empty($params) && ($query = http_build_query($params)) !== '') {
+                        $path .= '?' . $query;
+                    }
+                    return $path;
 				}
 			}
 		}
