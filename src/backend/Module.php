@@ -17,6 +17,7 @@ class Module extends \andrewdanilov\custompages\Module
 	public $enableTags = true;
 	public $enableAlbums = true;
 	public $enableCategories = true;
+	public $enablePageFields = true;
 	public $fileManager;
 
 	public function init()

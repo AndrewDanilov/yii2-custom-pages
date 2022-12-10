@@ -1,6 +1,7 @@
 <?php
 namespace andrewdanilov\custompages\common\models;
 
+use andrewdanilov\helpers\NestedCategoryHelper;
 use Yii;
 use yii\db\ActiveRecord;
 use yii\helpers\Inflector;
@@ -20,6 +21,7 @@ use andrewdanilov\custompages\frontend\Module;
  * @property string $order
  * @property string $meta_title
  * @property string $meta_description
+ * @property string $pages_fields
  * @property int $pagesCount
  * @property Page[] $pages
  * @property string $processedText
@@ -41,9 +43,9 @@ class Category extends ActiveRecord
     {
         return [
             [['title', 'category_template', 'pages_template'], 'required'],
-            [['text'], 'string'],
+            [['text', 'pages_fields'], 'string'],
             [['slug', 'title', 'menu_title', 'category_template', 'pages_template', 'meta_title', 'meta_description'], 'string', 'max' => 255],
-	        [['slug'], 'unique', 'targetAttribute' => ['parent_id', 'slug']],
+	        [['slug'], 'unique', 'targetAttribute' => ['parent_id', 'slug'], 'message' => Yii::t('custompages/category', 'That category slug is already used within selected parent category')],
             [['order', 'parent_id'], 'integer'],
             [['order', 'parent_id'], 'default', 'value' => 0],
 	        [['parent_id'], 'validateParent'],
@@ -68,6 +70,7 @@ class Category extends ActiveRecord
             'meta_title' => Yii::t('custompages/category', 'Meta Title'),
             'meta_description' => Yii::t('custompages/category', 'Meta Description'),
             'pagesCount' => Yii::t('custompages/category', 'Pages'),
+            'pages_fields' => Yii::t('custompages/category', 'Pages Fields setup'),
         ];
     }
 
@@ -132,8 +135,15 @@ class Category extends ActiveRecord
 	public function validateParent($attribute, $params)
 	{
 		if (!$this->hasErrors()) {
-			if ($this->id && $this->{$attribute} === $this->id) {
-				$this->addError($attribute, Yii::t('custompages/category', 'Category can not be nested inside itself'));
+			if ($this->id) {
+                if ($this->{$attribute} == $this->id) {
+                    $this->addError($attribute, Yii::t('custompages/category', 'Category can not be nested inside itself'));
+                } else {
+                    $children_ids = NestedCategoryHelper::getChildrenIds(static::find(), $this->id);
+                    if (in_array($this->{$attribute}, $children_ids)) {
+                        $this->addError($attribute, Yii::t('custompages/category', 'Category cannot be nested within one of its children'));
+                    }
+                }
 			}
 		}
 	}

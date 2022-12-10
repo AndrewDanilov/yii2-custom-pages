@@ -14,17 +14,30 @@ class UrlRule extends BaseObject implements UrlRuleInterface
 	public function createUrl($manager, $route, $params)
 	{
 		if ($route === 'custompages/default/page-tag') {
-			if (!empty($params['slug'])) {
+            // url with tag can contain category path
+            if (!empty($params['category_id'])) {
+                $path = NestedCategoryHelper::getCategoryPathDelimitedStr(Category::find(), $params['category_id'], '/', 'slug');
+                unset($params['category_id']);
+            } else {
+                $path = '';
+            }
+            if (!empty($params['id'])) {
+                $tag = PageTag::findOne(['id' => $params['id']]);
+                unset($params['id']);
+            } elseif (!empty($params['slug'])) {
 				$tag = PageTag::findOne(['slug' => $params['slug']]);
-				if ($tag) {
-					$path = 'tag/' . $tag->slug;
-                    unset($params['slug']);
-                    if (!empty($params) && ($query = http_build_query($params)) !== '') {
-                        $path .= '?' . $query;
-                    }
-                    return $path;
-				}
-			}
+                unset($params['slug']);
+			} else {
+                // tag was not set
+                $tag = null;
+            }
+            if ($tag) {
+                $path .= '/' . $tag->slug;
+                if (!empty($params) && ($query = http_build_query($params)) !== '') {
+                    $path .= '?' . $query;
+                }
+                return $path;
+            }
 		} elseif ($route === 'custompages/default/page') {
 			if (!empty($params['id'])) {
 				$page = Page::findOne(['id' => $params['id']]);
@@ -65,25 +78,31 @@ class UrlRule extends BaseObject implements UrlRuleInterface
 	public function parseRequest($manager, $request)
 	{
 		$pathInfo = $request->getPathInfo();
-		if (preg_match('%^tag/([\w\-]+)$%', $pathInfo, $matches)) {
-			return ['custompages/default/page-tag', ['slug' => $matches[1]]];
-		} elseif (preg_match('%^[\w\-]+(?:/[\w\-]+)*$%', $pathInfo, $matches)) {
+		if (preg_match('%^[\w\-]+(?:/[\w\-]+)*$%', $pathInfo, $matches)) {
 			$path = explode('/', $pathInfo);
 			$parent_id = 0;
-			// we need to go though all nested categories chain
+			// We need to go through all nested categories chain
 			foreach ($path as $index => $path_item) {
 				$category = Category::findOne([
 					'slug' => $path_item,
 					'parent_id' => $parent_id,
 				]);
 				if ($category) {
-					// category exists, store it and go to next path_item
+					// Category exists, store it and go to next path_item
 					$parent_id = $category->id;
 				} else {
-					// it's not category, maybe it's a page.
-					// only last path_item can be a page slug
+					// It's not category, maybe it's a tag or a page.
+					// Only last path_item can be a tag slug or a page slug
 					if ($index === count($path) - 1) {
-						$page = Page::find()->where([
+                        // Check if it is a tag
+                        $tag = PageTag::findOne([
+                            'slug' => $path_item,
+                        ]);
+                        if ($tag) {
+                            return ['custompages/default/page-tag', ['id' => $tag->id, 'category_id' => $parent_id]];
+                        }
+                        // Check if it is a page
+                        $page = Page::find()->where([
 							'slug' => $path_item,
 							'is_main' => 0,
 							'category_id' => $parent_id,

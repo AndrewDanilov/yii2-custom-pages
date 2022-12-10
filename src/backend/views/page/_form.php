@@ -12,6 +12,7 @@ use andrewdanilov\InputImages\InputImages;
 use dosamigos\datepicker\DatePicker;
 use kartik\select2\Select2;
 use mihaildev\elfinder\ElFinder;
+use mihaildev\elfinder\InputFile;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
@@ -105,23 +106,80 @@ $elfinder_controller_url = Yii::$app->request->baseUrl . '/' . $elfinder_control
 		</div>
 	<?php } ?>
 
-	<?= $form->field($model, 'published_at')->widget(DatePicker::class, [
-		'language' => Yii::$app->language,
-		'template' => '{input}{addon}',
-		'clientOptions' => [
-			'autoclose' => true,
-			'format' => 'dd.mm.yyyy',
-			'clearBtn' => true,
-			'todayBtn' => 'linked',
-		],
-		'clientEvents' => [
-			'clearDate' => 'function (e) {$(e.target).find("input").change();}',
-		],
-	]) ?>
+	<?php if (Module::getInstance()->enablePageFields && $model->category !== null) { ?>
+		<?php
+		$page_fields = json_decode($model->category->pages_fields, true);
+		if (is_array($page_fields)) {
+            foreach ($page_fields as $page_field) {
+				if (isset($page_field['name'], $page_field['type'], $page_field['label'])) {
+                    $name = $page_field['name'];
+                    $type = $page_field['type'];
+                    $label = $page_field['label'];
+                    switch ($type) {
+                        case 'html':
+                            echo $form->field($model, 'fields_data[' . $name . ']')->widget(CKEditor::class, [
+                                'editorOptions' => CKEditorHelper::defaultOptions(),
+                            ])->label($label);
+							break;
+                        case 'text':
+                            echo $form->field($model, 'fields_data[' . $name . ']')
+                                ->textarea(['rows' => 6])
+                                ->label($label);
+                            break;
+                        case 'bool':
+                            echo $form->field($model, 'fields_data[' . $name . ']')
+                                ->dropDownList(['0' => 'Нет', '1' => 'Да'])
+                                ->label($label);
+                            break;
+                        case 'file':
+                            echo $form->field($model, 'fields_data[' . $name . ']')->widget(InputFile::class, [
+                                'language' => 'ru',
+                                'controller' => $elfinder_controller_path,
+                                'template' => '<div class="input-group">{input}<span class="input-group-btn">{button}</span></div>',
+                                'options' => ['class' => 'form-control'],
+                                'buttonOptions' => ['class' => 'btn btn-default'],
+                                'multiple' => false,      // возможность выбора нескольких файлов
+                            ])->label($label);
+                            break;
+                        case 'image':
+                            echo $form->field($model, 'fields_data[' . $name . ']')
+                                ->widget(InputImages::class, [
+                                    'controller' => $elfinder_controller_path,
+                                ])->label($label);
+                            break;
+                        case 'images':
+                            echo $form->field($model, 'fields_data[' . $name . ']')
+                                ->widget(InputImages::class, [
+                                    'controller' => $elfinder_controller_path,
+                                    'multiple' => true,
+                                ])->label($label);
+                            break;
+                        default:
+                            echo $form->field($model, 'fields_data[' . $name . ']')
+                                ->textInput(['maxlength' => true])
+                                ->label($label);
+                    }
+                }
+            }
+        }
+		?>
+	<?php } ?>
 
-	<?= $form->field($model, 'source')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'published_at')->widget(DatePicker::class, [
+        'language' => Yii::$app->language,
+        'template' => '{input}{addon}',
+        'clientOptions' => [
+            'autoclose' => true,
+            'format' => 'dd.mm.yyyy',
+            'clearBtn' => true,
+            'todayBtn' => 'linked',
+        ],
+        'clientEvents' => [
+            'clearDate' => 'function (e) {$(e.target).find("input").change();}',
+        ],
+    ]) ?>
 
-    <?= $form->field($model, 'slug')->textInput(['maxlength' => true]) ?>
+	<?= $form->field($model, 'slug')->textInput(['maxlength' => true]) ?>
 
 	<?= $form->field($model, 'meta_title')->textInput(['maxlength' => true]) ?>
 

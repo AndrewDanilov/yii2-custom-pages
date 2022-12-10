@@ -41,7 +41,7 @@ CustomPagesAsset::register($this);
 		</div>
 
 		<div class="page-source">
-			Источник: <?= $page->source ?>
+			Источник: <?= $page->getField('source') ?>
 		</div>
 	</div>
 </div>

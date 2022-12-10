@@ -6,6 +6,7 @@ use andrewdanilov\custompages\common\models\Page;
 use andrewdanilov\custompages\common\models\PageTag;
 use andrewdanilov\custompages\frontend\helpers\AlbumHelper;
 use andrewdanilov\custompages\frontend\Module;
+use Yii;
 use yii\data\Pagination;
 use yii\db\Expression;
 use yii\web\Controller;
@@ -22,7 +23,6 @@ class DefaultController extends Controller
 	public function actionCategory($id)
 	{
 		$category = Category::findOne(['id' => $id]);
-		$template = Module::getInstance()->templatesPath . '/' . $category->category_template;
 
         $query = $category->getPages();
         $pagination = new Pagination([
@@ -35,6 +35,8 @@ class DefaultController extends Controller
         $query
             ->offset($pagination->offset)
             ->limit($pagination->limit);
+
+		$template = Module::getInstance()->templatesPath . '/' . $category->category_template;
 
 		return $this->render($template, [
 			'category' => $category,
@@ -80,16 +82,27 @@ class DefaultController extends Controller
 		]);
 	}
 
-	/**
-	 * @param string $slug
-	 * @return string
-	 */
-	public function actionPageTag($slug)
+    /**
+     * @param int $id
+     * @param int $category_id
+     * @return string
+     */
+	public function actionPageTag($id, $category_id=0)
 	{
-		$pageTag = PageTag::findOne(['slug' => $slug]);
-		$template = Module::getInstance()->templatesPath . '/page-tag.default.php';
+		$pageTag = PageTag::findOne(['id' => $id]);
 
         $query = $pageTag->getPages();
+        if ($category_id) {
+            $category = Category::findOne(['id' => $category_id]);
+            if ($category) {
+                $query->andWhere([
+                    'category_id' => $category->id,
+                ]);
+            }
+        } else {
+            $category = null;
+        }
+
         $pagination = new Pagination([
             'totalCount' => (clone $query)->count(),
             'forcePageParam' => Module::getInstance()->paginationForcePageParam,
@@ -101,8 +114,18 @@ class DefaultController extends Controller
             ->offset($pagination->offset)
             ->limit($pagination->limit);
 
+        // defining template
+        $template = Module::getInstance()->templatesPath . '/page-tag.default.php';
+        if ($category) {
+            $category_template = Module::getInstance()->templatesPath . '/page-tag.' . $category->slug . '.php';
+            if (file_exists(Yii::getAlias($category_template))) {
+                $template = $category_template;
+            }
+        }
+
 		return $this->render($template, [
 			'pageTag' => $pageTag,
+			'category' => $category,
             'pages' => $query->all(),
             'pagination' => $pagination,
 			'tags' => PageTag::getAllTags(),

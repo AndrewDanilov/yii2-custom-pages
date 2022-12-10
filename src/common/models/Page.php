@@ -26,6 +26,7 @@ use andrewdanilov\helpers\TextHelper;
  * @property string $meta_description
  * @property string $source
  * @property string $page_template
+ * @property string $fields_data
  * @property Category $category
  * @property string $shortText
  * @property string $processedText
@@ -73,8 +74,8 @@ class Page extends ActiveRecord
             [['category_id'], 'integer'],
             [['category_id'], 'default', 'value' => 0],
             [['slug', 'title', 'meta_title', 'meta_description', 'source', 'page_template'], 'string', 'max' => 255],
-	        [['slug'], 'unique', 'targetAttribute' => ['category_id', 'slug']],
-	        [['albums'], 'safe'],
+	        [['slug'], 'unique', 'targetAttribute' => ['category_id', 'slug'], 'message' => Yii::t('custompages/page', 'That page slug is already used within selected category')],
+	        [['albums', 'fields_data'], 'safe'],
 	        [['is_main'], 'boolean'],
 	        [['is_main'], 'default', 'value' => 0],
 	        [['tagIds'], 'safe'],
@@ -101,6 +102,7 @@ class Page extends ActiveRecord
             'tagIds' => Yii::t('custompages/page', 'Tags'),
             'source' => Yii::t('custompages/page', 'Source'),
             'page_template' => Yii::t('custompages/page', 'Page Template'),
+            'fields_data' => Yii::t('custompages/page', 'Custom Fields'),
         ];
     }
 
@@ -120,7 +122,6 @@ class Page extends ActiveRecord
 
 	public function afterFind()
 	{
-		parent::afterFind();
 		if (!is_array($this->albums)) {
 			if ($this->albums) {
 				$this->albums = json_decode($this->albums, true);
@@ -128,6 +129,14 @@ class Page extends ActiveRecord
 				$this->albums = [];
 			}
 		}
+        if (!is_array($this->fields_data)) {
+            if ($this->fields_data) {
+                $this->fields_data = json_decode($this->fields_data, true);
+            } else {
+                $this->fields_data = [];
+            }
+        }
+		parent::afterFind();
 	}
 
 	public function beforeSave($insert)
@@ -138,6 +147,9 @@ class Page extends ActiveRecord
 				unset($albums['blankid']);
 			}
 			$this->albums = json_encode($albums);
+		}
+		if (is_array($this->fields_data)) {
+			$this->fields_data = json_encode($this->fields_data);
 		}
 		if (!$this->slug) {
 			$this->slug = Inflector::slug($this->title);
@@ -155,8 +167,53 @@ class Page extends ActiveRecord
 		return parent::beforeSave($insert);
 	}
 
-	public function getShortText()
-	{
+    public function afterSave($insert, $changedAttributes)
+    {
+        if (!is_array($this->albums)) {
+            if ($this->albums) {
+                $this->albums = json_decode($this->albums, true);
+            } else {
+                $this->albums = [];
+            }
+        }
+        if (!is_array($this->fields_data)) {
+            if ($this->fields_data) {
+                $this->fields_data = json_decode($this->fields_data, true);
+            } else {
+                $this->fields_data = [];
+            }
+        }
+        parent::afterSave($insert, $changedAttributes);
+    }
+
+    public function getShortText()
+    {
 		return TextHelper::shortText($this->processedText, Module::getInstance()->pageShortTextWordsCount);
 	}
+
+    public function getField($name)
+    {
+    	if (is_array($this->fields_data) && isset($this->fields_data[$name])) {
+            return $this->fields_data[$name];
+        }
+        return '';
+    }
+
+    private function hasField($name)
+    {
+        return is_array($this->fields_data) && isset($this->fields_data[$name]);
+    }
+
+    public function getFieldType($name)
+    {
+    	$category = $this->category;
+        if ($category && is_array($category->pages_fields)) {
+            foreach ($category->pages_fields as $pages_field) {
+                if (isset($pages_field['name']) && $pages_field['name'] == $name) {
+                    return $pages_field['type'] ?? 'string';
+                }
+            }
+        }
+        return false;
+    }
 }

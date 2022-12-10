@@ -22,4 +22,8 @@ return [
 	'Edit' => 'Редактировать',
 	'Remove' => 'Удалить',
 	'There is no categories yet. Please, add some categories by clicking button <b>New category</b>' => 'Пока нет ни одной категории. Пожалуйста добавьте категории, воспользовавшись кнопкой <b>Новая категория</b>',
+	'That category slug is already used within selected parent category' => 'Такой ЧПУ категории уже существует в пределах выбранной родительской категории',
+    'Pages Fields setup' => 'Установка дополнительных полей',
+    'Category cannot be nested within one of its children' => 'Категория не может быть вложена в одину из своих дочерних категорий',
+    'Example: [{"name": "field1", "type": "string", "label": "String Field 1"}, {"name": "field2", "type": "text", "label": "Text Field 2"}]<br>You can use types: string, text, html, bool, file, image, images' => 'Пример: [{"name": "field1", "type": "string", "label": "String Field 1"}, {"name": "field2", "type": "text", "label": "Text Field 2"}]<br>Можно использовать типы (type): string, text, html, bool, file, image, images',
 ];

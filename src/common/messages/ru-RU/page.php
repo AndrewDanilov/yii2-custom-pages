@@ -23,4 +23,6 @@ return [
 	'Without Category' => 'Без категории',
 	'Page Template' => 'Шаблон страницы',
 	'From category settings / Default' => 'Из настроек категории / По умолчанию',
+    'That page slug is already used within selected category' => 'Такой ЧПУ страницы уже существует в пределах выбранной категории',
+    'Custom Fields' => 'Дополнительные поля',
 ];

@@ -57,6 +57,8 @@ $config = [
             'enableAlbums' => false,
             // optional, enables controls for managing categories, default is true
             'enableCategories' => false,
+            // optional, enables controls for managing pages extra fields, default is true
+            'enablePageFields' => false,
             // file manager configuration, optional, default is:
             'fileManager' => [
                 'basePath' => '@frontend/web',
@@ -129,19 +131,24 @@ $config = [
 ];
 ```
 
-Frontend __category__, __page__ and __tag__ urls:
+Frontend __page__, __category__ and __tag__ urls:
 
 ```php
 use yii\helpers\Url;
 
-$categoryUrl = Url::to(['/custompages/default/category', 'id' => 1]);
+// detailed page url
 $pageUrl = Url::to(['/custompages/default/page', 'id' => 123]);
+// pages list url, shows pages in defined category
+$categoryUrl = Url::to(['/custompages/default/category', 'id' => 1]);
+// pages list url by tag id
+$pageTagUrl = Url::to(['/custompages/default/page-tag', 'id' => 7]);
+// pages list url by tag slug
 $pageTagUrl = Url::to(['/custompages/default/page-tag', 'slug' => 'tagname']);
+// pages list url by tag id, shows pages in defined category only
+$pageTagUrl = Url::to(['/custompages/default/page-tag', 'id' => 7, 'category_id' => 123]);
+// pages list url by tag slug, shows pages in defined category only
+$pageTagUrl = Url::to(['/custompages/default/page-tag', 'slug' => 'tagname', 'category_id' => 123]);
 ```
-
-If you use own `templatesPath` you need to copy example templates from __/vendor/andrewdanilov/yii2-custom-pages/src/frontend/views__ to your `templatesPath` directory. Modify them or add as many templates as you need.
-
-Note, that template file name for a category must begin with the prefix '_category._', template file name for a page must begin with the prefix '_page._' and template file name for a tag must begin with the prefix '_page-tag._'. A dot at the end of the prefix is required.
 
 Features
 --------
@@ -203,6 +210,25 @@ Pages also can be grouped by tags. One tag can represent several pages. One page
 ### Templates
 
 Each category can have own template for itself and separete template for pages stored in it. At the same time, pages can have their own template, even if it was set in the category settings. If page template is not set in page settings, page template of category settings will be applied to it. If page have no own template and have no category, the default template will be used.
+
+If you use own `templatesPath` you need to copy example templates from __/vendor/andrewdanilov/yii2-custom-pages/src/frontend/views__ to your `templatesPath` directory, for example to `frontend/views/custompages`. Modify them or add as many templates as you need.
+
+Note, that template file name for a category must begin with the prefix '_category._', template file name for a page must begin with the prefix '_page._'. The default template names are '_category.default.php_' for category and '_page.default.php_' for page.
+
+Template file name for a tag must begin with the prefix '_page-tag._'. A dot at the end of the prefix is required. Next to it you can place category slug to make standalone template for tag-page with defined category. For i.e. '_page-tag.fruits.php_' for category with slug '_fruits_'. If there is no such template file the default will be used. Default template file for page-tag is '_page-tag.default.php_'.
+
+### Custom fields
+
+For each category you can define extra fields applied to pages of that category. You can set values of this fields from backend within a page editor, and access them from your templates like this:
+
+```php
+<?php /* @var \andrewdanilov\custompages\common\models\Page $page */ ?>
+Some Field Value: <?= $page->getField('some_field') ?>
+Some Field Type: <?= $page->getFieldType('some_field') ?>
+Some Field Exists: <?php if ($page->hasField('some_field')) echo 'yes'; else echo 'no'; ?>
+```
+
+For this feature to work you must enable `enablePageFields` property of custompage module in backend config (see above). If requested field is not exist, then getField() returns __empty string__, hasField() and getFieldType() returns __false__
 
 ### I18n
 
