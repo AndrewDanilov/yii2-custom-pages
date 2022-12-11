@@ -230,6 +230,8 @@ Some Field Exists: <?php if ($page->hasField('some_field')) echo 'yes'; else ech
 
 For this feature to work you must enable `enablePageFields` property of custompage module in backend config (see above). If requested field is not exist, then getField() returns __empty string__, hasField() and getFieldType() returns __false__
 
+Since the 2.0.20 update, if you previously used the "_source_" page field, you need to replace it in your templates with the custom fields method. For example, if you called $page->source, now you need to call $page->getField('source'). Your data from old field was converted to custom fields automatically.
+
 ### I18n
 
 Extension supports internationalisation. You can set your language in `common/config/main.php`
