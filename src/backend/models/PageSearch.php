@@ -58,7 +58,11 @@ class PageSearch extends Page
         	$query->andWhere(['category_id' => $childrenIds]);
         }
 
-	    $published_at_search = implode('-', array_reverse(explode('.', $this->published_at)));
+        if ($this->published_at !== null) {
+            $published_at_search = implode('-', array_reverse(explode('.', $this->published_at)));
+        } else {
+            $published_at_search = null;
+        }
 
 	    $query->andFilterWhere(['like', 'slug', $this->slug])
             ->andFilterWhere(['like', 'title', $this->title])
