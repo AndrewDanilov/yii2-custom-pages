@@ -9,7 +9,7 @@ use andrewdanilov\custompages\common\models\PageTag;
 use andrewdanilov\helpers\CKEditorHelper;
 use andrewdanilov\helpers\NestedCategoryHelper;
 use andrewdanilov\InputImages\InputImages;
-use dosamigos\datepicker\DatePicker;
+use kartik\date\DatePicker;
 use kartik\select2\Select2;
 use mihaildev\elfinder\ElFinder;
 use mihaildev\elfinder\InputFile;
@@ -167,14 +167,14 @@ $elfinder_controller_url = Yii::$app->request->baseUrl . '/' . $elfinder_control
 
     <?= $form->field($model, 'published_at')->widget(DatePicker::class, [
         'language' => Yii::$app->language,
-        'template' => '{input}{addon}',
-        'clientOptions' => [
+        'layout' => '{input}{picker}',
+        'pluginOptions' => [
             'autoclose' => true,
             'format' => 'dd.mm.yyyy',
             'clearBtn' => true,
             'todayBtn' => 'linked',
         ],
-        'clientEvents' => [
+        'pluginEvents' => [
             'clearDate' => 'function (e) {$(e.target).find("input").change();}',
         ],
     ]) ?>

@@ -15,6 +15,7 @@ class Module extends \yii\base\Module
 {
 	public $templatesPath;
 	public $translatesPath;
+    public $bsVersion;
 
 	public function init()
 	{
@@ -28,6 +29,11 @@ class Module extends \yii\base\Module
 		}
 		// I18N
 		$this->registerTranslations();
+        // Bootstrap default version for all Krajee Extensions
+        if (empty($this->bsVersion)) {
+            $this->bsVersion = '5.x';
+        }
+        Yii::$app->params['bsVersion'] = $this->bsVersion;
 		parent::init();
 	}
 
