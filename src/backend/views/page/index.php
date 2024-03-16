@@ -6,7 +6,7 @@ use andrewdanilov\custompages\backend\Module;
 use andrewdanilov\custompages\backend\widgets\CategoryTree\CategoryTreeFilterList;
 use andrewdanilov\custompages\common\models\Category;
 use andrewdanilov\custompages\common\models\Page;
-use dosamigos\datepicker\DatePicker;
+use kartik\date\DatePicker;
 use yii\helpers\Html;
 use yii\grid\GridView;
 
@@ -58,15 +58,15 @@ $columns2 = [
 		'filter' => DatePicker::widget([
 			'model' => $searchModel,
 			'attribute' => 'published_at',
-			'language' => 'ru',
-			'template' => '{input}{addon}',
-			'clientOptions' => [
+			'language' => Yii::$app->language,
+			'layout' => '{input}{picker}',
+			'pluginOptions' => [
 				'autoclose' => true,
 				'format' => 'dd.mm.yyyy',
 				'clearBtn' => true,
 				'todayBtn' => 'linked',
 			],
-			'clientEvents' => [
+			'pluginEvents' => [
 				'clearDate' => 'function (e) {$(e.target).find("input").change();}',
 			],
 		]),

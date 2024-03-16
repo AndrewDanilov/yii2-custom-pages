@@ -73,6 +73,8 @@ $config = [
                     ],
                 ],
             ],
+            // bootstrap version to use, optional, default is '5.x'
+            'bsVersion' => '5.x',
         ],
     ],
 ];
