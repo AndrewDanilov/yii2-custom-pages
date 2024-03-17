@@ -12,7 +12,6 @@ return [
 	'Slug' => 'ЧПУ',
 	'Title' => 'Заголовок',
 	'Text' => 'Текст',
-	'Source' => 'Источник',
 	'Meta Title' => 'Мета-заголовок',
 	'Meta Description' => 'Мета-описание',
 	'Cover' => 'Обложка',

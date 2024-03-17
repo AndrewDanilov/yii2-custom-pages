@@ -24,7 +24,6 @@ use andrewdanilov\helpers\TextHelper;
  * @property boolean $is_main
  * @property string $meta_title
  * @property string $meta_description
- * @property string $source
  * @property string $page_template
  * @property string $fields_data
  * @property Category $category
@@ -73,7 +72,7 @@ class Page extends ActiveRecord
             [['image', 'text', 'published_at'], 'string'],
             [['category_id'], 'integer'],
             [['category_id'], 'default', 'value' => 0],
-            [['slug', 'title', 'meta_title', 'meta_description', 'source', 'page_template'], 'string', 'max' => 255],
+            [['slug', 'title', 'meta_title', 'meta_description', 'page_template'], 'string', 'max' => 255],
 	        [['slug'], 'unique', 'targetAttribute' => ['category_id', 'slug'], 'message' => Yii::t('custompages/page', 'That page slug is already used within selected category')],
 	        [['albums', 'fields_data'], 'safe'],
 	        [['is_main'], 'boolean'],
@@ -100,7 +99,6 @@ class Page extends ActiveRecord
             'meta_title' => Yii::t('custompages/page', 'Meta Title'),
             'meta_description' => Yii::t('custompages/page', 'Meta Description'),
             'tagIds' => Yii::t('custompages/page', 'Tags'),
-            'source' => Yii::t('custompages/page', 'Source'),
             'page_template' => Yii::t('custompages/page', 'Page Template'),
             'fields_data' => Yii::t('custompages/page', 'Custom Fields'),
         ];

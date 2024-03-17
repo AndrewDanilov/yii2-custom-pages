@@ -39,9 +39,5 @@ CustomPagesAsset::register($this);
 		<div class="page-text">
 			<?= $page->processedText ?>
 		</div>
-
-		<div class="page-source">
-			Источник: <?= $page->getField('source') ?>
-		</div>
 	</div>
 </div>
